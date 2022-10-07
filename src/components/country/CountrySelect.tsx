@@ -18,11 +18,14 @@ export default function CountrySelect() {
   //   };
   //   getcountrydata();
   // }, []);
+  
+  const [getCountryid, setCountryid] = React.useState<CountryType>();
 
   const [value, setValue] = React.useState<CountryType>();
 
   const handleClear = (e :  React.MouseEvent<HTMLInputElement>) => {
-    e.currentTarget.value = "";
+     const getCountryid = e.currentTarget.value
+     setCountryid(getCountryid)
   };
 
   return (
@@ -55,10 +58,11 @@ export default function CountrySelect() {
         </Box>
       )}
       renderInput={(params) => (
+        <div> 
+          <div>vvvvv {getCountryid}</div> 
         <TextField
           {...params}
-         
-          placeholder="Choose a country"
+          placeholder="Choose a country" 
           onClick={handleClear}
           inputProps={{
             ...params.inputProps,
@@ -79,6 +83,7 @@ export default function CountrySelect() {
             ) : null
           }}
         />
+        </div>
       )}
     />
   );

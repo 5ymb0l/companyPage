@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import InputField from "../inputField/InputField";
 import CountrySelect from "../country/CountrySelect"
-import TelInput from "../phoneNo/MuiTelInput"
+import {TelInput } from "../phoneNo/MuiTelInput";
 import "./Form.css";
 
 export const Form = () => {
@@ -12,6 +12,7 @@ export const Form = () => {
     <InputField />
     <CountrySelect />
     <TelInput />
+  
     <Button className="next" variant="outlined"> Next </Button>
     </div>
     </div>

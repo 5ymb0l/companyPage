@@ -7,21 +7,18 @@ const Countryautofill = () => {
 }
 
 export default Countryautofill
+
 // import React, { useState, useEffect  } from 'react';
 // import { Container } from "react-bootstrap";
 // import { Model}  from "../components/model"
 
 // interface Props {
-//   getcountry : [] ,
-//   setCountry :React.Dispatch<React.SetStateAction<any[]>> 
-//   getCountryid : string , 
-//   setCountryid : React.Dispatch<React.SetStateAction<string>>
-//   getrowdata : [], 
-//   setGetrowdata : React.Dispatch<React.SetStateAction<never[]>>
+//   index: any;
+//   resCountry : Model
 // }
 
 
-// const Countryautofill : React.FC <Props> ({setCountry }) =>
+// const Countryautofill : React.FC <Props> ({ index , resCountry}) =>
 // {    
 //   const [getcountry, setCountry]= useState([]);
 //   const [getCountryid, setCountryid]= useState('');
