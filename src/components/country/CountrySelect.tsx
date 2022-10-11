@@ -5,36 +5,26 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import InputAdornment from "@mui/material/InputAdornment";
 
+const CountrySelect : React.FC <{
+  value : CountryType | undefined;
+  setValue : React.Dispatch<React.SetStateAction<CountryType | undefined>>
+  setPhone : React.Dispatch<React.SetStateAction<string>>
 
-export default function CountrySelect() {
-  // const [getcountry, setCountry] = useState([]);
-  // const [getCountryid, setCountryid] = useState("");
-  // const [getrowdata, setGetrowdata] = useState([]);
-  // useEffect(() => {
-  //   const getcountrydata = async () => {
-  //     const reqData = await fetch("http://localhost/devopsdeveloper/country/");
-  //     const resData = await reqData.json();
-  //     setCountry(await resData);
-  //   };
-  //   getcountrydata();
-  // }, []);
-  
-  const [getCountryid, setCountryid] = React.useState<CountryType>();
+}> = ({value , setValue , setPhone}) => {
 
-  const [value, setValue] = React.useState<CountryType>();
+  const handleClear = (e:React.FormEvent) => {
+    e.preventDefault();
+ };
 
-  const handleClear = (e :  React.MouseEvent<HTMLInputElement>) => {
-     const getCountryid = e.currentTarget.value
-     setCountryid(getCountryid)
-  };
-
-  return (
-    <Autocomplete
+  return ( 
+    <Autocomplete 
       id="country-select-demo"
       disableClearable
       value={value}
-      onChange={(event, newValue) => {
+      onChange={(event, newValue ) => {
         setValue(newValue);
+       setPhone(newValue.phone)
+
       }}
       openOnFocus
       sx={{ width: 300 }}
@@ -59,7 +49,7 @@ export default function CountrySelect() {
       )}
       renderInput={(params) => (
         <div> 
-          <div>vvvvv {getCountryid}</div> 
+      
         <TextField
           {...params}
           placeholder="Choose a country" 
@@ -88,16 +78,16 @@ export default function CountrySelect() {
     />
   );
 }
-interface CountryType {
-  code?: string;
+export interface CountryType {
+  code: string;
   label: string;
-  phone?: string;
+  phone: string;
   suggested?: boolean;
 }
-
+export default CountrySelect
 
 // From https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
-const countries = [
+export const countries = [
   { code: "AD", label: "Andorra", phone: "376" },
   {
     code: "AE",

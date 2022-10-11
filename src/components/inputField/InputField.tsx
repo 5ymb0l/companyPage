@@ -8,7 +8,7 @@ export const InputField = () => {
      <FormHelperText className="help-text">
      "You will receive a 6 digit code to verify next "
      </FormHelperText>
-    </div>
+    </div> 
   );
 };
 
