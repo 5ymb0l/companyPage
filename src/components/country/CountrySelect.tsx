@@ -27,7 +27,18 @@ const CountrySelect : React.FC <{
 
       }}
       openOnFocus
-      sx={{ width: 300 }}
+      sx={{ width: '300px',
+        display: 'inline-block',
+        height: '57px',
+        borderRadius: '50px',
+        boxSizing: 'border-box',
+        left: '0%',
+        right: '0%',
+        top: '0%',
+        bottom: '0%',
+        background: '#E6F2FE',
+        border: '1px solid rgba(0, 47, 113, 0.2)' ,
+      lineHeight : '10rem'}}
       options={countries}
       autoHighlight
       getOptionLabel={(option : CountryType): string  => option.label}
@@ -51,6 +62,9 @@ const CountrySelect : React.FC <{
         <div> 
       
         <TextField
+        sx={{
+          
+        }}
           {...params}
           placeholder="Choose a country" 
           onClick={handleClear}
@@ -61,8 +75,8 @@ const CountrySelect : React.FC <{
           InputProps={{
             ...params.InputProps,
             startAdornment: value ? (
-              <InputAdornment disablePointerEvents position="start">
-                <img
+              <InputAdornment sx ={{fontFamily: "Poppins"}} disablePointerEvents position="start">
+                <img 
                   loading="lazy"
                   width="48"
                   src={`https://flagcdn.com/w20/${value?.code?.toLowerCase()}.png`}
@@ -98,9 +112,9 @@ export const countries = [
   {
     code: "AG",
     label: "Antigua and Barbuda",
-    phone: "1-268"
+    phone: "268"
   },
-  { code: "AI", label: "Anguilla", phone: "1-264" },
+  { code: "AI", label: "Anguilla", phone: "264" },
   { code: "AL", label: "Albania", phone: "355" },
   { code: "AM", label: "Armenia", phone: "374" },
   { code: "AO", label: "Angola", phone: "244" },

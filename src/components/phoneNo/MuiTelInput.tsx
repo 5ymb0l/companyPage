@@ -1,7 +1,6 @@
-import {  Autocomplete, TextField , Box } from "@mui/material";
+import {  TextField  } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
-import {CountryType} from "../country/CountrySelect"
 
 
 export const TelInput  : React.FC <{
@@ -11,14 +10,19 @@ export const TelInput  : React.FC <{
  }> = ({phone , setPhone}) => {
   return (
     <TextField className="phone"
+   
     value={phone}
     onChange={( e ) => {
       setPhone(e.target.value)
     }
   }
     sx = {{
-       ...TelInput, borderRadius: '50px',
-       backgroundColor: 'info.light'
+       ...TelInput, 
+       width: '300px',
+       borderRadius: '50px',
+      background: '#E6F2FE',
+      border: '1px solid rgba(0, 47, 113, 0.2)',
+      boxSizing: 'border-box'
      }}
    type= "number"
       InputProps={{

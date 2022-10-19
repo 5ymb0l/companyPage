@@ -1,28 +1,74 @@
-import {useState} from"react"
+import { useState } from "react";
 import { Button } from "@mui/material";
 import InputField from "../inputField/InputField";
-import CountrySelect from "../country/CountrySelect"
-import {TelInput } from "../phoneNo/MuiTelInput";
+import CountrySelect from "../country/CountrySelect";
+import { TelInput } from "../phoneNo/MuiTelInput";
 import "./Form.css";
-import {CountryType} from "../Countries"
+import { CountryType } from "../Countries";
+import { OtpField } from "../otp/OtpField";
 
-
-export const Form = () => {
-  const [value , setValue] = useState<CountryType | undefined>();
-  const [phone, setPhone] = useState<string>('');
-  console.log(phone)
-  return (
-    <div className='card'>
-    <div className="div">
-    <h1 className="h1">Login</h1>
-    <InputField/>
-    <CountrySelect value={value} setValue = {setValue} setPhone = {setPhone} />
-    <TelInput phone = {phone} setPhone = {setPhone}/>
-  
-    <Button className="next" variant="outlined"> Next </Button>
-    </div>
-    </div>
-  )
+interface Istate{
+  isLogin : boolean; 
+ 
 }
+export const Form = () => {
+  const [value, setValue] = useState<CountryType | undefined>();
+  const [phone, setPhone] = useState<string>("");
+  const [otp, setOtp] = useState<string>("")
+  const [state, SetState] = useState <Istate>({
+     isLogin : false,
+    })
+  console.log(phone); 
+  const handleClick = () : void => {
+    if (otp === "123456") {
+        console.log( "otp is correct")
+     }
+     else {
+      console.log("otp isi incorrect")
+     }
+     
+    SetState ({ isLogin : true})
+  }
+  return (
+    <div className="card">
+      <div>
+        <h1 className="h1">Login</h1>
+        <div className = "main">
+          {state.isLogin && state.isLogin ? (
+        <OtpField  otp={otp} setOtp={setOtp} />  
+            ) : (
+            <div>
+         <InputField />
+        <CountrySelect value={value} setValue={setValue} setPhone={setPhone} />
+        <TelInput phone={phone} setPhone={setPhone} />
+            </div>
+          )}
+        </div>
+        <div>
+       <Button 
+       onClick={handleClick}
+          sx={{
+            fontFamily: "Poppins",
+            fontStyle: "normal",
+            fontWeight: 500,
+            fontSize: "14px",
+            lineHeight: "18px",
+            color: "#002F71",
+            
+          }}
+          variant="outlined"
+        >
+        
+         Next
+        </Button>
+        </div>
+      </div>
+    </div>
+ 
+ );
+  
+};
 
-export default Form
+
+
+export default Form;

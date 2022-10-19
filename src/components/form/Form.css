@@ -21,16 +21,13 @@ width: 500px;
     line-height: 60px;
     color: #002F71;
 }
-.next{
-font-family: 'Poppins';
-font-style: normal;
-font-weight: 500;
-font-size: 14px;
-line-height: 18px;
-color: #002F71;
+
+.main {
+    flex-direction: column;
+    margin: 10px;
+
 }
-
-
+ 
 
 
 /* .card{
