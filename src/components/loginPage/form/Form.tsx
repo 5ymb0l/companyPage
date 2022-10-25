@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Button } from "@mui/material";
 import InputField from "../inputField/InputField";
-import CountrySelect from "../country/CountrySelect";
+import CountrySelect from "../country/CountrySelect"
 import { TelInput } from "../phoneNo/MuiTelInput";
 import "./Form.css";
-import { CountryType } from "../Countries";
-import { OtpField } from "../otp/OtpField";
+import { CountryType } from "../Countries"
+import { OtpField } from "../../otp/OtpField";
 
 interface Istate{
   isLogin : boolean; 
@@ -21,10 +21,10 @@ export const Form = () => {
   console.log(phone); 
   const handleClick = () : void => {
     if (otp === "123456") {
-        console.log( "otp is correct")
+         setOtp ( "654321")
      }
      else {
-      console.log("otp isi incorrect")
+         setOtp("123456")
      }
      
     SetState ({ isLogin : true})

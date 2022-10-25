@@ -1,11 +1,13 @@
-import Form from "./components/form/Form"
+import Form from "./components/loginPage/form/Form"
 import './App.css';
-// import Countryautofill from './components/PhoneNo';
+// import BasicTable from "./components/table/Table";
+import Dashboard from "./components/dashboard/Dashboard";
 function App() {
   return (
     <div className="App">
    <Form />
-   {/* <Countryautofill /> */}
+   <Dashboard />
+   {/* <BasicTable /> */}
     </div>
   );
 }

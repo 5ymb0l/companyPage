@@ -1,6 +1,6 @@
 import React, { useState, useEffect  } from 'react';
 import { Container } from "react-bootstrap";
-import { Model } from './model';
+import { Model } from '../components/loginPage/model';
 function Countryautofill()
 {    
   const [getcountry, setCountry]= useState<Model[]>([]);

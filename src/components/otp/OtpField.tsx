@@ -54,10 +54,10 @@ return (
       marginLeft: '80px'
     }}
     >
-      <p>
+      
         We have sent the code verification to your Mobile number
-        </p>
-      <p>+ 91 9967239635</p>
+        
+      + 91 9967239635
       
     </FormHelperText>
 
