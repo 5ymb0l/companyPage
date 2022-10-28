@@ -1,77 +1,103 @@
 import { MuiOtpInput } from "mui-one-time-password-input";
 import { FormHelperText, Typography } from "@mui/material";
-import {otpNo} from "./otp"
 type Props = {
-  otp: string ;
+  otp: string;
   setOtp: React.Dispatch<React.SetStateAction<string>>;
-  
-}
-export const OtpField = ({otp , setOtp} : Props) => {
- 
-  const handleChange = (newValue : any) => {
-    setOtp(newValue)
-  }
-return (
-  <div className="verifyDiv">
-    <Typography
-      sx={{
-        width: "460px",
-        height: "90px",
-        left: "809px",
-        top: "300px",
-        fontFamily: "Poppins",
-        fontStyle: "normal",
-        fontWeight: 600,
-        fontSize: "30px",
-        lineHeight: "130px",
-        display: "block",
-        alignItems: "center",
-        textAlign: "center",
-        color: "#002F71",
-      }}
-    >
-      <p>Verification code </p>{" "}
-    </Typography>
-    <FormHelperText
-    sx={{
-      width: "299px",
-      height: "60px",
-      left: "714px",
-      top: "509px",
-      fontFamily: "Poppins",
-      fontStyle: "normal",
-      fontWeight: 400,
-      fontSize: "14px",
-      lineHeight: "20px",
-      display: "block",
-      alignItems: "center",
-      textAlign: "center",
-      color: "#002F71",
-      opacity: 0.8,
-      marginTop: '3px',
-      marginRight: '0px',
-      marginBottom: '40px',
-      marginLeft: '80px'
-    }}
-    >
-      
+};
+export const OtpField = ({ otp, setOtp }: Props) => {
+  const handleChange = (newValue: any) => {
+    setOtp(newValue);
+  };
+  return (
+    <div className="verifyDiv">
+      <Typography
+        sx={{
+          width: "460px",
+          height: "90px",
+          left: "809px",
+          top: "300px",
+          fontFamily: "Poppins",
+          fontStyle: "normal",
+          fontWeight: 600,
+          fontSize: "30px",
+          lineHeight: "130px",
+          display: "block",
+          alignItems: "center",
+          textAlign: "center",
+          color: "#002F71",
+        }}
+      >
+        <p>Verification code </p>{" "}
+      </Typography>
+      <div>
+        <div>
+        <FormHelperText
+        sx={{
+          width: "299px",
+          height: "60px",
+          left: "714px",
+          top: "509px",
+          fontFamily: "Poppins",
+          fontStyle: "normal",
+          fontWeight: 400,
+          fontSize: "14px",
+          lineHeight: "20px",
+          display: "block",
+          alignItems: "center",
+          textAlign: "center",
+          color: "#002F71",
+          opacity: 0.8,
+          marginTop: "3px",
+          marginRight: "0px",
+          marginBottom: "40px",
+          marginLeft: "80px",
+        }}
+      >
         We have sent the code verification to your Mobile number
-        
-      + 91 9967239635
-      
-    </FormHelperText>
+      </FormHelperText>
+<div>
 
-    <div className="otp">
-      <MuiOtpInput
-        TextFieldsProps={{ placeholder: "-" }}
-        value={otp}
-        length={6}
-        onChange = {handleChange}
+<FormHelperText  sx={{
+          width: "299px",
+          height: "20px",
+          left: "714px",
+          top: "509px",
+          fontFamily: "Poppins",
+          fontStyle: "normal",
+          fontWeight: 400,
+          fontSize: "14px",
+          lineHeight: "20px",
+          display: "block",
+          alignItems: "center",
+          textAlign: "center",
+          color: "#002F71",
+          opacity: 0.8,
+          marginTop: "3px",
+          marginRight: "0px",
+          marginBottom: "40px",
+          marginLeft: "80px",
+        }}>  + 91 9967239635</FormHelperText>
+
+</div>
         
-      />
+        
+        </div>
+     
+
+      </div>
+     
+      
+
+      <div className="otp">
+        <MuiOtpInput
+          value={otp}
+          length={6}
+          onChange={handleChange}
+         
+        />
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 // export const OtpField: React.FC<{
@@ -133,21 +159,12 @@ return (
 //           TextFieldsProps={{ placeholder: "-" }}
 //           value={otp}
 //           length={6}
-        
+
 //         />
 //       </div>
 //     </div>
 //   );
 // };
-
-
-
-
-
-
-
-
-
 
 // import { MuiOtpInput } from "mui-one-time-password-input";
 // import { FC } from "react";
@@ -155,13 +172,12 @@ return (
 // import "./otp"
 // import {otpNo} from "./otp"
 
-
 // export const OtpField: FC<{
-  
+
 //     otpPin ?: string ;
 //     setOtpPin : React.Dispatch<React.SetStateAction<otpNo>>;
 // }> = ({otpPin , setOtpPin }): JSX.Element => {
-  
+
 // const handleChange = (value: otpNo) => {
 //     setOtpPin(value);
 //   };
@@ -226,5 +242,3 @@ return (
 //     </div>
 //   );
 // };
-
-

@@ -1,11 +1,15 @@
-import Form from "./components/loginPage/form/Form"
+// import Form from "./components/loginPage/form/Form"
 import './App.css';
+// import AddResp from './components/addRespons/AddResp';
 // import BasicTable from "./components/table/Table";
-import Dashboard from "./components/dashboard/Dashboard";
+import Dashboard from "./components/responsibility/dashboard/Dashboard";
+
 function App() {
   return (
     <div className="App">
-   <Form />
+    
+      {/* <AddResp /> */}
+   {/* <Form /> */}
    <Dashboard />
    {/* <BasicTable /> */}
     </div>

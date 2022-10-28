@@ -25,6 +25,7 @@
     "react-json-pretty": "^2.2.0",
     "react-otp-input": "^2.4.0",
     "react-scripts": "5.0.1",
+    "tss-react": "^4.4.1",
     "typescript": "*",
     "web-vitals": "^2.1.0"
   },

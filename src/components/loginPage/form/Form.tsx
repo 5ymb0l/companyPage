@@ -21,7 +21,7 @@ export const Form = () => {
   console.log(phone); 
   const handleClick = () : void => {
     if (otp === "123456") {
-         setOtp ( "654321")
+         setOtp ( "")
      }
      else {
          setOtp("123456")
@@ -54,6 +54,7 @@ export const Form = () => {
             fontSize: "14px",
             lineHeight: "18px",
             color: "#002F71",
+            bottom : "-50px"
             
           }}
           variant="outlined"

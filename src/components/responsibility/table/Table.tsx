@@ -1,3 +1,4 @@
+import  "../../muiTheme/MyTheme"
 import {
     Table,
     TableBody,
@@ -6,9 +7,8 @@ import {
     TableHead,
     TableRow,
     Paper,
-    Avatar,
-    Grid ,
-    Button
+    Button,
+    Fab
 }  from '@mui/material';
 function createData(
   name: string,
@@ -27,9 +27,7 @@ const rows = [
 ];
 
 export default function BasicTable() {
-   
-
-  return (
+   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -51,14 +49,13 @@ export default function BasicTable() {
               </TableCell>
               <TableCell>{row.types}</TableCell>
               <TableCell>
-                <Grid>
-                <Grid item lg={2}>
-                          <Avatar alt={row.role} src='.' sx={{
-                          background: "#E6F2FE",
-                          
-                          }} />
-                      </Grid>
-                </Grid>
+                <div>
+                <Fab sx={{
+                background: '#E6F2FE'
+                }} aria-label="SA">
+                {row.role} 
+                 </Fab>
+                </div>
             </TableCell>
               <TableCell>
                <div> 
