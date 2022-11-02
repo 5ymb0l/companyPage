@@ -18,18 +18,8 @@ import ListItemText from "@mui/material/ListItemText";
 import SearchHere from "../searchHere/SearchBar";
 import BasicTable from "../table/Table";
 import SearchButton from "../searchButton/SearchButton";
-import { Grid } from "@mui/material";
-// position: absolute;
-// width: 1422px;
-// height: 317px;
-// left: 250px;
-// top: 218px;
 
-// /* White */
-
-// background: #FFFFFF;
-// border-radius: 10px;
-const drawerWidth = "240px"
+const drawerWidth = 240
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
 }>(({ theme, open }) => ({
@@ -92,19 +82,16 @@ export default function Dashboard() {
   };
 
   return (
-    <Box sx={{ display: "flex", 
-//     position: "absolute"
-// width: "1422px",
-// height: "317px",
-// left: "250px",
-// top: "218px",
-
-/* White */
-
-background: "#FFFFFF",
-borderRadius: "10px",}}>
+    <Box sx={{ display : "flex",
+    backgroundColor: "#E6F2FE", 
+    flex : 1,
+    height : "100%"
+   }}>
+    
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} sx ={{
+        background: "#002F71"
+      }}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -154,43 +141,52 @@ borderRadius: "10px",}}>
             "Users",
             "Settings",
             "Histories",
-          ].map((text, index) => (
+          ].map((text) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemText primary={text} />
               </ListItemButton>
-            </ListItem>
+            </ListItem>  
           ))}
         </List>
         <Divider />
       </Drawer>
-      <Main>
-        <div>
-        <DrawerHeader/>
-        </div>
-        <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={8}>
-          <div>
-        <SearchHere/></div>
-        </Grid>
-        <Grid item xs={4}>
-        <div>
+      <Main open={open}>
+
+       <DrawerHeader/>
+
+       <Box sx ={
+        {
+          // left : "14%",
+          // width : "79%"
+          display : "flex",
+          flexDirection : "column",
+          justifyContent : "center",
+          width : "100%",
+          // position : open ? null : "absolute",
+          // left : "250px"
+          // alignItems : "center"
+
+         
+        }
+       }>
+
+       <div style={{
+        display : "flex",
+        flexDirection : "row",
+        alignItems : "center",
+        width : "100%",
+        justifyContent : "space-between"
+
+        }}>
+        <SearchHere/>
         <SearchButton />
-        </div>
-        </Grid>
-        
-      </Grid>
-    </Box>
-        
-        <div>
+       </div>
         <DrawerHeader/>
-        </div>
-        <div>
         <BasicTable />
-        </div>
-      </Main>
-    </Box>
+       </Box>
+         </Main>
+        </Box>
   );
 }
 

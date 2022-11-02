@@ -9,25 +9,29 @@ export const TelInput  : React.FC <{
 
  }> = ({phone , setPhone}) => {
   return (
-    <TextField className="phone"
-   
-    value={phone}
-    onChange={( e ) => {
-      setPhone(e.target.value)
+     <div style={{
+      margin : 5
+    }}>
+      <TextField className="phone"
+     
+      value={phone}
+      onChange={( e ) => {
+        setPhone(e.target.value)
+      }
     }
-  }
-    sx = {{
-       ...TelInput, 
-       width: '300px',
-       borderRadius: '50px',
-      background: '#E6F2FE',
-      border: '1px solid rgba(0, 47, 113, 0.2)',
-      boxSizing: 'border-box'
-     }}
-   type= "number"
-      InputProps={{
-   startAdornment : <InputAdornment position="start"> <PhoneInTalkIcon /> <option className="plus"> + </option> </InputAdornment>
-     }} />
+      sx = {{
+         ...TelInput, 
+         width: '300px',
+         borderRadius: '50px',
+        background: '#E6F2FE',
+        border: '1px solid rgba(0, 47, 113, 0.2)',
+        boxSizing: 'border-box'
+       }}
+     type= "number"
+        InputProps={{
+     startAdornment : <InputAdornment position="start"> <PhoneInTalkIcon /> <option className="plus"> + </option> </InputAdornment>
+       }} />
+    </div>
    
    );
     }

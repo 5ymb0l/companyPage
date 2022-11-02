@@ -1,5 +1,6 @@
-// import Form from "./components/loginPage/form/Form"
+import Form from "./components/loginPage/form/Form"
 import './App.css';
+// import PersistentDrawerLeft from './components/respon2/addRespons/dashboard/Dashboard';
 // import AddResp from './components/addRespons/AddResp';
 // import BasicTable from "./components/table/Table";
 import Dashboard from "./components/responsibility/dashboard/Dashboard";
@@ -7,11 +8,12 @@ import Dashboard from "./components/responsibility/dashboard/Dashboard";
 function App() {
   return (
     <div className="App">
-    
+
       {/* <AddResp /> */}
-   {/* <Form /> */}
-   <Dashboard />
+   <Form />
+   {/* <Dashboard /> */}
    {/* <BasicTable /> */}
+   {/* <PersistentDrawerLeft /> */}
     </div>
   );
 }

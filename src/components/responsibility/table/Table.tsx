@@ -1,35 +1,30 @@
-import  "../../muiTheme/MyTheme"
+
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Paper,
-    Button,
-    Fab
-}  from '@mui/material';
-function createData(
-  name: string,
-  types: string,
-  role: string,
-  status : string
- 
-) {
-  return { name, types, role , status} ;
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+  Box,
+} from "@mui/material";
+function createData(name: string, types: string, role: string, status: string) {
+  return { name, types, role, status };
 }
 
 const rows = [
-  createData('Vadodara', "Sanghat", "SA", "Select"),
-  createData('Ahmedabad', "District", "A", "Select"),
-  createData('Surat', "Sanghat", "A","Select"),
+  createData("Vadodara", "Sanghat", "SA", "Select"),
+  createData("Ahmedabad", "District", "A", "Select"),
+  createData("Surat", "Sanghat", "A", "Select"),
 ];
 
 export default function BasicTable() {
-   return (
+  return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 650 ,
+        }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Responsiblities</TableCell>
@@ -42,7 +37,7 @@ export default function BasicTable() {
           {rows.map((row) => (
             <TableRow
               key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell component="th" scope="row">
                 {row.name}
@@ -50,22 +45,38 @@ export default function BasicTable() {
               <TableCell>{row.types}</TableCell>
               <TableCell>
                 <div>
-                <Fab sx={{
-                background: '#E6F2FE'
-                }} aria-label="SA">
-                {row.role} 
-                 </Fab>
+                  <Box
+                    sx={{
+                      background: "#E6F2FE",
+                      borderRadius: "50px",
+                      width: "35px",
+                      position: "relative",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "35px",
+                    }}
+                    aria-label="SA"
+                  >
+                    {row.role}
+                  </Box>
                 </div>
-            </TableCell>
+              </TableCell>
               <TableCell>
-               <div> 
-                <Button variant = "outlined">
-                {row.status}
-                </Button>
-                 </div>
-             </TableCell>
-
-
+                <div>
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      left: "65%",
+                      boxSizing: "border-box",
+                      borderRadius: "10px",
+                      border: "2px solid #1073FF",
+                    }}
+                  >
+                    {row.status}
+                  </Button>
+                </div>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
