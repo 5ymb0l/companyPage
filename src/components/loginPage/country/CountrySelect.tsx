@@ -1,11 +1,9 @@
-// import  {useState , useEffect} from "react";
 import React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import InputAdornment from "@mui/material/InputAdornment";
-import { makeStyles } from "@mui/material";
-
+import "./Country.css"
 const CountrySelect: React.FC<{
   value: CountryType | undefined;
   setValue: React.Dispatch<React.SetStateAction<CountryType | undefined>>;
@@ -14,18 +12,6 @@ const CountrySelect: React.FC<{
   const handleClear = (e: React.FormEvent) => {
     e.preventDefault();
   };
-  const useOutlinedInputStyles = makeStyles({
-  root: {
-    "& .MuiInputBase-root": {
-      "& fieldset": {
-        borderColor: "blue"
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "red"
-      }
-    }
-  }
-});
 
   return (
     <Autocomplete
@@ -47,7 +33,7 @@ const CountrySelect: React.FC<{
             }}
           {...props}
         >
-          <img
+          <img 
             loading="lazy"
             width="20"
             src={`https://flagcdn.com/w20/${option?.code?.toLowerCase()}.png`}
@@ -59,57 +45,35 @@ const CountrySelect: React.FC<{
       )}
       renderInput={(params) => (
         <TextField
-        // variant="outlined"
-        //     sx={
-        //       {
-        //         // width: "300px",
-        //         // display: "inline-block",
-        //         // height: "57px",
-        //         // borderRadius: "50px",
-        //         // boxSizing: "border-box",
-        //         // background: "#E6F2FE",
-        //         // border: "1px solid rgba(0, 47, 113, 0.2)",
-        //         // lineHeight: "10rem",
-        //       }
-        //     }
-        //     {...params}
-        //     placeholder="Choose a country"
-        //     onClick={handleClear}
-        //     inputProps={{
-        //       ...params.inputProps,
-        //       autoComplete: "new-password", // disable autocomplete and autofill
-        //     }}
-        //     InputProps={{
-        //       ...params.InputProps,
-        //       startAdornment: value ? (
-        //         <InputAdornment
-        //           sx={{
-        //             // fontFamily: "Poppins",
-        //             // borderColor: "white",
-        //             // width: "300px",
-        //             // display: "inline-block",
-        //             // height: "57px",
-        //             // borderRadius: "50px",
-        //             // boxSizing: "border-box",
-        //             // background: "#E6F2FE",
-        //             // border: "1px solid rgba(0, 47, 113, 0.2)",
-        //             // lineHeight: "10rem",
-        //           }}
-        //           disablePointerEvents
-        //           position="start"
-        //         >
-        //           <img
-        //             loading="lazy"
-        //             width="48"
-        //             src={`https://flagcdn.com/w20/${value?.code?.toLowerCase()}.png`}
-        //             srcSet={`https://flagcdn.com/w40/${value?.code?.toLowerCase()}.png 2x`}
-        //             alt=""
-        //           />
-        //         </InputAdornment>
-        //       ) : null,
-        //     }}
+        className="inputRounded"
+           
+            {...params}
+            placeholder="Choose a country"
+            onClick={handleClear}
+            inputProps={{
+              ...params.inputProps,
+              autoComplete: "new-password", // disable autocomplete and autofill
+            }}
+            InputProps={{
+              ...params.InputProps,
+              startAdornment: value ? (
+                <InputAdornment
+                 
+                  disablePointerEvents
+                  position="start"
+                >
+                  <img className="img"
+                    loading="lazy"
+                    width="48"
+                    src={`https://flagcdn.com/w20/${value?.code?.toLowerCase()}.png`}
+                    srcSet={`https://flagcdn.com/w40/${value?.code?.toLowerCase()}.png 2x`}
+                    alt=""
+                  />
+                </InputAdornment>
+              ) : null,
+            }}
           />
-   
+
       )}
     />
   );

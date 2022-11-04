@@ -1,9 +1,8 @@
-@media (max-width: 800px) {
+/* @media (max-width: 480px) {
     .whiteColor {
-      margin: 15px 0;
-      font-size: 35px;
+
     }
-  }
+  } */
 
 /* .card{
 position: absolute;
@@ -28,13 +27,13 @@ width: 500px;
     line-height: 60px;
     color: #002F71;
 } */
-/* 
+/*
 .main {
     flex-direction: column;
     margin: 10px;
 
 } */
- 
+
 
 
 /* .card{
@@ -47,7 +46,7 @@ width: 500px;
     box-shadow: 0px 17px 55px rgba(0, 46, 113, 0.25);
     border-radius: 10px;
     }
-    
+
     .h1{
     position: absolute;
     width: 109px;

@@ -1,7 +1,7 @@
 import {  TextField  } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
-
+import "./TelInput.css"
 
 export const TelInput  : React.FC <{
  phone : string;
@@ -9,9 +9,7 @@ export const TelInput  : React.FC <{
 
  }> = ({phone , setPhone}) => {
   return (
-     <div style={{
-      margin : 5
-    }}>
+     <div>
       <TextField className="phone"
      
       value={phone}
@@ -20,12 +18,13 @@ export const TelInput  : React.FC <{
       }
     }
       sx = {{
-         ...TelInput, 
-         width: '300px',
-         borderRadius: '50px',
-        background: '#E6F2FE',
-        border: '1px solid rgba(0, 47, 113, 0.2)',
-        boxSizing: 'border-box'
+        //  ...TelInput, 
+        //  width: '300px',
+        //  borderRadius: '50px',
+        // backgroundColor: '#E6F2FE',
+        // boxSizing: 'border-box',
+        // height: "57px",
+
        }}
      type= "number"
         InputProps={{

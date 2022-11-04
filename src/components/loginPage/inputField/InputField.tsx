@@ -15,12 +15,9 @@ export const InputField = () => {
             fontFamily: "Poppins",
             fontStyle: "normal",
             fontWeight: 600,
-            fontSize: "40px",
+            fontSize: "2em",
             lineHeight: "40px",
-            display: "flex",
-            alignItems: "center",
-            textAlign: "center",
-            color: "#002F71",
+           color: "#002F71",
           }}
         >
           {" "}
@@ -37,15 +34,16 @@ export const InputField = () => {
              height: "60px",
           fontFamily: "Poppins",
             fontStyle: "normal",
-            fontWeight: 400,
-            fontSize: "14px",
+            fontWeight: 500,
+            fontSize: "16px",
             lineHeight: "18px",
-            display: "flex",
-            alignItems: "center",
-            textAlign: "center",
+            // display: "flex",
+            // alignItems: "center",
+            // textAlign: "center",
             color: "#002F71",
             opacity: 0.8,
-            margin : 0
+            margin : 0,
+            paddingTop : "20px"
             
           }}
         >
