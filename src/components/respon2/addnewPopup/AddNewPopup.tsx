@@ -7,6 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import EditNew from './EditNew';
 
 export default function ResponsiveDialog() {
   const [open, setOpen] = React.useState(false);
@@ -24,7 +25,7 @@ export default function ResponsiveDialog() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Add More 
+        Add New 
       </Button>
       <Dialog
         fullScreen={fullScreen}
@@ -32,23 +33,18 @@ export default function ResponsiveDialog() {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
+         <DialogActions>
           <Button autoFocus onClick={handleClose}>
-            Disagree
+            Cancel
           </Button>
           <Button onClick={handleClose} autoFocus>
-            Agree
+            Add
           </Button>
         </DialogActions>
+       <DialogContent>
+          <EditNew />
+        </DialogContent>
+       
       </Dialog>
     </div>
   );

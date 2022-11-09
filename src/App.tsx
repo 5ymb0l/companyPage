@@ -14,9 +14,9 @@ function App() {
   return (
     <div className="App">
 {/* <Dashboard /> */}
-{/* <DashboardTwo /> */}
+<DashboardTwo />
    {/* <Form /> */}
-<EditNew />
+{/* <EditNew /> */}
       {/* <div style={{
         flex : 1,
        

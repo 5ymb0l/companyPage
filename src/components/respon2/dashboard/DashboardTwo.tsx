@@ -18,6 +18,7 @@ import ListItemText from "@mui/material/ListItemText";
 import SearchHere from "../../responsibility/searchHere/SearchBar";
 import BasicTable from "../../responsibility/table/Table";
 import SearchButton from "../../responsibility/searchButton/SearchButton";
+import ResponsiveDialog from "../addnewPopup/AddNewPopup";
 const drawerWidth = 240
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
@@ -170,6 +171,13 @@ export default function DashboardTwo() {
         }
        }>
 
+<div style={{
+    alignSelf : "flex-start",
+    marginBottom : "2%"
+  }}> 
+<ResponsiveDialog />
+</div>
+   
        <div style={{
         display : "flex",
         flexDirection : "row",
@@ -178,6 +186,7 @@ export default function DashboardTwo() {
         justifyContent : "space-between"
 
         }}>
+          
         <SearchHere/>
         <SearchButton />
        </div>
