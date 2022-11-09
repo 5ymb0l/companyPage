@@ -4,18 +4,24 @@ import Plant from "./assets/plant.png"
 // import PersistentDrawerLeft from './components/respon2/addRespons/dashboard/Dashboard';
 // import AddResp from './components/addRespons/AddResp';
 // import BasicTable from "./components/table/Table";
-import Dashboard from "./components/responsibility/dashboard/Dashboard";
+import Dashboard from "./components/respon2/dashboard/DashboardTwo";
 import { positions } from "@mui/system";
+import DashboardTwo from "./components/respon2/dashboard/DashboardTwo";
+import EditNew from "./components/respon2/addnewPopup/EditNew";
+
 
 function App() {
   return (
     <div className="App">
-   <Form />
-
+{/* <Dashboard /> */}
+{/* <DashboardTwo /> */}
+   {/* <Form /> */}
+<EditNew />
       {/* <div style={{
         flex : 1,
        
       }}>
+      
         <div style={{
           display : "flex",
           justifyContent : "flex-end",
@@ -49,7 +55,6 @@ function App() {
 
 export default App;
 
-{/* <Dashboard /> */}
   {/* <BasicTable /> */}
   {/* <PersistentDrawerLeft /> */}
      {/* <AddResp /> */}

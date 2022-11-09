@@ -15,10 +15,9 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import SearchHere from "../searchHere/SearchBar";
-import BasicTable from "../table/Table";
-import SearchButton from "../searchButton/SearchButton";
-
+import SearchHere from "../../responsibility/searchHere/SearchBar";
+import BasicTable from "../../responsibility/table/Table";
+import SearchButton from "../../responsibility/searchButton/SearchButton";
 const drawerWidth = 240
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
@@ -69,7 +68,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function Dashboard() {
+export default function DashboardTwo() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -184,7 +183,7 @@ export default function Dashboard() {
        </div>
         <DrawerHeader/>
         <BasicTable />
-       </Box>
+        </Box>
          </Main>
         </Box>
   );

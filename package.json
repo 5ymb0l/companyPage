@@ -20,7 +20,6 @@
     "mui-one-time-password-input": "^1.0.3",
     "mui-tel-input": "^2.0.2",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "react-json-pretty": "^2.2.0",
     "react-otp-input": "^2.4.0",
