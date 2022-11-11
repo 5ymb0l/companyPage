@@ -78,7 +78,8 @@ export default function EditNew() {
           </FormControl>
         </Stack>
       </Box>
-      <Box>
+      <Box> 
+         
         <Stack direction="row" spacing={2}>
           <FormControl variant="standard" sx={{ m: 0, minWidth: 200, align: "center" }}>
             <InputLabel id="demo-simple-select-standard-label">Select</InputLabel>
@@ -118,7 +119,7 @@ export default function EditNew() {
             <Select
               labelId="demo-simple-select-standard-label"
               id="demo-simple-select-standard"
-              value={country}
+              value={sanghat}
               onChange={onChange}
               label="Type"
             >

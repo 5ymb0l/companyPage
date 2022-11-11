@@ -4,16 +4,17 @@ import Plant from "./assets/plant.png"
 // import PersistentDrawerLeft from './components/respon2/addRespons/dashboard/Dashboard';
 // import AddResp from './components/addRespons/AddResp';
 // import BasicTable from "./components/table/Table";
-import Dashboard from "./components/respon2/dashboard/DashboardTwo";
 import { positions } from "@mui/system";
 import DashboardTwo from "./components/respon2/dashboard/DashboardTwo";
 import EditNew from "./components/respon2/addnewPopup/EditNew";
+import Dashboard from "./components/responsibility/dashboard/Dashboard";
 
 
 function App() {
   return (
     <div className="App">
-{/* <Dashboard /> */}
+
+{/* <Dashboard/> */}
 <DashboardTwo />
    {/* <Form /> */}
 {/* <EditNew /> */}

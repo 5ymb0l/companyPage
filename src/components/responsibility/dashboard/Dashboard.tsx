@@ -15,11 +15,10 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import SearchHere from "../../responsibility/searchHere/SearchBar";
-import SearchButton from "../../responsibility/searchButton/SearchButton";
-import ResponsiveDialog from "../addnewPopup/AddNewPopup";
-import BasicTableTwo from "../tableTwo/TableTwo";
-import AddMore from "../addmoreFilter/AddMore";
+import SearchHere from "../searchHere/SearchBar";
+import SearchButton from "../searchButton/SearchButton";
+import BasicTable from "../table/Table";
+
 const drawerWidth = 240
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
@@ -70,7 +69,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function DashboardTwo() {
+export default function Dashboard() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -172,12 +171,6 @@ export default function DashboardTwo() {
         }
        }>
 
-<div style={{
-    alignSelf : "flex-start",
-    marginBottom : "2%"
-  }}> 
-<ResponsiveDialog />
-</div>
    
        <div style={{
         display : "flex",
@@ -192,17 +185,11 @@ export default function DashboardTwo() {
         <SearchButton />
        </div>
        
-       <div style={{
-        
-        alignSelf : "flex-end",
-       }}>
        
-       <AddMore/>        
-       </div>
 
        
         <DrawerHeader/>
-        <BasicTableTwo />
+        <BasicTable/>
         </Box>
          </Main>
         </Box>
