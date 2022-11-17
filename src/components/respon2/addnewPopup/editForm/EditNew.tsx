@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { countries, CountryType } from '../../loginPage/country/CountrySelect';
+import { countries, CountryType } from '../../../loginPage/country/CountrySelect';
 import {
   Grid,
   Box,

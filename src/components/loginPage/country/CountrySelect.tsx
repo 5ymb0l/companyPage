@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import InputAdornment from "@mui/material/InputAdornment";
-import "./Country.css"
+import "./Country.css";
 const CountrySelect: React.FC<{
   value: CountryType | undefined;
   setValue: React.Dispatch<React.SetStateAction<CountryType | undefined>>;
@@ -15,6 +15,12 @@ const CountrySelect: React.FC<{
 
   return (
     <Autocomplete
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",       
+       height: "6vh",
+      }}
       id="country-select-demo"
       disableClearable
       value={value}
@@ -30,10 +36,10 @@ const CountrySelect: React.FC<{
         <Box
           component="li"
           sx={{ "& > img": { mr: 2, flexShrink: 0 } ,
-            }}
+        }}
           {...props}
         >
-          <img 
+          <img
             loading="lazy"
             width="20"
             src={`https://flagcdn.com/w20/${option?.code?.toLowerCase()}.png`}
@@ -45,8 +51,7 @@ const CountrySelect: React.FC<{
       )}
       renderInput={(params) => (
         <TextField
-        className="inputRounded"
-           
+            className="inputRounded"
             {...params}
             placeholder="Choose a country"
             onClick={handleClear}
@@ -57,14 +62,18 @@ const CountrySelect: React.FC<{
             InputProps={{
               ...params.InputProps,
               startAdornment: value ? (
-                <InputAdornment
-                 
-                  disablePointerEvents
-                  position="start"
-                >
-                  <img className="img"
+                <InputAdornment disablePointerEvents position="start">
+                  <img style={{
+                   
+                    borderRadius : "50px",
+                    height : "55px",
+                    width : "53px",
+                    marginLeft : "-8px"
+                     
+                  }}
+                  width = "48"
+                    className="img"
                     loading="lazy"
-                    width="48"
                     src={`https://flagcdn.com/w20/${value?.code?.toLowerCase()}.png`}
                     srcSet={`https://flagcdn.com/w40/${value?.code?.toLowerCase()}.png 2x`}
                     alt=""
@@ -73,7 +82,7 @@ const CountrySelect: React.FC<{
               ) : null,
             }}
           />
-
+       
       )}
     />
   );

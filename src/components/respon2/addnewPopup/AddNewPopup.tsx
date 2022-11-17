@@ -7,7 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import EditNew from './EditNew';
+import EditNew from './editForm/EditNew';
 
 export default function ResponsiveDialog() {
   const [open, setOpen] = React.useState(false);

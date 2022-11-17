@@ -1,13 +1,14 @@
 import Form from "./components/loginPage/form/Form"
 import './App.css';
-import Plant from "./assets/plant.png"
+// import Plant from "./assets/plant.png"
 // import PersistentDrawerLeft from './components/respon2/addRespons/dashboard/Dashboard';
 // import AddResp from './components/addRespons/AddResp';
 // import BasicTable from "./components/table/Table";
-import { positions } from "@mui/system";
+// import { positions } from "@mui/system";
 import DashboardTwo from "./components/respon2/dashboard/DashboardTwo";
-import EditNew from "./components/respon2/addnewPopup/EditNew";
+import EditNew from "./components/respon2/addnewPopup/editForm/EditNew";
 import Dashboard from "./components/responsibility/dashboard/Dashboard";
+import FormControlLabelPosition from "./components/respon2/filter/Filter";
 
 
 function App() {
@@ -15,8 +16,9 @@ function App() {
     <div className="App">
 
 {/* <Dashboard/> */}
-<DashboardTwo />
-   {/* <Form /> */}
+{/* <DashboardTwo /> */}
+{/* <FormControlLabelPosition /> */}
+   <Form />
 {/* <EditNew /> */}
       {/* <div style={{
         flex : 1,

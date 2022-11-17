@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { Button } from "@mui/material";
 import InputField from "../inputField/InputField";
 import CountrySelect from "../country/CountrySelect";
 import { TelInput } from "../phoneNo/MuiTelInput";
 import "./Form.css";
-import { CountryType } from "../Countries";
-import { OtpField } from "../../otp/OtpField";
+import { CountryType } from "../index.ts/Countries";
+import { OtpField } from "../../otpPage/otpForm/OtpField";
+import { LoginHeader } from "../loginHead/Header";
+import HelperText from "../helperText/HelperText";
+import { NextButton } from "../buttonNext/Button";
 
+// import {
+//   Link as OtpField
+// } from "react-router-dom";
 
 interface Istate {
   isLogin: boolean;
@@ -47,15 +52,15 @@ export const Form = () => {
           justifyContent: "center",
           alignItems: "center",
           minWidth: "422px",
-         
+
           height: "500px",
           backgroundColor: "white",
           boxShadow: "0px 17px 55px rgba(0, 46, 113, 0.25)",
           borderRadius: "10px",
         }}
-      > 
+      >
         <div
-          className="ex"
+          className="Login"
           style={{
             display: "flex",
             alignItems: "center",
@@ -63,92 +68,94 @@ export const Form = () => {
             flexDirection: "column",
           }}
         >
-          <h1
-            className="h1"
+         <LoginHeader/>
+          <div
+            className="main"
             style={{
-              fontFamily: "Poppins",
-              color: "#002F71",
-              fontSize: "3em",
-              height: "10vh",
-              marginBottom : "10px",
-              fontWeight: 600
-
-              //        width: "500px",
-              // height: "60px",
-              // left: "809px",
-              // top: "300px",
-              // fontStyle: "normal",
-
-              // lineHeight: "60px",
+              // height: "290px",
             }}
           >
-            Login
-          </h1>
-          <div className="main" style={{
-            height : "290px"
-          }}>
             {state.isLogin && state.isLogin ? (
               <OtpField otp={otp} setOtp={setOtp} />
             ) : (
-              <div 
+              <div className="inputfield"
                 style={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   flexDirection: "column",
-                  marginBottom : "50px"
+                  marginBottom: "50px",
                 }}
               >
                 <InputField />
+                
+                <div  style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"}} > 
 
-                <div  className="inputField"
+                  <HelperText/>
+                </div>
+                <div
+                  className="input"
                   style={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexDirection: "column",
-                    gap : "20px"
+                    gap: "20px"
                   }}
-                > <div className="countryselect" style={{
-                  width : "100%"
-                }}>
+                >
+                  
+                  <div
+                    className="countryselect"
+                    style={{
+                      width: "100%",
+                    }}
+                  >
+                    <CountrySelect
+                      value={value}
+                      setValue={setValue}
+                      setPhone={setPhone}
+                    />
+                  </div>
+                  <div
+                    style={{
+                      width: "100%",
+                    }}
+                  >
+                    <TelInput phone={phone} setPhone={setPhone} />
+                     <div style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                     }}>
+                     {/* <div>
+                      <Button
+                        onClick={handleClick}
+                        sx={{
+                          fontFamily: "Poppins",
+                          fontStyle: "normal",
+                          fontWeight: 500,
+                          fontSize: "14px",
+                          lineHeight: "18px",
+                          color: "#002F71",
+                          marginTop : "15px"
+                        }}
+                        variant="outlined"
+                      >
+                        Next
+                      </Button>
+                    </div> */}
 
-                  <CountrySelect
-                    value={value}
-                    setValue={setValue}
-                    setPhone={setPhone}
-                  />
-                </div>
-                <div style={
-                  {
-                  width : "100%"
-                  }
-                }>
-                  <TelInput phone={phone} setPhone={setPhone} />
+                    <NextButton  onClick={handleClick}/>
 
-                </div>
+                     </div>
+                    
+                  </div>
                 </div>
               </div>
             )}
-          </div>
-          <div style={{
-
-          }}>
-            <Button
-              onClick={handleClick}
-              sx={{
-                fontFamily: "Poppins",
-                fontStyle: "normal",
-                fontWeight: 500,
-                fontSize: "14px",
-                lineHeight: "18px",
-                color: "#002F71",
-               
-              }}
-              variant="outlined"
-            >
-              Next
-            </Button>
           </div>
         </div>
       </div>

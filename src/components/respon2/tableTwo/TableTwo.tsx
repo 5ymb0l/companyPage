@@ -1,8 +1,8 @@
 import {useState} from "react";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import {EditForm} from "../editForm/EditForm"
-import {Todo} from  "../editForm/model"
+// import {EditForm} from "../TestCase/EditForm"
+// import {Todo} from  "../TestCase/model"
 import {
   Table,
   TableBody,
@@ -20,6 +20,7 @@ import  FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import NestedModal from "./NestedModal";
 interface TablePaginationActionsProps {
   count: number;
   page: number;
@@ -100,7 +101,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-function createData(name: string, number : number , email : string , region : string , types: string, status: string) {
+function createData(name: string, number : number , email : string , region : string , types: string, status: any) {
 
   
   
@@ -108,14 +109,14 @@ function createData(name: string, number : number , email : string , region : st
 }
 
 const rows = [
-  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "Sa" , "..."),
-  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "Sa" , "..."),
-  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "Sa" , "..."),
-  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "Sa" , "..."),
-  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "Sa" , "..."),
-  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "Sa" , "..."),
-  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "Sa" , "..."),
-  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "Sa" , "..."),
+  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "SA" , <NestedModal/>),
+  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "SA" , <NestedModal />),
+  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "SA" , <NestedModal />),
+  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "SA" , <NestedModal />),
+  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "SA" , <NestedModal />),
+  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "SA" , <NestedModal />),
+  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "SA" , <NestedModal />),
+  createData( "Judith Armstrong",876-6363,"dolor.sit@outlook.org","Stockholms län", "SA" , <NestedModal />),
  
 ].sort((a, b) => (a.region< b.region ? -1 : 1));
 
@@ -178,7 +179,19 @@ export default function BasicTableTwo() {
             {row.region} 
            </TableCell>
            <TableCell>
-            {row.types}
+            <Box  sx ={{
+                 background: "#E6F2FE",
+                 borderRadius: "50px",
+                 width: "35px",
+                  position: "relative",
+                 display: "flex",
+                 justifyContent: "center",
+                 alignItems: "center",
+               height: "35px",
+              }} 
+              arial-lable ="SA">
+                {row.types}
+            </Box>
            </TableCell>
            <TableCell>
             <Button sx={{

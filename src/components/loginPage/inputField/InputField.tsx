@@ -1,6 +1,6 @@
 import React from "react";
 // import "./inputField.css";
-import { FormHelperText, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 export const InputField = () => {
   return (
@@ -13,44 +13,18 @@ export const InputField = () => {
             // left: "809px",
             // top: "300px",
             fontFamily: "Poppins",
-            fontStyle: "normal",
-            fontWeight: 600,
-            fontSize: "2em",
-            lineHeight: "40px",
-           color: "#002F71",
+      fontStyle: "normal",
+      fontWeight: 600,
+      fontSize: "2em",
+      lineHeight: "7vh",
+      color: "#002F71",
+      margin: 0,
           }}
         >
-          {" "}
-          Enter your Mobile Number{" "}
+       
+          Enter your Mobile Number
         </Typography>
-        <div style={ {
-      display : "flex",
-      alignItems : "center",
-      justifyContent : "center"
-    }}>
-
-        <FormHelperText
-          sx={{
-             height: "60px",
-          fontFamily: "Poppins",
-            fontStyle: "normal",
-            fontWeight: 500,
-            fontSize: "16px",
-            lineHeight: "18px",
-            // display: "flex",
-            // alignItems: "center",
-            // textAlign: "center",
-            color: "#002F71",
-            opacity: 0.8,
-            margin : 0,
-            paddingTop : "20px"
-            
-          }}
-        >
-          "You will receive a 6 digit code to verify next "
-        </FormHelperText>
-
-        </div>
+       
       </div>
     </div>
   );

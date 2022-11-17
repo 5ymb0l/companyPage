@@ -1,6 +1,6 @@
 import React, { useState, useEffect  } from 'react';
 import { Container } from "@mui/material";
-import { Model } from '../components/loginPage/model';
+import { Model } from '../components/loginPage/index.ts/model';
 function Countryautofill()
 {    
   const [getcountry, setCountry]= useState<Model[]>([]);
