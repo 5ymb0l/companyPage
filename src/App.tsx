@@ -9,16 +9,19 @@ import DashboardTwo from "./components/respon2/dashboard/DashboardTwo";
 import EditNew from "./components/respon2/addnewPopup/editForm/EditNew";
 import Dashboard from "./components/responsibility/dashboard/Dashboard";
 import FormControlLabelPosition from "./components/respon2/filter/Filter";
+import { MuiDrawer } from "./components/DashBoard/Layout";
+// import Layout from "./components/DashBoard/Layout";
 
 
 function App() {
   return (
     <div className="App">
-
-{/* <Dashboard/> */}
+{/* <MuiDrawer /> */}
+{/* <Layout /> */}
+<Dashboard/>
 {/* <DashboardTwo /> */}
 {/* <FormControlLabelPosition /> */}
-   <Form />
+   {/* <Form /> */}
 {/* <EditNew /> */}
       {/* <div style={{
         flex : 1,
