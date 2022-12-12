@@ -1,9 +1,12 @@
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-
-export default function SearchButton() {
+interface props {
+  handleOnClick : (e: React.FormEvent) => void;
+  query : string
+}
+export const  SearchButton : React.FC<props> =({handleOnClick , query}) => {
   return (
-    <Button variant="contained" sx = {{
+    <Button disabled = {!query} onClick = {handleOnClick} variant="contained" sx = {{
    
       padding: "9px 10px",
       

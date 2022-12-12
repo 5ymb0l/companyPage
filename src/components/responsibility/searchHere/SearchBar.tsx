@@ -1,11 +1,17 @@
 import {Paper , InputBase  , IconButton  } from "@mui/material";
-
+import { rows } from "../dashboard/Dashboard";
 import SearchIcon from "@mui/icons-material/Search";
+interface props {
+  query : string;
+  setQuery :  React.Dispatch<React.SetStateAction<string>>;
+ 
 
-export default function SearchHere() {
+  // handleOnClick : (e : React.FormEvent) => void
+}
+export const SearchHere : React.FC<props> = ({query , setQuery }) => {
   return (
       <Paper
-        component="form"
+      component="form"
         sx={{
           display: "flex",
           flexDirection: "row",
@@ -36,6 +42,13 @@ export default function SearchHere() {
             lineHeight: 18,
             order: 1,
           }}
+          onChange = {(e) => {
+            
+            
+            setQuery(e.target.value);
+            
+           }}
+          value = {query}
           placeholder="Search"
           inputProps={{ "aria-label": "search google maps" }}
         />

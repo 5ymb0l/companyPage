@@ -1,3 +1,4 @@
+import React from "react";
 import Form from "./components/loginPage/form/Form"
 import './App.css';
 // import Plant from "./assets/plant.png"
@@ -6,20 +7,23 @@ import './App.css';
 // import BasicTable from "./components/table/Table";
 // import { positions } from "@mui/system";
 import DashboardTwo from "./components/respon2/dashboard/DashboardTwo";
-import EditNew from "./components/respon2/addnewPopup/editForm/EditNew";
+// import EditNew from "./components/respon2/addnewPopup/AddNewResponsibility";
 import Dashboard from "./components/responsibility/dashboard/Dashboard";
 import FormControlLabelPosition from "./components/respon2/filter/Filter";
 import { MuiDrawer } from "./components/DashBoard/Layout";
+import CustomizedInputBase from "./components/responsibility/searchHere/SearchIt";
 // import Layout from "./components/DashBoard/Layout";
 
 
-function App() {
-  return (
+const App : React.FC =() =>  {
+ return (
     <div className="App">
+
+{/* <CustomizedInputBase  /> */}
 {/* <MuiDrawer /> */}
 {/* <Layout /> */}
-<Dashboard/>
-{/* <DashboardTwo /> */}
+{/* <Dashboard/> */}
+<DashboardTwo />
 {/* <FormControlLabelPosition /> */}
    {/* <Form /> */}
 {/* <EditNew /> */}

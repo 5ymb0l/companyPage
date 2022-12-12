@@ -1,4 +1,4 @@
-import * as React from "react";
+import {useState} from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -15,29 +15,24 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import SearchHere from "../../responsibility/searchHere/SearchBar";
-import SearchButton from "../../responsibility/searchButton/SearchButton";
-import ResponsiveDialog from "../addnewPopup/AddNewPopup";
+import AddMore from "../addmoreFilter/Popup";
+import { SearchHere } from "../../responsibility/searchHere/SearchBar";
+import { SearchButton } from "../../responsibility/searchButton/SearchButton";
+import { AddNewResponsibility } from "../addnewPopup/AddNewResponsibility";
 import BasicTableTwo from "../tableTwo/TableTwo";
-import AddMore from "../addmoreFilter/AddMore";
+import { PeoplesData , dummyPersonList , PageEnum } from "../Person.type";
+import Popup from "../addnewPopup/Popup";
+
+// import NestedModal from "../tableTwo/NestedModal";
+
+// import Popup from "../addnewPopup/Popup";
 const drawerWidth = 240
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
 }>(({ theme, open }) => ({
   flexGrow: 1,
-  padding: theme.spacing(3),
-  transition: theme.transitions.create("margin", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  marginLeft: `-${drawerWidth}px`,
-  ...(open && {
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  }),
+  padding: theme.spacing(6),
+  
 }));
 
 interface AppBarProps extends MuiAppBarProps {
@@ -71,9 +66,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function DashboardTwo() {
+  const[ userList , setUserList] = useState < PeoplesData []>(dummyPersonList);
+  const [query , setQuery] = useState<string>("");
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setOpen] = useState(false);
+  const [employeeList , setEmployeeList] = useState(dummyPersonList as PeoplesData[]);
+  const [shownPage , setShownPage] = useState(PageEnum.list )
+console.log(query)
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -81,15 +80,25 @@ export default function DashboardTwo() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const handleOnClick = (e : React.FormEvent) => {
+  setUserList(dummyPersonList.filter(row => row.id.toLowerCase().includes(query.toLowerCase())))
+  }
+  const onBackBtnClickHnd = () => {
+    setShownPage(PageEnum.list)
+   } 
+   const onAddEmployeeClick = () => {
+    setShownPage(PageEnum.add)
+}
+  const addEmployee = (data : PeoplesData) => {
+    setEmployeeList([...employeeList , data])
+        }
   return (
     <Box sx={{ display : "flex",
     backgroundColor: "#E6F2FE", 
     flex : 1,
     height : "100%"
    }}>
-    
-      <CssBaseline />
+    <CssBaseline />
       <AppBar position="fixed" open={open} sx ={{
         background: "#002F71"
       }}>
@@ -176,7 +185,9 @@ export default function DashboardTwo() {
     alignSelf : "flex-start",
     marginBottom : "2%"
   }}> 
-<ResponsiveDialog />
+ <Popup>
+   <AddNewResponsibility onBackBtnClickHnd={onBackBtnClickHnd} onSubmitClickHnd={addEmployee} />
+    </Popup>
 </div>
    
        <div style={{
@@ -188,26 +199,318 @@ export default function DashboardTwo() {
 
         }}>
           
-        <SearchHere/>
-        <SearchButton />
+          <SearchHere query= {query} 
+          setQuery = {setQuery} />
+      <SearchButton query = {query} handleOnClick = {handleOnClick}/>
        </div>
        
-       <div style={{
+       {/* <div style={{
         
         alignSelf : "flex-end",
        }}>
-       
-       <AddMore/>        
-       </div>
+       <AddMore />        
+       </div> */}
+       <DrawerHeader/>
+       {/* <section className='section-content'>
+            {shownPage === PageEnum.list && (
+                <>
+                <input type="button"  value= "Add Employee List" onClick={onAddEmployeeClick}/>
+                 <BasicTableTwo userList={employeeList} />
+                 </>
+             )}
 
-       
-        <DrawerHeader/>
-        <BasicTableTwo />
+             {shownPage === PageEnum.add && <AddNewResponsibility onBackBtnClickHnd={onBackBtnClickHnd} onSubmitClickHnd={addEmployee} />}
+        </section>  */}
+{/* {/* <AddNewResponsibility onSubmitClickHnd={addPerson} /> */}
+         <BasicTableTwo userList={employeeList}/> 
+        <div>
+        {userList && userList?.length === 0 && (
+          <div
+            style={{
+              width: 500,
+              margin: "20px auto",
+              padding: "20px",
+              border: "1px solid lightgray",
+              textAlign: "center",
+            }}
+          >
+            {" "}
+            No user Found{" "}
+          </div>
+        )}
+      </div>
         </Box>
          </Main>
         </Box>
   );
 }
+
+
+
+
+// import * as React from "react";
+// import { styled, useTheme } from "@mui/material/styles";
+// import Box from "@mui/material/Box";
+// import Drawer from "@mui/material/Drawer";
+// import CssBaseline from "@mui/material/CssBaseline";
+// import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+// import Toolbar from "@mui/material/Toolbar";
+// import List from "@mui/material/List";
+// import Typography from "@mui/material/Typography";
+// import Divider from "@mui/material/Divider";
+// import IconButton from "@mui/material/IconButton";
+// import MenuIcon from "@mui/icons-material/Menu";
+// import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+// import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+// import ListItem from "@mui/material/ListItem";
+// import ListItemButton from "@mui/material/ListItemButton";
+// import ListItemText from "@mui/material/ListItemText";
+// import BasicTableTwo from "../tableTwo/TableTwo";
+// import AddMore from "../addmoreFilter/Popup";
+// import { SearchHere } from "../../responsibility/searchHere/SearchBar";
+// import { SearchButton } from "../../responsibility/searchButton/SearchButton";
+// import NestedModal from "../tableTwo/NestedModal";
+// import AddNew from "../addnewPopup/Popup";
+// // import { rows } from "../../responsibility/dashboard/Dashboard";
+// const drawerWidth = 240
+// const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
+//   open?: boolean;
+// }>(({ theme, open }) => ({
+//   flexGrow: 1,
+//   padding: theme.spacing(6),
+  
+// }));
+
+// interface AppBarProps extends MuiAppBarProps {
+//   open?: boolean;
+// }
+
+// const AppBar = styled(MuiAppBar, {
+//   shouldForwardProp: (prop) => prop !== "open",
+// })<AppBarProps>(({ theme, open }) => ({
+//   transition: theme.transitions.create(["margin", "width"], {
+//     easing: theme.transitions.easing.sharp,
+//     duration: theme.transitions.duration.leavingScreen,
+//   }),
+//   ...(open && {
+//     width: `calc(100% - ${drawerWidth}px)`,
+//     marginLeft: `${drawerWidth}px`,
+//     transition: theme.transitions.create(["margin", "width"], {
+//       easing: theme.transitions.easing.easeOut,
+//       duration: theme.transitions.duration.enteringScreen,
+//     }),
+//   }),
+// }));
+
+// const DrawerHeader = styled("div")(({ theme }) => ({
+//   display: "flex",
+//   alignItems: "center",
+//   padding: theme.spacing(0, 1),
+//   // necessary for content to be below app bar
+//   ...theme.mixins.toolbar,
+//   justifyContent: "flex-end",
+// }));
+
+// export default function DashboardTwo() {
+//   const[ userList , setUserList] = React.useState < TableData []>(rows);
+//   const [query , setQuery] = React.useState<string>("");
+//   const theme = useTheme();
+//   const [open, setOpen] = React.useState(false);
+// console.log(query)
+//   const handleDrawerOpen = () => {
+//     setOpen(true);
+//   };
+
+//   const handleDrawerClose = () => {
+//     setOpen(false);
+//   };
+//   const handleOnClick = (e : React.FormEvent) => {
+//   setUserList(rows.filter(row => row.name.toLowerCase().includes(query.toLowerCase())))
+//   }
+
+//   return (
+//     <Box sx={{ display : "flex",
+//     backgroundColor: "#E6F2FE", 
+//     flex : 1,
+//     height : "100%"
+//    }}>
+//     <CssBaseline />
+//       <AppBar position="fixed" open={open} sx ={{
+//         background: "#002F71"
+//       }}>
+//         <Toolbar>
+//           <IconButton
+//             color="inherit"
+//             aria-label="open drawer"
+//             onClick={handleDrawerOpen}
+//             edge="start"
+//             sx={{ mr: 2, ...(open && { display: "none" }) }}
+//           >
+//             <MenuIcon />
+//           </IconButton>
+//           <Typography variant="h6" noWrap component="div">
+//             LOGO
+//           </Typography>
+//         </Toolbar>
+//       </AppBar>
+//       <Drawer
+//         sx={{
+//           width: drawerWidth,
+//           flexShrink: 0,
+//           "& .MuiDrawer-paper": {
+//             width: drawerWidth,
+//             boxSizing: "border-box",
+//           },
+//         }}
+//         variant="persistent"
+//         anchor="left"
+//         open={open}
+//       >
+//         <DrawerHeader>
+//           <IconButton onClick={handleDrawerClose}>
+//             {theme.direction === "ltr" ? (
+//               <ChevronLeftIcon />
+//             ) : (
+//               <ChevronRightIcon />
+//             )}
+//           </IconButton>
+//         </DrawerHeader>
+//         <Divider />
+//         <List>
+//           {[
+//             "Responsibilities",
+//             "Hierarchies",
+//             "Orders",
+//             "Inventories",
+//             "Warehouse",
+//             "Fulfillments",
+//             "Users",
+//             "Settings",
+//             "Histories",
+//           ].map((text) => (
+//             <ListItem key={text} disablePadding>
+//               <ListItemButton>
+//                 <ListItemText primary={text} />
+//               </ListItemButton>
+//             </ListItem>  
+//           ))}
+//         </List>
+//         <Divider />
+//       </Drawer>
+//       <Main open={open}>
+
+//        <DrawerHeader/>
+
+//        <Box sx ={
+//         {
+//           // left : "14%",
+//           // width : "79%"
+//           display : "flex",
+//           flexDirection : "column",
+//           justifyContent : "center",
+//           width : "100%",
+//           // position : open ? null : "absolute",
+//           // left : "250px"
+//           // alignItems : "center"
+
+         
+//         }
+//        }>
+
+// <div style={{
+//     alignSelf : "flex-start",
+//     marginBottom : "2%"
+//   }}> 
+// <AddNew />
+// </div>
+   
+//        <div style={{
+//         display : "flex",
+//         flexDirection : "row",
+//         alignItems : "center",
+//         width : "100%",
+//         justifyContent : "space-between"
+
+//         }}>
+          
+//           <SearchHere query= {query} 
+//           setQuery = {setQuery} />
+//       <SearchButton query = {query} handleOnClick = {handleOnClick}/>
+//        </div>
+       
+//        <div style={{
+        
+//         alignSelf : "flex-end",
+//        }}>
+//        <AddMore />        
+//        </div>
+//        <DrawerHeader/>
+//         <BasicTableTwo userList={userList}/>
+//         <div>
+//         {userList && userList?.length === 0 && (
+//           <div
+//             style={{
+//               width: 500,
+//               margin: "20px auto",
+//               padding: "20px",
+//               border: "1px solid lightgray",
+//               textAlign: "center",
+//             }}
+//           >
+//             {" "}
+//             No user Found{" "}
+//           </div>
+//         )}
+//       </div>
+//         </Box>
+//          </Main>
+//         </Box>
+//   );
+// }
+// export interface TableData {
+//   name: string;
+//   phone : string;
+//   email: string;
+//   region : string;
+//    types: string;
+//  status: any}
+
+// const rows = [
+//   { name :"Judith Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"AS Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal />},
+//   { name :"GH Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"JH Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"KL Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"ER Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"TY Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"UI Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+ 
+// ];
+
+// export interface TableData {
+//   name: string;
+//   phone : string;
+//   email: string;
+//   region : string;
+//    types: string;
+//  status: any}
+
+// const rows = [
+//   { name :"Judith Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"AS Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal />},
+//   { name :"GH Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"JH Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"KL Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"ER Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"TY Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+//   { name :"UI Armstrong",phone :"876-6363",email :"dolor.sit@outlook.org",region :"Stockholms län",types : "SA" , status : <NestedModal/>},
+ 
+// ];
+
+
+
+
+
 
 // import * as React from 'react';
 // import AppBar from '@mui/material/AppBar';

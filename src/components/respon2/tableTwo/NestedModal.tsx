@@ -53,7 +53,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-import EditNew from '../addnewPopup/editForm/EditNew';
+// import EditNew from '../addnewPopup/AddNewResponsibility';
 import { DeleteForm } from '../deleteForm/DeleteForm';
 
 const style = {
@@ -99,7 +99,7 @@ function ChildModal() {
           <Button onClick={handleClose}>Cancle Edit</Button>
           <Button onClick={handleClose}>Add </Button>
           
-          <span> <EditNew /> </span>
+          {/* <span> <EditNew /> </span> */}
         </Box>
       </Modal>
     </React.Fragment>
