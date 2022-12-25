@@ -1,11 +1,14 @@
 
 import { Button } from '@mui/material'
 import  {useState} from "react"
+import { Link } from 'react-router-dom'
+
 export const ButtonTwo = () => {
   const [State, setState] = useState()
   return (
     <div>
           <Button
+           onClick={()=> window.open("/dashbhai")}
             // onClick={handleClick}
             sx={{
               fontFamily: "Poppins",

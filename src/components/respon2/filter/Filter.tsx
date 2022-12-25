@@ -96,102 +96,105 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Box from "@mui/material/Box";
+import { Button } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
 
-export default function Filter() {
+export default function AddFilter() {
   return (
-    <Box>
-      <FormControl component="fieldset">
-        {/* <h1 id='Filter'> Filter</h1> */}
-        <FormLabel component="legend">Filter</FormLabel>
-        <FormLabel component="legend">Display</FormLabel>
-        {/* <h2> Display</h2> */}
-        <FormGroup aria-label="position">
-          <FormControlLabel
-            value="top"
-            control={<Checkbox />}
-            label="Immediate"
-            // labelPlacement="top"
-          />
-          <FormControlLabel
-            value="start"
-            control={<Checkbox />}
-            label="All"
-            // labelPlacement="start"
-          />
-        </FormGroup>
-        <FormLabel component="legend">Type</FormLabel>
-        {/* <h2> Type</h2> */}
-        <FormGroup>
-          <FormGroup aria-label="position" row>
-            <FormControlLabel
-              value="end"
-              control={<Checkbox />}
-              label="Country"
-              labelPlacement="end"
-            />
-            <FormControlLabel
-              value="end"
-              control={<Checkbox />}
-              label="District"
-              labelPlacement="end"
-            />
-          </FormGroup>
-          <FormGroup aria-label="position" row>
-            <FormControlLabel
-              value="end"
-              control={<Checkbox />}
-              label="State"
-              labelPlacement="end"
-            />
-            <FormControlLabel
-              // value="end"
-              control={<Checkbox />}
-              label="Taluka"
-               labelPlacement="end"
-            />
-          </FormGroup>
-          <FormGroup>
-            <FormControlLabel
-              // value="end"
-              control={<Checkbox />}
-              label="Sanghat"
-              // labelPlacement="end"
-            />
-          </FormGroup>
-        </FormGroup>
-        <FormLabel component="legend">Region</FormLabel>
-        {/* <h2> Type</h2> */}
-        <FormGroup>
-          <FormGroup aria-label="position" row>
-            <FormControlLabel
-              // value="bottom"
-              control={<Checkbox />}
-              label="Vadodara"
-              // labelPlacement="bottom"
-            />
-            <FormControlLabel
-              // value="end"
-              control={<Checkbox />}
-              label="Valsad"
-              // labelPlacement="end"
-            />
-          </FormGroup>
-          <FormGroup aria-label="position" row>
-            <FormControlLabel
-              // value="bottom"
-              control={<Checkbox />}
-              label="Surat"
-              // labelPlacement="bottom"
-            />
-            <FormControlLabel
-              // value="end"
-              control={<Checkbox />}
-              label="Ahmedabad"
-              // labelPlacement="end"
-            />
-          </FormGroup>
-        </FormGroup>
-      </FormControl>
-    </Box>
+    <Button startIcon={<AddIcon/>}> Add More</Button>
+    // <Box>
+    //   <FormControl component="fieldset">
+    //     {/* <h1 id='Filter'> Filter</h1> */}
+    //     <FormLabel component="legend">Filter</FormLabel>
+    //     <FormLabel component="legend">Display</FormLabel>
+    //     {/* <h2> Display</h2> */}
+    //     <FormGroup aria-label="position">
+    //       <FormControlLabel
+    //         value="top"
+    //         control={<Checkbox />}
+    //         label="Immediate"
+    //         // labelPlacement="top"
+    //       />
+    //       <FormControlLabel
+    //         value="start"
+    //         control={<Checkbox />}
+    //         label="All"
+    //         // labelPlacement="start"
+    //       />
+    //     </FormGroup>
+    //     <FormLabel component="legend">Type</FormLabel>
+    //     {/* <h2> Type</h2> */}
+    //     <FormGroup>
+    //       <FormGroup aria-label="position" row>
+    //         <FormControlLabel
+    //           value="end"
+    //           control={<Checkbox />}
+    //           label="Country"
+    //           labelPlacement="end"
+    //         />
+    //         <FormControlLabel
+    //           value="end"
+    //           control={<Checkbox />}
+    //           label="District"
+    //           labelPlacement="end"
+    //         />
+    //       </FormGroup>
+    //       <FormGroup aria-label="position" row>
+    //         <FormControlLabel
+    //           value="end"
+    //           control={<Checkbox />}
+    //           label="State"
+    //           labelPlacement="end"
+    //         />
+    //         <FormControlLabel
+    //           // value="end"
+    //           control={<Checkbox />}
+    //           label="Taluka"
+    //            labelPlacement="end"
+    //         />
+    //       </FormGroup>
+    //       <FormGroup>
+    //         <FormControlLabel
+    //           // value="end"
+    //           control={<Checkbox />}
+    //           label="Sanghat"
+    //           // labelPlacement="end"
+    //         />
+    //       </FormGroup>
+    //     </FormGroup>
+    //     <FormLabel component="legend">Region</FormLabel>
+    //     {/* <h2> Type</h2> */}
+    //     <FormGroup>
+    //       <FormGroup aria-label="position" row>
+    //         <FormControlLabel
+    //           // value="bottom"
+    //           control={<Checkbox />}
+    //           label="Vadodara"
+    //           // labelPlacement="bottom"
+    //         />
+    //         <FormControlLabel
+    //           // value="end"
+    //           control={<Checkbox />}
+    //           label="Valsad"
+    //           // labelPlacement="end"
+    //         />
+    //       </FormGroup>
+    //       <FormGroup aria-label="position" row>
+    //         <FormControlLabel
+    //           // value="bottom"
+    //           control={<Checkbox />}
+    //           label="Surat"
+    //           // labelPlacement="bottom"
+    //         />
+    //         <FormControlLabel
+    //           // value="end"
+    //           control={<Checkbox />}
+    //           label="Ahmedabad"
+    //           // labelPlacement="end"
+    //         />
+    //       </FormGroup>
+    //     </FormGroup>
+    //   </FormControl>
+    // </Box>
   );
 }

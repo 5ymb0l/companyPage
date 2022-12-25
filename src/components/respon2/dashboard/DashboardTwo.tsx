@@ -15,24 +15,23 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import AddMore from "../addmoreFilter/Popup";
 import { SearchHere } from "../../responsibility/searchHere/SearchBar";
 import { SearchButton } from "../../responsibility/searchButton/SearchButton";
 import { AddNewResponsibility } from "../addnewPopup/AddNewResponsibility";
 import BasicTableTwo from "../tableTwo/TableTwo";
 import { PeoplesData , dummyPersonList , PageEnum } from "../Person.type";
 import Popup from "../addnewPopup/Popup";
+import BackTwoResp from "../backTwoResp/BackTwoResp";
+import AddFilter from "../filter/Filter";
+import { Avatar } from "@mui/material";
 
-// import NestedModal from "../tableTwo/NestedModal";
-
-// import Popup from "../addnewPopup/Popup";
 const drawerWidth = 240
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
 }>(({ theme, open }) => ({
   flexGrow: 1,
-  padding: theme.spacing(6),
-  
+  padding: theme.spacing(3),
+  marginBottom : "20%"
 }));
 
 interface AppBarProps extends MuiAppBarProps {
@@ -66,13 +65,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function DashboardTwo() {
-  const[ userList , setUserList] = useState < PeoplesData []>(dummyPersonList);
-  const [query , setQuery] = useState<string>("");
+  const [userList, setUserList] = useState<PeoplesData[]>(dummyPersonList);
+  const [query, setQuery] = useState<string>("");
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const [employeeList , setEmployeeList] = useState(dummyPersonList as PeoplesData[]);
-  const [shownPage , setShownPage] = useState(PageEnum.list )
-console.log(query)
+  const [employeeList, setEmployeeList] = useState(
+    dummyPersonList as PeoplesData[]
+  );
+  const [shownPage, setShownPage] = useState(PageEnum.list);
+  console.log(query);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -80,28 +81,41 @@ console.log(query)
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const handleOnClick = (e : React.FormEvent) => {
-  setUserList(dummyPersonList.filter(row => row.id.toLowerCase().includes(query.toLowerCase())))
-  }
+  const handleOnClick = (e: React.FormEvent) => {
+    setUserList(
+      dummyPersonList.filter((row) =>
+        row.id.toLowerCase().includes(query.toLowerCase())
+      )
+    );
+  };
   const onBackBtnClickHnd = () => {
-    setShownPage(PageEnum.list)
-   } 
-   const onAddEmployeeClick = () => {
-    setShownPage(PageEnum.add)
-}
-  const addEmployee = (data : PeoplesData) => {
-    setEmployeeList([...employeeList , data])
-        }
+    setShownPage(PageEnum.list);
+  };
+  const onAddEmployeeClick = () => {
+    setShownPage(PageEnum.add);
+  };
+  const addEmployee = (data: PeoplesData) => {
+    setEmployeeList([...employeeList, data]);
+  };
   return (
-    <Box sx={{ display : "flex",
+    <Box
+      sx={{
+        display : "flex",
+    justifyContent:"center",
+    alignItems:"center",
     backgroundColor: "#E6F2FE", 
     flex : 1,
     height : "100%"
-   }}>
-    <CssBaseline />
-      <AppBar position="fixed" open={open} sx ={{
-        background: "#002F71"
-      }}>
+      }}
+    >
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        open={open}
+        sx={{
+          background: "#002F71",
+        }}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -112,9 +126,21 @@ console.log(query)
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" sx={{flexGrow : 1}}>
             LOGO
           </Typography>
+          <Avatar style={{
+            display : "flex-end",
+            justifyContent : "center",
+            alignItems : "center"
+          }}> PG </Avatar>
+         <div style={{
+          marginLeft : "10px"
+         }}>
+<span className="text-gray-400 font-bold ml-1 text-14">
+                Pratik
+          </span>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -156,92 +182,84 @@ console.log(query)
               <ListItemButton>
                 <ListItemText primary={text} />
               </ListItemButton>
-            </ListItem>  
+            </ListItem>
           ))}
         </List>
         <Divider />
       </Drawer>
-      <Main open={open}>
-
-       <DrawerHeader/>
-
-       <Box sx ={
-        {
-          // left : "14%",
-          // width : "79%"
-          display : "flex",
-          flexDirection : "column",
-          justifyContent : "center",
-          width : "100%",
-          // position : open ? null : "absolute",
-          // left : "250px"
-          // alignItems : "center"
-
-         
-        }
-       }>
-
-<div style={{
-    alignSelf : "flex-start",
-    marginBottom : "2%"
-  }}> 
- <Popup>
-   <AddNewResponsibility onBackBtnClickHnd={onBackBtnClickHnd} onSubmitClickHnd={addEmployee} />
-    </Popup>
-</div>
-   
-       <div style={{
-        display : "flex",
-        flexDirection : "row",
-        alignItems : "center",
-        width : "100%",
-        justifyContent : "space-between"
-
-        }}>
-          
-          <SearchHere query= {query} 
-          setQuery = {setQuery} />
-      <SearchButton query = {query} handleOnClick = {handleOnClick}/>
-       </div>
-       
-       {/* <div style={{
-        
-        alignSelf : "flex-end",
-       }}>
-       <AddMore />        
-       </div> */}
-       <DrawerHeader/>
-       {/* <section className='section-content'>
-            {shownPage === PageEnum.list && (
-                <>
-                <input type="button"  value= "Add Employee List" onClick={onAddEmployeeClick}/>
-                 <BasicTableTwo userList={employeeList} />
-                 </>
-             )}
-
-             {shownPage === PageEnum.add && <AddNewResponsibility onBackBtnClickHnd={onBackBtnClickHnd} onSubmitClickHnd={addEmployee} />}
-        </section>  */}
-{/* {/* <AddNewResponsibility onSubmitClickHnd={addPerson} /> */}
-         <BasicTableTwo userList={employeeList}/> 
-        <div>
-        {userList && userList?.length === 0 && (
-          <div
-            style={{
-              width: 500,
-              margin: "20px auto",
-              padding: "20px",
-              border: "1px solid lightgray",
-              textAlign: "center",
+      <Main  sx ={{
+  //         display :"flex",
+  //  justifyContent : "center",
+  //  alignItems : "center",
+  //  height : "80vh"
+      }}open={open}>
+        <DrawerHeader/>
+        <Box
+          sx={{
+            alignSelf: "flex-start",
+            marginBottom: "2%",
+          }}
+        >
+          <BackTwoResp />
+        </Box>
+        <Box>
+          <Box
+            sx={{
+              alignSelf: "flex-start",
+              marginBottom: "2%",
             }}
           >
-            {" "}
-            No user Found{" "}
-          </div>
-        )}
-      </div>
+            <Popup>
+              <AddNewResponsibility
+                onBackBtnClickHnd={onBackBtnClickHnd}
+                onSubmitClickHnd={addEmployee}
+              />
+            </Popup>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              width: "100%",
+              justifyContent: "space-between",
+            }}
+          >
+            <SearchHere query={query} setQuery={setQuery} />
+            <SearchButton query={query} handleOnClick={handleOnClick} />
+          </Box>
+
+          <Box
+            sx={{
+              marginTop: "2%",
+              alignSelf: "flex-end",
+              marginLeft : "83%"
+            }}
+          >
+            <AddFilter />
+          </Box>
+          <DrawerHeader />
+          <BasicTableTwo userList={employeeList} />
+          <Box>
+            {userList && userList?.length === 0 && (
+              <Box
+                sx={{
+                  width: 500,
+                  margin: "20px auto",
+                  padding: "20px",
+                  border: "1px solid lightgray",
+                  textAlign: "center",
+                }}
+              >
+                {" "}
+                No user Found{" "}
+              </Box>
+            )}
+          </Box>
         </Box>
-         </Main>
-        </Box>
+      </Main>
+    </Box>
   );
 }
 

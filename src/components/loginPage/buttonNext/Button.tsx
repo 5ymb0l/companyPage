@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from '@mui/material'
+
 interface Props {
     onClick : React.MouseEventHandler<HTMLButtonElement> | undefined
 }
@@ -13,7 +14,7 @@ export const NextButton : React.FC<Props> = ({
     return (
       <div>
       <Button
-      onClick={onClick}
+     onClick={onClick}
         sx={{
           fontFamily: "Poppins",
           fontStyle: "normal",
@@ -24,8 +25,9 @@ export const NextButton : React.FC<Props> = ({
           marginTop : "15px"
         }}
         variant="outlined"
+       
       >
-       Next
+       Next 
       </Button>
     </div>
     )

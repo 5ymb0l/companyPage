@@ -23,9 +23,9 @@ const App : React.FC =() =>  {
 {/* <MuiDrawer /> */}
 {/* <Layout /> */}
 {/* <Dashboard/> */}
-<DashboardTwo />
+{/* <DashboardTwo /> */}
 {/* <FormControlLabelPosition /> */}
-   {/* <Form /> */}
+   <Form />
 {/* <EditNew /> */}
       {/* <div style={{
         flex : 1,

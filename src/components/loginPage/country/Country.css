@@ -13,7 +13,11 @@
         box-sizing: border-box;
         background-color: #E6F2FE;
     }
-      
+      .img .MuiInputAdornment-positionStart{
+        border-radius : 50%;
+        height : 6vh;
+        width : 70%;
+      }
  
 
 /* .countryName{

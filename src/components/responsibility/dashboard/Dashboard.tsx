@@ -21,6 +21,7 @@ import {NavLink} from 'react-router-dom';
 import { Avatar, Stack } from "@mui/material";
 import { SearchHere } from "../searchHere/SearchBar";
 import { SearchButton } from "../searchButton/SearchButton";
+import { width } from "@mui/system";
 
 const drawerWidth = 240
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -28,7 +29,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
 }>(({ theme, open }) => ({
   flexGrow: 1,
   padding: theme.spacing(3),
-
+  marginBottom : "20%"
 }));
 
 interface AppBarProps extends MuiAppBarProps {
@@ -80,6 +81,8 @@ export default function Dashboard() {
 
   return (
     <Box sx={{ display : "flex",
+    justifyContent:"center",
+    alignItems:"center",
     backgroundColor: "#E6F2FE", 
     flex : 1,
     height : "100%"
@@ -104,7 +107,9 @@ export default function Dashboard() {
           </Typography>
           
           <Avatar style={{
-            display : "flex-end"
+            display : "flex-end",
+            justifyContent : "center",
+            alignItems : "center"
           }}> PG </Avatar>
          <div style={{
           marginLeft : "10px"
@@ -166,56 +171,41 @@ export default function Dashboard() {
 
        <Box sx ={
         {
-          // left : "14%",
-          // width : "79%"
-          display : "flex",
-          flexDirection : "column",
-          justifyContent : "center",
-          width : "100%",
-          // position : open ? null : "absolute",
-          // left : "250px"
-          // alignItems : "center"
-
-         
-        }
-       }>
-
-   
-       <div style={{
         display : "flex",
         flexDirection : "row",
         alignItems : "center",
         width : "100%",
-        justifyContent : "space-between"
-
-        }}>
-          <SearchHere query= {query} 
+        justifyContent : "center"
+      }
+       }>
+        <SearchHere query= {query} 
           setQuery = {setQuery}
          />
-
-        <SearchButton query = {query} handleOnClick = {handleOnClick}/>
-       </div>
-       <DrawerHeader/>
+   <SearchButton query = {query} handleOnClick = {handleOnClick}/>
+     </Box>
+       {/* <DrawerHeader/> */}
+       <Box sx = {{
+         display : "flex",
+         justifyContent : "center",
+         alignItems : "center",
+         marginTop : "2%",
+         width : "100%",
+         flexDirection : "row",
+       }}> 
+     <Box sx = {{
+      display : "flex",
+      flexDirection : "row",
+      alignItems : "center",
+      width : "100%",
+      justifyContent : "center"
+     }}>
       <BasicTable userList={userList} />
-       {/* <div>
-        {userList &&
-          userList?.length > 0 &&
-          userList?.map((rows) => {
-            return (
-              // <div>
-              //   <h3>Name : {rows?.name}</h3>
-              //   <p> Types : {rows?.types} </p>
-              //   <p> role : {rows?.role} </p>
-              //   <p> Status : {rows?.status} </p>
-              // </div>
-
-            );
-          })}
-      </div> */}
-      <div>
+     </Box>
+      
+       <Box>
         {userList && userList?.length === 0 && (
-          <div
-            style={{
+          <Box
+            sx={{
               width: 500,
               margin: "20px auto",
               padding: "20px",
@@ -225,11 +215,10 @@ export default function Dashboard() {
           >
             {" "}
             No user Found{" "}
-          </div>
+          </Box>
         )}
-      </div>
-       
-        </Box>
+      </Box>
+      </Box>
          </Main>
         </Box>
   );
@@ -238,24 +227,12 @@ export interface TableData {
   name: string,
    types: string,
     role: string, 
-    status: string }
+   }
 export const rows = [
-  {name : "Vadodara", types : "Sanghat", role : "SA", status : "Select"},
-  {name :"Ahmedabad", types :"District", role :"A", status :"Select"},
-  {name :"Surat", types :"Sanghat", role : "A", status : "Select"},
-  {name : "Vasd", types : "Sanghat", role : "SA", status : "Select"},
-  {name :"ghfg", types :"District", role :"A", status :"Select"},
-  {name :"Surtertrat", types :"Sanghat", role : "A", status : "Select"},  {name : "Vadodfssfsdara", types : "Sanghat", role : "SA", status : "Select"},
-  {name :"Ahmedadgfgbad", types :"District", role :"A", status :"Select"},
-  {name :"Suradsat", types :"Sanghat", role : "A", status : "Select"},  {name : "Vadsadasodara", types : "Sanghat", role : "SA", status : "Select"},
-  {name :"Ahmdsfsedabad", types :"District", role :"A", status :"Select"},
-  {name :"Surfsdfsdfat", types :"Sanghat", role : "A", status : "Select"},  {name : "Vadodara", types : "Sanghat", role : "SA", status : "Select"},
-  {name :"Ahsdfsdmedabad", types :"District", role :"A", status :"Select"},
-  {name :"Ssafsurat", types :"Sanghat", role : "A", status : "Select"},  {name : "Vaasfsadodara", types : "Sanghat", role : "SA", status : "Select"},
-  {name :"Ahmedjkhgkghabad", types :"District", role :"A", status :"Select"},
-  {name :"Surtrtrreat", types :"Sanghat", role : "A", status : "Select"},  {name : "Vadodara", types : "Sanghat", role : "SA", status : "Select"},
-  {name :"Ahbnmbnmedabad", types :"District", role :"A", status :"Select"},
-  {name :"Suqwqqerat", types :"Sanghat", role : "A", status : "Select"},
+  {name : "Vadodara", types : "Sanghat", role : "SA",  },
+  {name :"Ahmedabad", types :"District", role :"A", },
+  {name :"Surat", types :"Sanghat", role : "A",  },
+  
 ];
 
 

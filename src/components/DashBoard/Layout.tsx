@@ -6,7 +6,7 @@ export const MuiDrawer = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   return (
-    <Box>
+    <Box> 
       <IconButton
         onClick={() => setIsDrawerOpen(true)}
         size='large'

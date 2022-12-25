@@ -62,14 +62,12 @@ const CountrySelect: React.FC<{
             InputProps={{
               ...params.InputProps,
               startAdornment: value ? (
-                <InputAdornment disablePointerEvents position="start">
+                <InputAdornment  disablePointerEvents position="start">
                   <img style={{
-                   
-                    borderRadius : "50px",
-                    height : "55px",
-                    width : "53px",
-                    marginLeft : "-8px"
-                     
+               
+                    borderRadius : "50%",
+                    height : "5vh",
+                    width : "70%",
                   }}
                   width = "48"
                     className="img"

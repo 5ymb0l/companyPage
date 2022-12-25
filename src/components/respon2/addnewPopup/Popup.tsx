@@ -8,6 +8,7 @@ import {Button ,
    useMediaQuery,
    makeStyles
   } from '@mui/material';
+  import AddIcon from '@mui/icons-material/Add';
 
   import { useTheme } from '@mui/material/styles';
 // import { AddNewResponsibility } from './AddNewResponsibility';
@@ -51,7 +52,10 @@ export default function Popup(props : Props) {
 // }
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button sx ={{
+        backgroundColor : "white",
+        borderRadius : "50px"
+      }}variant="outlined" onClick={handleClickOpen} startIcon={<AddIcon />}>
         Add New  
       </Button>
       <Dialog maxWidth = 'lg'

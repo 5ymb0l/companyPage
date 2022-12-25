@@ -8,6 +8,7 @@ import { OtpField } from "../../otpPage/otpForm/OtpField";
 import { LoginHeader } from "../loginHead/Header";
 import HelperText from "../helperText/HelperText";
 import { NextButton } from "../buttonNext/Button";
+import { Link } from "react-router-dom";
 
 // import {
 //   Link as OtpField
@@ -138,6 +139,7 @@ export const Form = () => {
                           fontStyle: "normal",
                           fontWeight: 500,
                           fontSize: "14px",
+                       
                           lineHeight: "18px",
                           color: "#002F71",
                           marginTop : "15px"

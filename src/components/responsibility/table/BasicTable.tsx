@@ -14,12 +14,10 @@ import {
   Paper,
   IconButton,
   TableHead,
+  tableCellClasses,
+  tableRowClasses,
   Button
 } from "@mui/material";
-import  FirstPageIcon from "@mui/icons-material/FirstPage";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import LastPageIcon from "@mui/icons-material/LastPage";
 
 
 interface PaginationProps { 
@@ -73,27 +71,89 @@ const handleChange = ( event: React.ChangeEvent<unknown>,
 };
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="custom pagination table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Responsiblities</TableCell>
-            <TableCell>Types</TableCell>
-            <TableCell>Role&nbsp;</TableCell>
-            <TableCell></TableCell>
+    <Box sx = {{ width : '100%'}}>
+    <TableContainer sx = {{borderRadius: '15px',
+    width: '100%',
+    
+    }}component={Paper}>
+      <Table aria-label="simple table" 
+      // sx={{
+      //         [`&  .${tableCellClasses.root}`]: {
+             
+      //         },
+      //       }} 
+            >
+        <TableHead sx={{
+              tableLayout: 'fixed',
+              //  backgroundColor: '#00A77E',
+             
+              }}>
+          <TableRow sx={{ display: 'table', tableLayout: 'fixed', width: '100%' }}>
+            <TableCell style={{
+                    width: '40%',
+                    paddingLeft : "4%",
+                    fontFamily : "Poppins",
+                    color : "#6682AA",
+                    fontWeight : 500,
+                    fontSize : "20px"
+                    
+                  }}>Responsiblities</TableCell>
+            <TableCell style={{ width: '20%' ,   fontFamily : "Poppins",
+               color : "#6682AA",fontWeight : 500,
+               fontSize : "20px" }}>Types</TableCell>
+            <TableCell style={{ width: '20%',  paddingLeft : "8%",  fontFamily : "Poppins",
+               color : "#6682AA" , fontWeight : 500,
+               fontSize : "20px"}}>Role&nbsp;</TableCell>
+            <TableCell style={{ width: '20%' ,   fontFamily : "Poppins",
+               color : "#6682AA",paddingLeft : "10%" , fontWeight : 500,
+               fontSize : "20px"}}></TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody   sx={{
+                tableLayout: 'fixed',
+                display: 'block',
+                overflow: 'auto',
+                p: '0 auto',
+                [`& .${tableRowClasses.root}`]: {
+                  position: 'relative',
+                  '&::after': {
+                    // backgroundColor: '#EBEBEB',
+                    bottom: 0,
+                    content: '""',
+                    display: 'block',
+                    height: '2px',
+                    left: '50%',
+                    position: 'absolute',
+                    transform: 'translate(-50%,0)',
+                    width: '95%',
+                  },
+                  '&:last-child::after': {
+                    display: 'none',
+                  },
+                },
+              }}>
           { _DATA.currentData().map((row , index) => {
             return(
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
+            <TableRow key={row.name} sx={{ display: 'table', width: '100%' }}>
+              <TableCell style={{ width: '40%',
+               paddingLeft : "4%" ,
+               fontFamily : "Poppins",
+                    color : "#002F71",
+                    fontWeight : 500,
+                    fontSize : "18px"
+             }} component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell >
+              <TableCell style={{ width: '20%',fontFamily : "Poppins",
+                    color : "#002F71",
+                    fontWeight : 500,
+                    fontSize : "18px" }}>
                 {row.types}
               </TableCell>
-              <TableCell>
+              <TableCell  style={{ width: '20%', paddingLeft : "8%",fontFamily : "Poppins",
+                    color : "#002F71",
+                    fontWeight : 500,
+                    fontSize : "18px" }}>
                 <Box sx ={{
                  background: "#E6F2FE",
                  borderRadius: "50px",
@@ -108,22 +168,27 @@ const handleChange = ( event: React.ChangeEvent<unknown>,
              {row.role}
               </Box>
               </TableCell>
-              <TableCell>
-               <Button variant="outlined"
+              <TableCell  style={{ width: '20%' , paddingLeft : "10%" ,fontFamily : "Poppins",
+                    color : "#002F71",
+                    fontWeight : 500,
+                    fontSize : "18px"}}>
+               <Button 
+                onClick={()=> window.open("/dashtwo")}
+               variant="outlined"
                     sx={{
-                       left: "65%",
-                      boxSizing: "border-box",
-                      borderRadius: "10px",
-                      border: "2px solid #1073FF",
+                    
+                      // boxSizing: "border-box",
+                      // borderRadius: "10px",
+                      // border: "2px solid #1073FF",
                     }}>
-           {row.status} 
+             Select
            </Button>
            </TableCell>
            </TableRow>
             )})}
       
         </TableBody>
-        <TableFooter>
+        {/* <TableFooter>
           <TableRow>
        <Pagination
         count={userList.length}
@@ -134,11 +199,12 @@ const handleChange = ( event: React.ChangeEvent<unknown>,
         onChange={handleChange}
       />
           </TableRow>
-        </TableFooter>
+        </TableFooter> */}
       </Table>
     </TableContainer>
-  );
-}
+     </Box>
+  )
+};
 
 
 
