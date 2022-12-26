@@ -8,6 +8,7 @@ country: string;
      types: string;
     state : string ;
     sanghat : string;
+    
      
     }
 
@@ -28,5 +29,6 @@ country: string;
    export enum PageEnum {
     list , 
     add ,
+    edit
 
 }

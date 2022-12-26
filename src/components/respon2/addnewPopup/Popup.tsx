@@ -6,7 +6,8 @@ import {Button ,
    DialogContentText,
    DialogTitle,
    useMediaQuery,
-   makeStyles
+   makeStyles,
+   Box
   } from '@mui/material';
   import AddIcon from '@mui/icons-material/Add';
 
@@ -36,7 +37,6 @@ export default function Popup(props : Props) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-// const [query , setQuery] = React.useState('')
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -51,14 +51,18 @@ export default function Popup(props : Props) {
 //   (e : React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)
 // }
   return (
-    <div>
+   <Box>
       <Button sx ={{
         backgroundColor : "white",
         borderRadius : "50px"
       }}variant="outlined" onClick={handleClickOpen} startIcon={<AddIcon />}>
         Add New  
       </Button>
-      <Dialog maxWidth = 'lg'
+      <Dialog style={{
+        display : "flex",
+        justifyContent : "center",
+        alignItems : "center",
+      }}
         fullScreen={fullScreen}
         open={open}
         onClose={handleClose}
@@ -88,6 +92,6 @@ export default function Popup(props : Props) {
         </DialogContent>
        
       </Dialog>
-    </div>
+    </Box>
   );
 }

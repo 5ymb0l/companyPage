@@ -18,7 +18,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  useMediaQuery
+  useMediaQuery,
+  Divider
 } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import { PeoplesData } from "../Person.type";
@@ -26,6 +27,7 @@ type Props = {
   onBackBtnClickHnd : () => void
   onSubmitClickHnd: (data: PeoplesData) => void;
 };
+
 
 export const AddNewResponsibility = (props: Props) => {
   const [firstName, setFirstName] = useState("");
@@ -36,7 +38,7 @@ export const AddNewResponsibility = (props: Props) => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [sanghat, setSanghat] = useState("");
-  // const [open, setOpen] = useState(false);
+ 
   // const theme = useTheme();
   // const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const { onSubmitClickHnd ,onBackBtnClickHnd } = props;
@@ -65,17 +67,7 @@ export const AddNewResponsibility = (props: Props) => {
   const onSanghatChange = (event: SelectChangeEvent) => {
     setSanghat(event.target.value);
   };
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
 
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-  
-  // const handleClick = (event: SelectChangeEvent) => {
-  //   setCountry(event.target.value);
-  // }
   const onSubmitBtnClickHnd = (e: any) => {
     e.preventDefault();
     const data: PeoplesData = {
@@ -91,7 +83,7 @@ export const AddNewResponsibility = (props: Props) => {
     };
     onSubmitClickHnd(data);
 onBackBtnClickHnd();
-
+// console.log("Data Passed")
   };
   return (
     <Box
@@ -102,54 +94,31 @@ onBackBtnClickHnd();
         alignItems: "center",
       }}
     >
-         
-
-       {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Add New 
-      </Button> */}
-      {/* <Dialog
-        fullScreen={fullScreen}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="responsive-dialog-title"
-      >
-         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button onClick ={() => {
-            
-            handleClose()
-          }} 
-          // value = {query}
-          // onChange = {handleClick}
-           autoFocus>
-            Add
-          </Button>
-        </DialogActions>
-
-       <DialogContent>
-<AddNewResponsibility onSubmitClickHnd={onSubmitClickHnd} />
-
-        </DialogContent>
-       
-      </Dialog> */}
-      <form onSubmit={onSubmitBtnClickHnd}>
-      <input type="submit" value="Add Employee" />
-      <input type="button" value="Back" onClick={onBackBtnClickHnd} />
-
-        <Stack spacing={4}>
-          <Box>
-            <Stack direction="row" spacing={2}>
-              <TextField
+<form onSubmit={onSubmitBtnClickHnd}>
+  <Box sx = {{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end"
+  }}>
+    <Stack direction="row" spacing={2}>
+    <input type="button" value="Cancel" onClick={onBackBtnClickHnd} />
+    <input type="submit" value="Add" />
+    </Stack>
+    </Box>
+     
+      <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+   
+          <Grid item xs = {6}>
+             <TextField
                 id="standard-basic"
                 label="First Name"
                 variant="standard"
                 value={firstName}
                 onChange={onFirstNameChangeHnd}
               />
-            </Stack>
-            <Stack>
+            </Grid>
+          
+            <Grid item xs = {6}>
               <TextField
                 id="standard-basic"
                 label="Last Name"
@@ -157,10 +126,10 @@ onBackBtnClickHnd();
                 value={lastName}
                 onChange={onLastNameChangeHnd}
               />
-            </Stack>
-          </Box>
-          <Box>
-            <Stack direction="row" spacing={2}>
+            </Grid>
+         
+     
+            <Grid item xs = {6}>
               <TextField
                 id="standard-basic"
                 label="Email Address"
@@ -168,8 +137,8 @@ onBackBtnClickHnd();
                 value={email}
                 onChange={onEmailChangeHnd}
               />
-            </Stack>
-            <Stack>
+            </Grid>
+            <Grid item xs = {6}>
               <TextField
                 id="standard-basic"
                 label="Phone Number"
@@ -178,10 +147,10 @@ onBackBtnClickHnd();
                 value={phone}
                 onChange={onPhoneChangeHnd}
               />
-            </Stack>
-          </Box>
-          <Box>
-            <Stack direction="row" spacing={2}>
+            </Grid>
+        
+          
+            <Grid item xs = {12}>
               <FormControl
                 variant="standard"
                 sx={{ m: 1, minWidth: 200, align: "center" }}
@@ -201,10 +170,12 @@ onBackBtnClickHnd();
                   <MenuItem value={30}>Thirty</MenuItem>
                 </Select>
               </FormControl>
-            </Stack>
-          </Box>
-          <Box>
-            <Stack direction="row" spacing={2}>
+            </Grid>
+       
+
+           <Divider />
+          
+            <Grid item xs = {6}>
               <FormControl
                 variant="standard"
                 sx={{ m: 1, minWidth: 200, align: "center" }}
@@ -224,10 +195,10 @@ onBackBtnClickHnd();
                   <MenuItem value={30}>Usa</MenuItem>
                 </Select>
               </FormControl>
-            </Stack>
-          </Box>
-          <Box>
-            <Stack direction="row" spacing={2}>
+            </Grid>
+         
+  
+            <Grid item xs = {6}>
               <FormControl
                 variant="standard"
                 sx={{ m: 1, minWidth: 200, align: "center" }}
@@ -247,10 +218,10 @@ onBackBtnClickHnd();
                   <MenuItem value={30}>Kerala</MenuItem>
                 </Select>
               </FormControl>
-            </Stack>
-          </Box>
-          <Box>
-            <Stack direction="row" spacing={2}>
+            </Grid>
+        
+       
+            <Grid item xs = {12}>
               <FormControl
                 variant="standard"
                 sx={{ m: 1, minWidth: 200, align: "center" }}
@@ -270,11 +241,11 @@ onBackBtnClickHnd();
                   <MenuItem value={30}>Vapi</MenuItem>
                 </Select>
               </FormControl>
-            </Stack>
-          </Box>
-        </Stack>
+            </Grid>
+         
+       </Grid>
       </form>
-    </Box>
+     </Box>
 
     //     <Box sx = {{
     //       flexGrow : 1,

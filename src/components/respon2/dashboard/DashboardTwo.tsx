@@ -23,7 +23,7 @@ import { PeoplesData , dummyPersonList , PageEnum } from "../Person.type";
 import Popup from "../addnewPopup/Popup";
 import BackTwoResp from "../backTwoResp/BackTwoResp";
 import AddFilter from "../filter/Filter";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 
 const drawerWidth = 240
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -105,7 +105,7 @@ export default function DashboardTwo() {
     alignItems:"center",
     backgroundColor: "#E6F2FE", 
     flex : 1,
-    height : "100%"
+    // height : "100%"
       }}
     >
       <CssBaseline />
@@ -205,16 +205,19 @@ export default function DashboardTwo() {
         <Box>
           <Box
             sx={{
+              
               alignSelf: "flex-start",
               marginBottom: "2%",
             }}
           >
-            <Popup>
-              <AddNewResponsibility
+          <Popup>
+         <AddNewResponsibility
                 onBackBtnClickHnd={onBackBtnClickHnd}
                 onSubmitClickHnd={addEmployee}
               />
             </Popup>
+
+      
           </Box>
 
           <Box
