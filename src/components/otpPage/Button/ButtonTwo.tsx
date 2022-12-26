@@ -7,8 +7,10 @@ export const ButtonTwo = () => {
   const [State, setState] = useState()
   return (
     <div>
+        <Link  style={{textDecoration:"none"}} to="/dashbhai" >
+        
           <Button
-           onClick={()=> window.open("/dashbhai")}
+          //  onClick={()=> window.open("/dashbhai")}
             // onClick={handleClick}
             sx={{
               fontFamily: "Poppins",
@@ -23,6 +25,8 @@ export const ButtonTwo = () => {
           >
             Next
           </Button>
+        
+        </Link>
         </div>
   )
 }

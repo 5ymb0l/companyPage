@@ -1,10 +1,17 @@
 import {Button} from '@mui/material'
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import { Link } from 'react-router-dom';
 
 
 const BackTwoResp = () => {
   return (
- <Button  onClick={()=> window.open("/dashbhai")} startIcon={<ChevronLeftIcon />}> Back to responsibility</Button>
+    <Link  style={{textDecoration:"none"}} to="/dashbhai" >
+
+      <Button   startIcon={<ChevronLeftIcon />}> Back to responsibility</Button>
+
+
+
+    </Link>
   )
 }
 

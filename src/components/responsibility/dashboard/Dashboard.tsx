@@ -21,15 +21,21 @@ import {NavLink} from 'react-router-dom';
 import { Avatar, Stack } from "@mui/material";
 import { SearchHere } from "../searchHere/SearchBar";
 import { SearchButton } from "../searchButton/SearchButton";
-import { width } from "@mui/system";
+
 
 const drawerWidth = 240
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
 }>(({ theme, open }) => ({
-  flexGrow: 1,
-  padding: theme.spacing(3),
-  marginBottom : "20%"
+  // display : "flex",
+  // justifyContent : "center",
+  // alignItems : "center",
+  // flex : 1,
+ padding: theme.spacing(3),
+paddingRight : "4%",
+ backgroundColor: "#E6F2FE",
+ flexGrow: 1,
+marginBottom : "20%"
 }));
 
 interface AppBarProps extends MuiAppBarProps {
@@ -83,9 +89,15 @@ export default function Dashboard() {
     <Box sx={{ display : "flex",
     justifyContent:"center",
     alignItems:"center",
-    backgroundColor: "#E6F2FE", 
-    flex : 1,
-    height : "100%"
+    width: "100vw",
+    minHeight: "100vh",
+    flexDirection : "row",
+  backgroundColor: "#E6F2FE",
+  // backgroundColor: "red",
+
+
+    // flex : 1,
+    // height : "100%"
    }}>
     
       <CssBaseline />
@@ -202,7 +214,11 @@ export default function Dashboard() {
       <BasicTable userList={userList} />
      </Box>
       
-       <Box>
+       <Box sx = {{
+        display : "flex",
+        alignItems : "center",
+        justifyContent : "center"
+       }}>
         {userList && userList?.length === 0 && (
           <Box
             sx={{
