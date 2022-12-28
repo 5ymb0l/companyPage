@@ -19,18 +19,18 @@ import {
   DialogContentText,
   DialogTitle,
   useMediaQuery,
-  Divider,
-  Paper
+  Divider
 } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import { PeoplesData } from "../Person.type";
 type Props = {
+  data : PeoplesData
   onBackBtnClickHnd : () => void
   onSubmitClickHnd: (data: PeoplesData) => void;
 };
 
 
-export const AddNewResponsibility = (props: Props) => {
+export const EditNewResponsibility = (props: Props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -39,8 +39,10 @@ export const AddNewResponsibility = (props: Props) => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [sanghat, setSanghat] = useState("");
-
-const { onSubmitClickHnd ,onBackBtnClickHnd } = props;
+  const [open, setOpen] = useState(false);
+  // const theme = useTheme();
+  // const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const { onSubmitClickHnd ,onBackBtnClickHnd , data} = props;
  const onFirstNameChangeHnd = (e: any) => {
     setFirstName(e.target.value);
   };
@@ -66,11 +68,21 @@ const { onSubmitClickHnd ,onBackBtnClickHnd } = props;
   const onSanghatChange = (event: SelectChangeEvent) => {
     setSanghat(event.target.value);
   };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+  
+  // const handleClick = (event: SelectChangeEvent) => {
+  //   setCountry(event.target.value);
+  // }
   const onSubmitBtnClickHnd = (e: any) => {
     e.preventDefault();
-    const data: PeoplesData = {
-      id: new Date().toJSON().toString(),
+    const updatedData: PeoplesData = {
+      id: data.id,
       firstName: firstName,
       lastName: lastName,
       phone: phone,
@@ -80,13 +92,13 @@ const { onSubmitClickHnd ,onBackBtnClickHnd } = props;
       state: state,
       sanghat: sanghat,
     };
-    onSubmitClickHnd(data);
+    onSubmitClickHnd(updatedData);
 onBackBtnClickHnd();
-// console.log("Data Passed")
+
   };
   return (
     <Box
-      title = " Add New Responsibilites"
+      title = " Edit New Responsibilites"
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -243,41 +255,5 @@ onBackBtnClickHnd();
        </Grid>
       </Box>
      </Box>
-
-    //     <Box sx = {{
-    //       flexGrow : 1,
-    //       display : "flex",
-    //     justifyContent : "center",
-    //     alignItems : "center"
-    //    }}
-    //  >
-
-    //     <Box sx={{
-    //       height :"5vh",
-    //       display : "flex",
-    //       width: '50%',
-    //     justifyContent : "center",
-    //     alignItems : "center"
-    //     }}>
-    //       <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-    //         <Grid item xs={6}>
-    //          <TextField id="standard-basic" label="First Name" variant="standard" />
-
-    //         </Grid>
-    //         <Grid item xs={6}>
-    //          <TextField id="standard-basic" label="Last Name" variant="standard" />
-
-    //         </Grid>
-    //         <Grid item xs={6}>
-    //          <TextField id="standard-basic" label="Email Address" variant="standard" />
-
-    //         </Grid>
-    //         <Grid item xs={6}>
-    //         <TextField id="standard-basic" label="Phone Number" variant="standard" type="number" />
-
-    //         </Grid>
-    //       </Grid>
-    //     </Box>
-    //   </Box>
   );
 };

@@ -81,12 +81,12 @@ export default function DashboardTwo() {
   const handleClickOpen = () => {
     setOpen(true);
   };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleClickOpenPopup = () => {
     setOpenPopup(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
   };
 
   const handleClosePopup = () => {

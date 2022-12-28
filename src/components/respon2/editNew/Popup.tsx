@@ -17,8 +17,8 @@ import {Button ,
 // import { AddNewResponsibility } from './AddNewResponsibility';
 // import { PeoplesData } from '../Person.type';
 type Props = {
-  children? : any;
-  title?: string;
+  children : any;
+  title : string;
      openPopup : boolean;
     setOpenPopup : ( param: boolean) => void
   // onSubmitClickHnd : (data : PeoplesData) => void
@@ -63,7 +63,7 @@ const StyledBox = styled(Dialog)(({ theme }) => ({
 
 
 
-export default function Popup(props : Props) {
+export default function EditPopup(props : Props) {
   // const [open, setOpen] = React.useState(false);
   // const classes = useStyles();
 

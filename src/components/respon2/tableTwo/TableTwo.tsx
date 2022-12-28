@@ -2,9 +2,6 @@ import {useState} from "react";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { PeoplesData } from "../Person.type";
-// import { TableData } from "../dashboard/DashboardTwo";
-// import {EditForm} from "../TestCase/EditForm"
-// import {Todo} from  "../TestCase/model"
 import {
   Table,
   TableBody,
@@ -18,13 +15,20 @@ import {
   TableHead,
   Pagination,
   Button,
-  tableRowClasses
+  Select,
+  tableRowClasses,
+  InputLabel,
+  SelectChangeEvent,
+  MenuItem,
+  Menu
 } from "@mui/material";
 import  FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-
+import Popup from "../addnewPopup/Popup";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import BasicMenu from "../../Controls/BasicMenu";
 
 interface PaginationProps { 
   data : PeoplesData[];
@@ -35,6 +39,7 @@ function usePagination (props : PaginationProps ) {
   const { data, itemsPerPage = 5 } = props;
   const [currentPage, setCurrentPage] = useState(1);
   const maxPage = Math.ceil(data.length / itemsPerPage);
+ 
 
   function currentData() {
     const begin = (currentPage - 1) * itemsPerPage;
@@ -64,20 +69,21 @@ interface Props {
 }
 
 
-
-
 export default function BasicTableTwo({userList = [] } : Props) {
  
   const [rowsPerPage, setRowsPerPage] = useState(24);
   const count = Math.ceil(userList.length / rowsPerPage);
   const _DATA = usePagination({data : userList});
-  
+  const [type, setType] = useState("");
+
   const handleChange = ( event: React.ChangeEvent<unknown>,
     newPage: number) => {
       // setPage(newPage);
     _DATA.jump(newPage);
   };
-  
+  const onTypeChange = (event: SelectChangeEvent) => {
+    setType(event.target.value);
+  };
   return (
     <Box sx={{ width: "100%" }}>
 
@@ -171,56 +177,68 @@ export default function BasicTableTwo({userList = [] } : Props) {
               },
             }} >
         { _DATA.currentData().map((row , index) => {
-            return(
-            <TableRow key={row.id}   sx={{ display: "table", width: "100%" }}>
-              <TableCell style={{
-                  width: "16%",
-                  // paddingLeft: "4%",
-                  fontFamily: "Poppins",
-                  color: "#6682AA",
-                  fontWeight: 500,
-                  fontSize: "20px",
-                }} component="th" scope="row">
-              {`${row.firstName} ${row.lastName}`}
-              </TableCell>
-              <TableCell  style={{
-                  width: "16%",
-                  fontFamily: "Poppins",
-                  color: "#6682AA",
-                  fontWeight: 500,
-                  fontSize: "20px",
-                }}>
-                {row.phone}
-              </TableCell>
-              <TableCell style={{
-                  width: "16%",
-                  // paddingLeft: "8%",
-                  fontFamily: "Poppins",
-                  color: "#6682AA",
-                  fontWeight: 500,
-                  fontSize: "20px",
-                }} >
-                {row.email}
-              </TableCell>
-              <TableCell style={{
-                width: "16%",
-                fontFamily: "Poppins",
-                color: "#6682AA",
-                // paddingLeft: "10%",
-                fontWeight: 500,
-                fontSize: "20px",
-              }}>
-              {`${row.country} ${row.state} ${row.sanghat}`}
-              </TableCell>
-              <TableCell style={{
-                  width: "16%",
-                  fontFamily: "Poppins",
-                  color: "#6682AA",
-                  // paddingLeft: "10%",
-                  fontWeight: 500,
-                  fontSize: "20px",
-                }}>
-                {/* <Box sx ={{
+            return (
+              <TableRow key={row.id} sx={{ display: "table", width: "100%" }}>
+                <TableCell
+                  style={{
+                    width: "16%",
+                    // paddingLeft: "4%",
+                    fontFamily: "Poppins",
+                    color: "#6682AA",
+                    fontWeight: 500,
+                    fontSize: "20px",
+                  }}
+                  component="th"
+                  scope="row"
+                >
+                  {`${row.firstName} ${row.lastName}`}
+                </TableCell>
+                <TableCell
+                  style={{
+                    width: "16%",
+                    fontFamily: "Poppins",
+                    color: "#6682AA",
+                    fontWeight: 500,
+                    fontSize: "20px",
+                  }}
+                >
+                  {row.phone}
+                </TableCell>
+                <TableCell
+                  style={{
+                    width: "16%",
+                    // paddingLeft: "8%",
+                    fontFamily: "Poppins",
+                    color: "#6682AA",
+                    fontWeight: 500,
+                    fontSize: "20px",
+                  }}
+                >
+                  {row.email}
+                </TableCell>
+                <TableCell
+                  style={{
+                    width: "16%",
+                    fontFamily: "Poppins",
+                    color: "#6682AA",
+                    // paddingLeft: "10%",
+                    fontWeight: 500,
+                    fontSize: "20px",
+                  }}
+                >
+                  {`${row.country} ${row.state} ${row.sanghat}`}
+                </TableCell>
+                <TableCell
+                  style={{
+                    width: "16%",
+                    fontFamily: "Poppins",
+                    color: "#6682AA",
+                    // paddingLeft: "10%",
+                    fontWeight: 500,
+                    fontSize: "20px",
+                  }}
+                >
+                  {/* <Box sx ={{
                  background: "#E6F2FE",
                  borderRadius: "50px",
                  width: "35px",
@@ -233,26 +251,36 @@ export default function BasicTableTwo({userList = [] } : Props) {
               arial-lable ="SA">
           
               </Box> */}
-                 {row.types}
-              </TableCell>
-              <TableCell  style={{
-                  width: "16%",
-                  fontFamily: "Poppins",
-                  color: "#6682AA",
-                  // paddingLeft: "10%",
-                  fontWeight: 500,
-                  fontSize: "20px",
-                }}> 
-              <Button>
-               Edit
-              </Button>
-              <Button>
-               Delete
-              </Button>
-
-              </TableCell>
-           </TableRow>
-            )
+                  {row.types}
+                </TableCell>
+                <TableCell
+                  style={{
+                    width: "16%",
+                    fontFamily: "Poppins",
+                    color: "#6682AA",
+                    // paddingLeft: "10%",
+                    fontWeight: 500,
+                    fontSize: "20px",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      background: "#E6F2FE",
+                      width: "35px",
+                      position: "relative",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      height: "35px",
+                    }}
+                    arial-lable="SA"
+                  >
+                  <BasicMenu />
+                    
+                  </Box>
+                </TableCell>
+              </TableRow>
+            );
                   })}
       
         </TableBody>
