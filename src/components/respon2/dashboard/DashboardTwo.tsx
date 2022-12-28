@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -24,6 +24,8 @@ import Popup from "../addnewPopup/Popup";
 import BackTwoResp from "../backTwoResp/BackTwoResp";
 import AddFilter from "../filter/Filter";
 import { Avatar, Button } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+
 
 const drawerWidth = 240
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -69,17 +71,26 @@ export default function DashboardTwo() {
   const [query, setQuery] = useState<string>("");
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
+  const [dataToEdit, setDataToEdit] = useState({} as PeoplesData);
   const [employeeList, setEmployeeList] = useState(
-    dummyPersonList as PeoplesData[]
+    [] as PeoplesData[]
   );
   const [shownPage, setShownPage] = useState(PageEnum.list);
   console.log(query);
-  const handleDrawerOpen = () => {
+  const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleDrawerClose = () => {
+  const handleClickOpenPopup = () => {
+    setOpenPopup(true);
+  };
+  const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleClosePopup = () => {
+    setOpenPopup(false);
   };
   const handleOnClick = (e: React.FormEvent) => {
     setUserList(
@@ -88,16 +99,50 @@ export default function DashboardTwo() {
       )
     );
   };
-  const onBackBtnClickHnd = () => {
-    setShownPage(PageEnum.list);
-  };
-  const onAddEmployeeClick = () => {
-    setShownPage(PageEnum.add);
+  
+  useEffect(() => {
+    const listInString = window.localStorage.getItem("EmployeeList");
+    if (listInString) {
+      _setEmployeeList(JSON.parse(listInString));
+    }
+  }, []);
+  const _setEmployeeList = (list: PeoplesData[]) => {
+    setEmployeeList(list);
+    window.localStorage.setItem("EmployeeList", JSON.stringify(list));
   };
   const addEmployee = (data: PeoplesData) => {
-    setEmployeeList([...employeeList, data]);
+    _setEmployeeList([...employeeList, data]);
+    handleClosePopup();
   };
+
+  const deleteEmployee = (data: PeoplesData) => {
+    // To Index from array i,e employeeList
+    // Splice that
+    // Update new record
+
+   
+    const indexToDelete = employeeList.indexOf(data);
+    const tempList = [...employeeList];
+
+    tempList.splice(indexToDelete, 1);
+    _setEmployeeList(tempList);
+  };
+
+  const editEmployeeData = (data: PeoplesData) => {
+    setShownPage(PageEnum.edit);
+    setDataToEdit(data);
+  };
+  
+  const updateData = (data: PeoplesData) => {
+    const filteredData = employeeList.filter((x) => x.id === data.id)[0];
+    const indexOfRecord = employeeList.indexOf(filteredData);
+    const tempData = [...employeeList];
+    tempData[indexOfRecord] = data;
+    _setEmployeeList(tempData);
+  };
+
   return (
+    <>  
     <Box
       sx={{
         display : "flex",
@@ -120,7 +165,7 @@ export default function DashboardTwo() {
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={handleClickOpen}
             edge="start"
             sx={{ mr: 2, ...(open && { display: "none" }) }}
           >
@@ -157,7 +202,7 @@ export default function DashboardTwo() {
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleClose}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
             ) : (
@@ -210,12 +255,19 @@ export default function DashboardTwo() {
               marginBottom: "2%",
             }}
           >
-          <Popup>
+             <Button sx ={{
+        backgroundColor : "white",
+        borderRadius : "50px"
+      }}variant="outlined" onClick={handleClickOpenPopup} startIcon={<AddIcon />}>
+        Add New  
+      </Button>
+         {/* <Popup>
          <AddNewResponsibility
-                onBackBtnClickHnd={onBackBtnClickHnd}
+                onBackBtnClickHnd={handleDrawerClose}
                 onSubmitClickHnd={addEmployee}
               />
-            </Popup>
+         </Popup> */}
+        
 
       
           </Box>
@@ -263,6 +315,16 @@ export default function DashboardTwo() {
         </Box>
       </Main>
     </Box>
+     <Popup 
+     title = "Add Responsibility"
+     openPopup = {openPopup}
+     setOpenPopup = {setOpenPopup} >
+     <AddNewResponsibility
+            onBackBtnClickHnd={handleClosePopup}
+            onSubmitClickHnd={addEmployee}
+          />
+     </Popup>
+     </>
   );
 }
 

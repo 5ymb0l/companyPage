@@ -19,7 +19,8 @@ import {
   DialogContentText,
   DialogTitle,
   useMediaQuery,
-  Divider
+  Divider,
+  Paper
 } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import { PeoplesData } from "../Person.type";
@@ -38,10 +39,8 @@ export const AddNewResponsibility = (props: Props) => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [sanghat, setSanghat] = useState("");
- 
-  // const theme = useTheme();
-  // const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-  const { onSubmitClickHnd ,onBackBtnClickHnd } = props;
+
+const { onSubmitClickHnd ,onBackBtnClickHnd } = props;
  const onFirstNameChangeHnd = (e: any) => {
     setFirstName(e.target.value);
   };
@@ -94,15 +93,15 @@ onBackBtnClickHnd();
         alignItems: "center",
       }}
     >
-<form onSubmit={onSubmitBtnClickHnd}>
+<Box onSubmit={onSubmitBtnClickHnd}>
   <Box sx = {{
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end"
   }}>
     <Stack direction="row" spacing={2}>
-    <input type="button" value="Cancel" onClick={onBackBtnClickHnd} />
-    <input type="submit" value="Add" />
+    <Button  onClick={onBackBtnClickHnd} > Cancel</Button>
+    <Button  onClick={onSubmitBtnClickHnd}> Add </Button>
     </Stack>
     </Box>
      
@@ -127,18 +126,7 @@ onBackBtnClickHnd();
                 onChange={onLastNameChangeHnd}
               />
             </Grid>
-         
-     
-            <Grid item xs = {6}>
-              <TextField
-                id="standard-basic"
-                label="Email Address"
-                variant="standard"
-                value={email}
-                onChange={onEmailChangeHnd}
-              />
-            </Grid>
-            <Grid item xs = {6}>
+         <Grid item xs = {6}>
               <TextField
                 id="standard-basic"
                 label="Phone Number"
@@ -146,6 +134,15 @@ onBackBtnClickHnd();
                 type="number"
                 value={phone}
                 onChange={onPhoneChangeHnd}
+              />
+            </Grid>
+            <Grid item xs = {6}>
+              <TextField
+                id="standard-basic"
+                label="Email Address"
+                variant="standard"
+                value={email}
+                onChange={onEmailChangeHnd}
               />
             </Grid>
         
@@ -244,7 +241,7 @@ onBackBtnClickHnd();
             </Grid>
          
        </Grid>
-      </form>
+      </Box>
      </Box>
 
     //     <Box sx = {{

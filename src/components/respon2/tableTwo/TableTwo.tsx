@@ -60,7 +60,7 @@ function usePagination (props : PaginationProps ) {
 interface Props {
   userList? : PeoplesData[] ;
   // setUserList :  React.Dispatch<React.SetStateAction<TableData[] | undefined>>
-
+  
 }
 
 

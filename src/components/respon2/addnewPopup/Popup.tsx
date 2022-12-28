@@ -7,7 +7,9 @@ import {Button ,
    DialogTitle,
    useMediaQuery,
    makeStyles,
-   Box
+   Box,
+   styled,
+   Typography
   } from '@mui/material';
   import AddIcon from '@mui/icons-material/Add';
 
@@ -15,12 +17,13 @@ import {Button ,
 // import { AddNewResponsibility } from './AddNewResponsibility';
 // import { PeoplesData } from '../Person.type';
 type Props = {
-    children : any;
-    // openPopup : boolean;
-    // setOpenPopup : boolean;
-    // title : string;
+  children : any;
+  title : string;
+     openPopup : boolean;
+    setOpenPopup : ( param: boolean) => void
   // onSubmitClickHnd : (data : PeoplesData) => void
 }
+
 
 // const useStyles = makeStyles(theme => ({
 //   dialogWrapper: {
@@ -33,65 +36,101 @@ type Props = {
 //   }
 // }))
 
+const StyledBox = styled(Dialog)(({ theme }) => ({
+  // color: theme.palette.primary.contrastText,
+  // backgroundColor: theme.palette.primary.main,
+  // padding: theme.spacing(1),
+  // borderRadius: theme.shape.borderRadius,
+
+    padding: theme.spacing(2),
+    position: 'absolute',
+    top: theme.spacing(5)
+
+
+}));
+
+// const useStyles = makeStyles({
+//   root: {
+//     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+//     border: 0,
+//     borderRadius: 3,
+//     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+//     color: 'white',
+//     height: 48,
+//     padding: '0 30px',
+//   },
+// });
+
+
+
 export default function Popup(props : Props) {
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
+  // const classes = useStyles();
+
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const { children } = props;
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+  const { children , title , openPopup , setOpenPopup  } = props;
   // console.log(onSubmitClickHnd)
 
 //   const handleClick = () => {
 //   (e : React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)
 // }
   return (
-   <Box>
-      <Button sx ={{
-        backgroundColor : "white",
-        borderRadius : "50px"
-      }}variant="outlined" onClick={handleClickOpen} startIcon={<AddIcon />}>
-        Add New  
-      </Button>
+    <StyledBox open={openPopup}>
+
       <Dialog style={{
-        display : "flex",
-        justifyContent : "center",
-        alignItems : "center",
+        // display : "flex",
+        // justifyContent : "center",
+        // alignItems : "center",
       }}
         fullScreen={fullScreen}
-        open={open}
-        onClose={handleClose}
+        open={openPopup}
+      onClose = {() => {setOpenPopup(false)}}
         aria-labelledby="responsive-dialog-title"
-        
+      
       >
-       {/* <DialogTitle>{title} </DialogTitle> */}
+       <DialogTitle>
+       <div style={{ display: 'flex' }}>
+                    <Typography variant="h6" component="div" style={{ flexGrow: 1 }}>
+                        {title}
+                    </Typography>
+                    {/* <Button
+                        color="secondary"
+                        onClick={()=>{setOpenPopup(false)}}>
+                        Cancel
+                    </Button> */}
+                </div>
+        </DialogTitle>
+     <DialogContent dividers>
 
-         {/* <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Cancel 
-          </Button>
-          <Button onClick ={() => {
-            
-            handleClose()
-          }} 
-          // value = {query}
-          // onChange = {handleClick}
-           autoFocus>
-            Add
-          </Button>
-        </DialogActions> */}
-
-       <DialogContent>
-{/* <AddNewResponsibility onSubmitClickHnd={onSubmitClickHnd} /> */}
         {children} 
         </DialogContent>
        
       </Dialog>
-    </Box>
+
+
+    </StyledBox>
+    
   );
 }
+{/* <DialogActions>
+ <Button autoFocus onClick={handleClose}>
+   Cancel 
+ </Button>
+ <Button onClick ={() => {
+   
+   handleClose()
+ }} 
+ // value = {query}
+ // onChange = {handleClick}
+  autoFocus>
+   Add
+ </Button>
+</DialogActions> */}
