@@ -8,7 +8,7 @@ country: string;
      types: string;
     state : string ;
     sanghat : string;
-    
+    role: string, 
      
     }
 
@@ -21,7 +21,8 @@ country: string;
     country: "India",
     types : 'Taluka',
     state : "Mh",
-    sanghat : "Surat"
+    sanghat : "Surat",
+    role: "SA"
    
    }]
 

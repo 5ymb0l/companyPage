@@ -4,11 +4,20 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Popup from '../respon2/addnewPopup/Popup';
-export default function BasicMenu() {
+import { PeoplesData } from '../respon2/Person.type';
+import { EditNewResponsibility } from '../respon2/editNew/EditNew';
+interface Props {
+  onDeleteClickHnd : () => void;
+  onUpdateClickHnd : (data: PeoplesData) => void
+  onBackBtnClickHnd: () => void
+  data: PeoplesData
+  
+}
+export default function BasicMenu({onDeleteClickHnd , onUpdateClickHnd , onBackBtnClickHnd , data}: Props) {
+  console.log({data})
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const [openPopup, setOpenPopup] = useState(false);
- 
     const handleClickOpenPopup = () => {
     setOpenPopup(true);
   };
@@ -23,7 +32,9 @@ export default function BasicMenu() {
     const handleClose = () => {
       setAnchorEl(null);
     };
-  
+   
+
+   
     return (
       <>
         <div>
@@ -47,7 +58,7 @@ export default function BasicMenu() {
           >
             <MenuItem onClick={handleClickOpenPopup}>Edit</MenuItem>
 
-            <MenuItem onClick={handleClose}>Delete</MenuItem>
+            <MenuItem onClick={onDeleteClickHnd}>Delete</MenuItem>
           </Menu>
         </div>
         <Popup
@@ -55,11 +66,14 @@ export default function BasicMenu() {
           openPopup={openPopup}
           setOpenPopup={setOpenPopup}
         >
-            <> Content goes here</>
-          {/* <AddNewResponsibility
-                 onBackBtnClickHnd={handleClosePopup}
-                 onSubmitClickHnd={addEmployee}
-               /> */}
+            <>
+            <EditNewResponsibility onUpdateClickHnd={onUpdateClickHnd}
+             onBackBtnClickHnd = {onBackBtnClickHnd} 
+             data ={data}
+             />
+            
+             </>
+         
         </Popup>
       </>
     );

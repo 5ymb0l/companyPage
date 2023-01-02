@@ -67,7 +67,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function DashboardTwo() {
-  const [userList, setUserList] = useState<PeoplesData[]>(dummyPersonList);
+  const [userList, setUserList] = useState<PeoplesData[]>();
   const [query, setQuery] = useState<string>("");
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -131,6 +131,8 @@ export default function DashboardTwo() {
   const editEmployeeData = (data: PeoplesData) => {
     setShownPage(PageEnum.edit);
     setDataToEdit(data);
+    setOpenPopup(true);
+    console.log(data , "sss")
   };
   
   const updateData = (data: PeoplesData) => {
@@ -295,7 +297,12 @@ export default function DashboardTwo() {
             <AddFilter />
           </Box>
           <DrawerHeader />
-          <BasicTableTwo userList={employeeList} />
+          <BasicTableTwo 
+          onUpdateClickHnd={editEmployeeData}
+           data = {dataToEdit} 
+          onBackBtnClickHnd={handleClosePopup}
+          userList={employeeList}
+           onDeleteClickHnd = {deleteEmployee} />
           <Box>
             {userList && userList?.length === 0 && (
               <Box

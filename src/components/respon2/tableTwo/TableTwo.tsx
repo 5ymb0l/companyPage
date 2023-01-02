@@ -65,26 +65,26 @@ function usePagination (props : PaginationProps ) {
 interface Props {
   userList? : PeoplesData[] ;
   // setUserList :  React.Dispatch<React.SetStateAction<TableData[] | undefined>>
-  
+  onDeleteClickHnd : (data:PeoplesData ) => void;
+  onUpdateClickHnd : (data: PeoplesData) => void
+  onBackBtnClickHnd: () => void
+  data: PeoplesData
 }
 
 
-export default function BasicTableTwo({userList = [] } : Props) {
- 
+export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onUpdateClickHnd , onBackBtnClickHnd , data} : Props) {
+ console.log({data})
   const [rowsPerPage, setRowsPerPage] = useState(24);
   const count = Math.ceil(userList.length / rowsPerPage);
   const _DATA = usePagination({data : userList});
-  const [type, setType] = useState("");
-
-  const handleChange = ( event: React.ChangeEvent<unknown>,
+   const handleChange = ( event: React.ChangeEvent<unknown>,
     newPage: number) => {
       // setPage(newPage);
     _DATA.jump(newPage);
   };
-  const onTypeChange = (event: SelectChangeEvent) => {
-    setType(event.target.value);
-  };
+
   return (
+    <>
     <Box sx={{ width: "100%" }}>
 
     <TableContainer
@@ -93,31 +93,34 @@ export default function BasicTableTwo({userList = [] } : Props) {
       // sx={{ minWidth: 650 }}
        aria-label="custom pagination table">
         <TableHead   sx={{
+            
               tableLayout: "fixed",
               //  backgroundColor: '#00A77E',
             }}>
           <TableRow
-          sx={{ display: "table", tableLayout: "fixed", width: "100%" }}
+          sx={{ display: "table", tableLayout: "fixed",width: "100%" }}
           >
-            <TableCell  style={{
-                  width: "16%",
+            <TableCell align="center" style={{
+              
+                  width: "14%",
                   // paddingLeft: "4%",
                   fontFamily: "Poppins",
                   color: "#6682AA",
                   fontWeight: 500,
                   fontSize: "20px",
+                
                 }}
             >Name</TableCell>
-            <TableCell  style={{
-                  width: "16%",
+            <TableCell align="center"  style={{
+                  width: "14%",
                   fontFamily: "Poppins",
                   color: "#6682AA",
                   fontWeight: 500,
                   fontSize: "20px",
                 }}
             >Phone Number</TableCell>
-            <TableCell style={{
-                  width: "16%",
+            <TableCell align="center"  style={{
+                  width: "14%",
                   // paddingLeft: "8%",
                   fontFamily: "Poppins",
                   color: "#6682AA",
@@ -125,9 +128,9 @@ export default function BasicTableTwo({userList = [] } : Props) {
                   fontSize: "20px",
                 }} 
             >Email Address &nbsp;</TableCell>
-            <TableCell
+            <TableCell align="center" 
               style={{
-                width: "16%",
+                width: "14%",
                 fontFamily: "Poppins",
                 color: "#6682AA",
                 // paddingLeft: "10%",
@@ -135,22 +138,30 @@ export default function BasicTableTwo({userList = [] } : Props) {
                 fontSize: "20px",
               }}
             >Region</TableCell>
-            <TableCell   style={{
-                  width: "16%",
+            <TableCell  align="center"  style={{
+                  width: "14%",
                   fontFamily: "Poppins",
                   color: "#6682AA",
                   // paddingLeft: "10%",
                   fontWeight: 500,
                   fontSize: "20px",
                 }}>Type</TableCell>
-            <TableCell  style={{
+                <TableCell align="center"  style={{
                   width: "16%",
                   fontFamily: "Poppins",
                   color: "#6682AA",
                   // paddingLeft: "10%",
                   fontWeight: 500,
                   fontSize: "20px",
-                }}> </TableCell>
+                }}> Role </TableCell>
+            <TableCell align="center"  style={{
+                  width: "16%",
+                  fontFamily: "Poppins",
+                  color: "#6682AA",
+                  // paddingLeft: "10%",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                }}> Actions </TableCell>
           </TableRow>
         </TableHead>
         <TableBody sx={{
@@ -179,9 +190,9 @@ export default function BasicTableTwo({userList = [] } : Props) {
         { _DATA.currentData().map((row , index) => {
             return (
               <TableRow key={row.id} sx={{ display: "table", width: "100%" }}>
-                <TableCell
+                <TableCell align="center" 
                   style={{
-                    width: "16%",
+                    width: "14%",
                     // paddingLeft: "4%",
                     fontFamily: "Poppins",
                     color: "#6682AA",
@@ -193,9 +204,9 @@ export default function BasicTableTwo({userList = [] } : Props) {
                 >
                   {`${row.firstName} ${row.lastName}`}
                 </TableCell>
-                <TableCell
+                <TableCell align="center" 
                   style={{
-                    width: "16%",
+                    width: "14%",
                     fontFamily: "Poppins",
                     color: "#6682AA",
                     fontWeight: 500,
@@ -204,9 +215,9 @@ export default function BasicTableTwo({userList = [] } : Props) {
                 >
                   {row.phone}
                 </TableCell>
-                <TableCell
+                <TableCell align="center" 
                   style={{
-                    width: "16%",
+                    width: "14%",
                     // paddingLeft: "8%",
                     fontFamily: "Poppins",
                     color: "#6682AA",
@@ -216,9 +227,9 @@ export default function BasicTableTwo({userList = [] } : Props) {
                 >
                   {row.email}
                 </TableCell>
-                <TableCell
+                <TableCell align="center" 
                   style={{
-                    width: "16%",
+                    width: "14%",
                     fontFamily: "Poppins",
                     color: "#6682AA",
                     // paddingLeft: "10%",
@@ -228,9 +239,9 @@ export default function BasicTableTwo({userList = [] } : Props) {
                 >
                   {`${row.country} ${row.state} ${row.sanghat}`}
                 </TableCell>
-                <TableCell
+                <TableCell align="center" 
                   style={{
-                    width: "16%",
+                    width: "14%",
                     fontFamily: "Poppins",
                     color: "#6682AA",
                     // paddingLeft: "10%",
@@ -253,14 +264,42 @@ export default function BasicTableTwo({userList = [] } : Props) {
               </Box> */}
                   {row.types}
                 </TableCell>
-                <TableCell
-                  style={{
-                    width: "16%",
+               {/* <TableCell align="center"  style={{
+                    width: "14%",
                     fontFamily: "Poppins",
                     color: "#6682AA",
                     // paddingLeft: "10%",
                     fontWeight: 500,
                     fontSize: "20px",
+                    paddingLeft : "5%"
+
+                  }}>
+                <Box
+                      sx={{
+                        background: "#E6F2FE",
+                        borderRadius: "50px",
+                        width: "35px",
+                        position: "relative",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "35px",
+
+                      }}
+                      arial-lable="SA"
+                    >
+                      {row.role}
+              </Box>
+
+                </TableCell> */}
+                <TableCell align="right" 
+                  style={{
+                    width: "16%",
+                    fontFamily: "Poppins",
+                    color: "#6682AA",
+                    fontWeight: 500,
+                    fontSize: "20px",
+                    paddingLeft : "7%"
                   }}
                 >
                   <Box
@@ -275,7 +314,11 @@ export default function BasicTableTwo({userList = [] } : Props) {
                     }}
                     arial-lable="SA"
                   >
-                  <BasicMenu />
+                  <BasicMenu 
+                   onUpdateClickHnd={() => onUpdateClickHnd (row)}
+                   onBackBtnClickHnd = {onBackBtnClickHnd} 
+                   data = {data}
+                   onDeleteClickHnd={() => onDeleteClickHnd(row)}/>
                     
                   </Box>
                 </TableCell>
@@ -298,7 +341,24 @@ export default function BasicTableTwo({userList = [] } : Props) {
         </TableFooter>
       </Table>
     </TableContainer>
-    </Box>
+    </Box> 
+  
+    
+    
+     {/* <Popup
+     title="Edit Responsibility"
+     openPopup={openPopup}
+     setOpenPopup={setOpenPopup}   >
+       <>
+       { <EditNewResponsibility onUpdateClickHnd={onUpdateClickHnd}
+        onBackBtnClickHnd = {onBackBtnClickHnd} 
+        data ={data}
+        /> }
+       
+        </>
+    
+   </Popup> */}
+    </>
   );
 }
 

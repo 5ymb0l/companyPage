@@ -39,6 +39,8 @@ export const AddNewResponsibility = (props: Props) => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [sanghat, setSanghat] = useState("");
+  const [role, setRole] = useState("");
+
 
 const { onSubmitClickHnd ,onBackBtnClickHnd } = props;
  const onFirstNameChangeHnd = (e: any) => {
@@ -66,7 +68,9 @@ const { onSubmitClickHnd ,onBackBtnClickHnd } = props;
   const onSanghatChange = (event: SelectChangeEvent) => {
     setSanghat(event.target.value);
   };
-
+  const onRoleChange = (event: SelectChangeEvent) => {
+    setRole(event.target.value);
+  };
   const onSubmitBtnClickHnd = (e: any) => {
     e.preventDefault();
     const data: PeoplesData = {
@@ -79,6 +83,7 @@ const { onSubmitClickHnd ,onBackBtnClickHnd } = props;
       country: country,
       state: state,
       sanghat: sanghat,
+      role : role
     };
     onSubmitClickHnd(data);
 onBackBtnClickHnd();
@@ -218,7 +223,7 @@ onBackBtnClickHnd();
             </Grid>
         
        
-            <Grid item xs = {12}>
+            <Grid item xs = {6}>
               <FormControl
                 variant="standard"
                 sx={{ m: 1, minWidth: 200, align: "center" }}
@@ -236,6 +241,26 @@ onBackBtnClickHnd();
                   <MenuItem value={10}>Surat</MenuItem>
                   <MenuItem value={20}>Valsad</MenuItem>
                   <MenuItem value={30}>Vapi</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs = {6}>
+              <FormControl
+                variant="standard"
+                sx={{ m: 1, minWidth: 200, align: "center" }}
+              >
+                <InputLabel id="demo-simple-select-standard-label">
+                  Role
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  value={role}
+                  onChange={onRoleChange}
+                  label="Role"
+                >
+                  <MenuItem value={10}>SA</MenuItem>
+                  <MenuItem value={20}>A</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
