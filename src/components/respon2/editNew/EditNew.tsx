@@ -32,15 +32,15 @@ type Props = {
 
 export const EditNewResponsibility = (props: Props) => {
   console.log(props)
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [type, setType] = useState("");
-  const [country, setCountry] = useState("");
-  const [state, setState] = useState("");
-  const [sanghat, setSanghat] = useState("");
-  const [role, setRole] = useState("");
+  const [firstName, setFirstName] = useState(props.data.firstName);
+  const [lastName, setLastName] = useState(props.data.lastName);
+  const [email, setEmail] = useState(props.data.email);
+  const [phone, setPhone] = useState(props.data.phone);
+  const [type, setType] = useState(props.data.types);
+  const [country, setCountry] = useState(props.data.country);
+  const [state, setState] = useState(props.data.state);
+  const [sanghat, setSanghat] = useState(props.data.sanghat);
+  const [role, setRole] = useState(props.data.role);
 
   const [open, setOpen] = useState(false);
   // const theme = useTheme();

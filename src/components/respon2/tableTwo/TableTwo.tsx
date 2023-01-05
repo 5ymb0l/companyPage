@@ -26,9 +26,11 @@ import  FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import Popup from "../addnewPopup/Popup";
+// import Popup from "../addnewPopup/Popup";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import BasicMenu from "../../Controls/BasicMenu";
+import EditPopup from "../editNew/Popup";
+import { EditNewResponsibility } from "../editNew/EditNew";
 
 interface PaginationProps { 
   data : PeoplesData[];
@@ -66,25 +68,62 @@ interface Props {
   userList? : PeoplesData[] ;
   // setUserList :  React.Dispatch<React.SetStateAction<TableData[] | undefined>>
   onDeleteClickHnd : (data:PeoplesData ) => void;
-  onUpdateClickHnd : (data: PeoplesData) => void
-  onBackBtnClickHnd: () => void
-  data: PeoplesData
+  onEdit : (data: PeoplesData) => void
+  // onBackBtnClickHnd: () => void
+  // data: PeoplesData
 }
 
 
-export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onUpdateClickHnd , onBackBtnClickHnd , data} : Props) {
- console.log({data})
+export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit} : Props) {
+//  console.log({data})
   const [rowsPerPage, setRowsPerPage] = useState(24);
   const count = Math.ceil(userList.length / rowsPerPage);
   const _DATA = usePagination({data : userList});
-   const handleChange = ( event: React.ChangeEvent<unknown>,
+  const [openPopup, setOpenPopup] = useState(false);
+  // const [dataToEdit, setDataToEdit] = useState({} as PeoplesData);
+  // const [employeeList, setEmployeeList] = useState(
+  //   [] as PeoplesData[]
+  // );
+
+  const handleClickOpenPopup = () => {
+    setOpenPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setOpenPopup(false);
+  };
+  const handleChange = ( event: React.ChangeEvent<unknown>,
     newPage: number) => {
       // setPage(newPage);
     _DATA.jump(newPage);
   };
+  // const deleteEmployee = (data: PeoplesData) => {
+  //   const indexToDelete = employeeList.indexOf(data);
+  //     const tempList = [...employeeList];
+  
+  //     tempList.splice(indexToDelete, 1);
+  //     setEmployeeList(tempList);
+  //   };
+  
+    // const editEmployeeData = (data: PeoplesData) => {
+    //   // setShownPage(PageEnum.edit);
+    //   setDataToEdit(data);
+    //   setOpenPopup(true);
+    //   console.log(data , "sss")
+    // };
+    
+    // const updateData = (data: PeoplesData) => {
+    //   console.log(data)
+    //   const filteredData = employeeList.filter((x) => x.id === data.id)[0];
+    //   const indexOfRecord = employeeList.indexOf(filteredData);
+    //   const tempData = [...employeeList];
+    //   tempData[indexOfRecord] = data;
+    //   setEmployeeList(tempData);
 
+    // };
+  
   return (
-    <>
+  <>
     <Box sx={{ width: "100%" }}>
 
     <TableContainer
@@ -315,9 +354,8 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onUpda
                     arial-lable="SA"
                   >
                   <BasicMenu 
-                   onUpdateClickHnd={() => onUpdateClickHnd (row)}
-                   onBackBtnClickHnd = {onBackBtnClickHnd} 
-                   data = {data}
+                   onEdit={() => onEdit(row)}
+                  
                    onDeleteClickHnd={() => onDeleteClickHnd(row)}/>
                     
                   </Box>
@@ -342,7 +380,19 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onUpda
       </Table>
     </TableContainer>
     </Box> 
-  
+    {/* <EditPopup
+          title="Edit Responsibility"
+          openPopup={openPopup}
+          setOpenPopup={setOpenPopup}
+        >
+            <>
+            <EditNewResponsibility onUpdateClickHnd={ updateData}
+             onBackBtnClickHnd = {handleClosePopup} 
+             data ={dataToEdit}
+             />
+            
+             </>
+         </EditPopup>  */}
     
     
      {/* <Popup

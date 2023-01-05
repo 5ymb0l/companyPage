@@ -3,18 +3,18 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import Popup from '../respon2/addnewPopup/Popup';
+// import Popup from '../respon2/addnewPopup/Popup';
 import { PeoplesData } from '../respon2/Person.type';
 import { EditNewResponsibility } from '../respon2/editNew/EditNew';
 interface Props {
   onDeleteClickHnd : () => void;
-  onUpdateClickHnd : (data: PeoplesData) => void
-  onBackBtnClickHnd: () => void
-  data: PeoplesData
+  onEdit : () => void;
+  // onBackBtnClickHnd: () => void;
+  // data: PeoplesData;
   
 }
-export default function BasicMenu({onDeleteClickHnd , onUpdateClickHnd , onBackBtnClickHnd , data}: Props) {
-  console.log({data})
+export default function BasicMenu({onDeleteClickHnd , onEdit  }: Props) {
+  // console.log({data})
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const [openPopup, setOpenPopup] = useState(false);
@@ -56,12 +56,14 @@ export default function BasicMenu({onDeleteClickHnd , onUpdateClickHnd , onBackB
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClickOpenPopup}>Edit</MenuItem>
+            {/* <MenuItem onClick={handleClickOpenPopup}>Edit</MenuItem> */}
+            <MenuItem onClick={onEdit}>Edit</MenuItem>
+
 
             <MenuItem onClick={onDeleteClickHnd}>Delete</MenuItem>
           </Menu>
         </div>
-        <Popup
+        {/* <Popup
           title="Edit Responsibility"
           openPopup={openPopup}
           setOpenPopup={setOpenPopup}
@@ -74,7 +76,7 @@ export default function BasicMenu({onDeleteClickHnd , onUpdateClickHnd , onBackB
             
              </>
          
-        </Popup>
+        </Popup> */}
       </>
     );
   }

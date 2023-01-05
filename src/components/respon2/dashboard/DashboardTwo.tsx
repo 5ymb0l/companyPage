@@ -17,14 +17,16 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { SearchHere } from "../../responsibility/searchHere/SearchBar";
 import { SearchButton } from "../../responsibility/searchButton/SearchButton";
-import { AddNewResponsibility } from "../addnewPopup/AddNewResponsibility";
 import BasicTableTwo from "../tableTwo/TableTwo";
 import { PeoplesData , dummyPersonList , PageEnum } from "../Person.type";
-import Popup from "../addnewPopup/Popup";
+import {AddNewResponsibility} from "../addnewPopup/Popup";
 import BackTwoResp from "../backTwoResp/BackTwoResp";
-import AddFilter from "../filter/Filter";
+import {AddFilter} from "../filter/Filter";
 import { Avatar, Button } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
+import { EditNewResponsibility } from "../editNew/EditNew";
+import EditPopup from "../editNew/Popup";
+// import EditPopup from "../editNew/Popup";
 
 
 const drawerWidth = 240
@@ -76,8 +78,16 @@ export default function DashboardTwo() {
   const [employeeList, setEmployeeList] = useState(
     [] as PeoplesData[]
   );
-  const [shownPage, setShownPage] = useState(PageEnum.list);
-  console.log(query);
+  // // const [shownPage, setShownPage] = useState(PageEnum.list);
+  // const [dataToShow, setDataToShow] = useState(null as PeoplesData | null);
+
+  // console.log(query);
+
+  // const onAddEmployeeClickHnd = () => {
+  //   // setShownPage(PageEnum.add);
+  //   handleClickOpenPopup();
+  // };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -91,6 +101,7 @@ export default function DashboardTwo() {
 
   const handleClosePopup = () => {
     setOpenPopup(false);
+    console.log("Failed")
   };
   const handleOnClick = (e: React.FormEvent) => {
     setUserList(
@@ -103,49 +114,46 @@ export default function DashboardTwo() {
   useEffect(() => {
     const listInString = window.localStorage.getItem("EmployeeList");
     if (listInString) {
-      _setEmployeeList(JSON.parse(listInString));
+      setEmployeeList(JSON.parse(listInString));
     }
   }, []);
-  const _setEmployeeList = (list: PeoplesData[]) => {
-    setEmployeeList(list);
-    window.localStorage.setItem("EmployeeList", JSON.stringify(list));
-  };
+  // const _setEmployeeList = (list: PeoplesData[]) => {
+  //   setEmployeeList(list);
+  //   window.localStorage.setItem("EmployeeList", JSON.stringify(list));
+  // };
   const addEmployee = (data: PeoplesData) => {
-    _setEmployeeList([...employeeList, data]);
+    setEmployeeList([...employeeList, data]);
     handleClosePopup();
+
   };
 
   const deleteEmployee = (data: PeoplesData) => {
-    // To Index from array i,e employeeList
-    // Splice that
-    // Update new record
-
-   
-    const indexToDelete = employeeList.indexOf(data);
+  const indexToDelete = employeeList.indexOf(data);
     const tempList = [...employeeList];
 
     tempList.splice(indexToDelete, 1);
-    _setEmployeeList(tempList);
+    setEmployeeList(tempList);
   };
 
   const editEmployeeData = (data: PeoplesData) => {
-    setShownPage(PageEnum.edit);
+    // setShownPage(PageEnum.edit);
     setDataToEdit(data);
     setOpenPopup(true);
     console.log(data , "sss")
   };
   
-  const updateData = (data: PeoplesData) => {
+    const updateData = (data: PeoplesData) => {
     const filteredData = employeeList.filter((x) => x.id === data.id)[0];
     const indexOfRecord = employeeList.indexOf(filteredData);
     const tempData = [...employeeList];
     tempData[indexOfRecord] = data;
-    _setEmployeeList(tempData);
+    setEmployeeList(tempData);
   };
 
   return (
-    <>  
-    <Box
+    <> 
+   
+<Box
       sx={{
         display : "flex",
     justifyContent:"center",
@@ -257,22 +265,20 @@ export default function DashboardTwo() {
               marginBottom: "2%",
             }}
           >
-             <Button sx ={{
+            <AddNewResponsibility onBackBtnClickHnd={handleClosePopup} onSubmitClickHnd = {addEmployee}/>
+             {/* <Button sx ={{
         backgroundColor : "white",
         borderRadius : "50px"
-      }}variant="outlined" onClick={handleClickOpenPopup} startIcon={<AddIcon />}>
+      }}variant="outlined" onClick = {onAddEmployeeClickHnd} startIcon={<AddIcon />}>
         Add New  
-      </Button>
+      </Button> */}
          {/* <Popup>
          <AddNewResponsibility
                 onBackBtnClickHnd={handleDrawerClose}
                 onSubmitClickHnd={addEmployee}
               />
          </Popup> */}
-        
-
-      
-          </Box>
+       </Box>
 
           <Box
             sx={{
@@ -298,11 +304,10 @@ export default function DashboardTwo() {
           </Box>
           <DrawerHeader />
           <BasicTableTwo 
-          onUpdateClickHnd={editEmployeeData}
-           data = {dataToEdit} 
-          onBackBtnClickHnd={handleClosePopup}
+          onEdit={editEmployeeData}
+          onDeleteClickHnd={deleteEmployee}
           userList={employeeList}
-           onDeleteClickHnd = {deleteEmployee} />
+           />
           <Box>
             {userList && userList?.length === 0 && (
               <Box
@@ -322,15 +327,38 @@ export default function DashboardTwo() {
         </Box>
       </Main>
     </Box>
-     <Popup 
+ 
+     <>
+    
+     {/* <Popup 
      title = "Add Responsibility"
      openPopup = {openPopup}
      setOpenPopup = {setOpenPopup} >
      <AddNewResponsibility
-            onBackBtnClickHnd={handleClosePopup}
+       onBackBtnClickHnd={handleClosePopup}
             onSubmitClickHnd={addEmployee}
           />
      </Popup>
+   </>
+   <> */}
+  
+   
+        <EditPopup
+          title="Edit Responsibility"
+          openPopup={openPopup}
+          setOpenPopup={setOpenPopup}
+        >
+            <>
+            <EditNewResponsibility onUpdateClickHnd={updateData}
+             onBackBtnClickHnd = {handleClosePopup} 
+             data ={dataToEdit}
+             />
+            
+             </>
+         </EditPopup>   
+   
+   
+   </> 
      </>
   );
 }
