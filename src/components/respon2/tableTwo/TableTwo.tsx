@@ -80,10 +80,20 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
   const count = Math.ceil(userList.length / rowsPerPage);
   const _DATA = usePagination({data : userList});
   const [openPopup, setOpenPopup] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
   // const [dataToEdit, setDataToEdit] = useState({} as PeoplesData);
   // const [employeeList, setEmployeeList] = useState(
   //   [] as PeoplesData[]
   // );
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+ 
 
   const handleClickOpenPopup = () => {
     setOpenPopup(true);
@@ -353,6 +363,28 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                     }}
                     arial-lable="SA"
                   >
+                    {/* <Button
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+          >
+            <MoreHorizIcon />
+          </Button>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+        
+            <MenuItem onClick= {() => onEdit(row)}>Edit</MenuItem>
+            <MenuItem onClick={() => onDeleteClickHnd(row)}>Delete</MenuItem>
+          </Menu> */}
                   <BasicMenu 
                    onEdit={() => onEdit(row)}
                   

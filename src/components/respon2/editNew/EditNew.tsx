@@ -119,8 +119,33 @@ onBackBtnClickHnd();
     justifyContent: "flex-end"
   }}>
     <Stack direction="row" spacing={2}>
-    <Button  onClick={onBackBtnClickHnd} > Cancel</Button>
-    <Button  onClick={onSubmitBtnClickHnd}> Edit </Button>
+    <Button  sx = {{
+         color: "#002F71",
+         textAlign: "center",
+         flexDirection: "row",
+         justifyContent: "center",
+         alignItems: "center",
+         fontFamily: "Poppins, Arial",
+         fontSize: ".875rem",
+         fontWeight: "500",
+         lineHeight: "18px",
+         display: "flex",
+    }}onClick={onBackBtnClickHnd} > Cancel</Button>
+    <Button  sx={{
+                      color: "#fff",
+                      textAlign: "center",
+                      backgroundColor: "#1073ff",
+                      border: "none",
+                      borderRadius: "50px",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      fontFamily: "Poppins, Arial",
+                      fontSize: ".875rem",
+                      fontWeight: "500",
+                      lineHeight: "18px",
+                      display: "flex",
+                    }} onClick={onSubmitBtnClickHnd}> Edit </Button>
     </Stack>
     </Box>
      
