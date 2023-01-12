@@ -15,6 +15,11 @@ export const  SearchButton : React.FC<props> =({handleOnClick , query}) => {
       height: "10%",
       background: "#1073FF",
       borderRadius: "50px",
+      color : ' #002F71',
+      // fontFamily : 'Poppins',
+      // fontStyle : 'normal',
+      // fontWeight: 500,
+      // fontSize: "60px", 
      }}> Search </Button>
 
   );

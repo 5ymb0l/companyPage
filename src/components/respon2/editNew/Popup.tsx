@@ -18,7 +18,7 @@ import {Button ,
 // import { PeoplesData } from '../Person.type';
 type Props = {
   children : any;
-  title : string;
+  title? : string;
      openPopup : boolean;
     setOpenPopup : ( param: boolean) => void
   // onSubmitClickHnd : (data : PeoplesData) => void
@@ -42,9 +42,9 @@ const StyledBox = styled(Dialog)(({ theme }) => ({
   // padding: theme.spacing(1),
   // borderRadius: theme.shape.borderRadius,
 
-    padding: theme.spacing(2),
-    position: 'absolute',
-    top: theme.spacing(5)
+    // padding: theme.spacing(2),
+    // position: 'absolute',
+    // top: theme.spacing(5)
 
 
 }));
@@ -83,12 +83,14 @@ export default function EditPopup(props : Props) {
 //   (e : React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)
 // }
   return (
-    <StyledBox open={openPopup}>
 
-      <Dialog style={{
-        // display : "flex",
-        // justifyContent : "center",
-        // alignItems : "center",
+   
+      <Dialog   sx={{
+          '& .MuiPaper-root' : {
+           
+             maxWidth : '52%',
+            
+          }
       }}
         fullScreen={fullScreen}
         open={openPopup}
@@ -96,19 +98,15 @@ export default function EditPopup(props : Props) {
         aria-labelledby="responsive-dialog-title"
       
       >
-       <DialogTitle>
-       <div style={{ display: 'flex' }}>
-                    <Typography variant="h6" component="div" style={{ flexGrow: 1 }}>
-                        {title}
-                    </Typography>
-                    {/* <Button
-                        color="secondary"
-                        onClick={()=>{setOpenPopup(false)}}>
-                        Cancel
-                    </Button> */}
-                </div>
-        </DialogTitle>
-     <DialogContent dividers>
+      
+     <DialogContent  sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          padding : 0 ,
+          overflowX: 'hidden',
+          marginRight : '10px'
+        }}>
 
         {children} 
         </DialogContent>
@@ -116,7 +114,6 @@ export default function EditPopup(props : Props) {
       </Dialog>
 
 
-    </StyledBox>
     
   );
 }

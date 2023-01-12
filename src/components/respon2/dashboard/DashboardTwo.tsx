@@ -143,181 +143,199 @@ export default function DashboardTwo() {
   };
 
   return (
-    <> 
-   
-<Box
-      sx={{
-        display : "flex",
-    justifyContent:"center",
-    alignItems:"center",
-    backgroundColor: "#E6F2FE", 
-    flex : 1,
-    
-      }}
-    >
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        open={open}
+    <>
+      <Box
         sx={{
-          background: "#002F71",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#E6F2FE",
+          flex: 1,
         }}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleClickOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{flexGrow : 1}}>
-            LOGO
-          </Typography>
-          <Avatar style={{
-            display : "flex-end",
-            justifyContent : "center",
-            alignItems : "center"
-          }}> PG </Avatar>
-         <div style={{
-          marginLeft : "10px"
-         }}>
-<span className="text-gray-400 font-bold ml-1 text-14">
-                Pratik
-          </span>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {[
-            "Responsibilities",
-            "Hierarchies",
-            "Orders",
-            "Inventories",
-            "Warehouse",
-            "Fulfillments",
-            "Users",
-            "Settings",
-            "Histories",
-          ].map((text) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-      </Drawer>
-      <Main open={open}>
-        <DrawerHeader/>
-        <Box
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          open={open}
           sx={{
-            alignSelf: "flex-start",
-            marginBottom: "2%",
+            background: "#002F71",
           }}
         >
-          <BackTwoResp />
-        </Box>
-        <Box>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleClickOpen}
+              edge="start"
+              sx={{ mr: 2, ...(open && { display: "none" }) }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ flexGrow: 1 }}
+            >
+              LOGO
+            </Typography>
+            <Avatar
+              style={{
+                display: "flex-end",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {" "}
+              PG{" "}
+            </Avatar>
+            <div
+              style={{
+                marginLeft: "10px",
+              }}
+            >
+              <span className="text-gray-400 font-bold ml-1 text-14">
+                Pratik
+              </span>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+              boxSizing: "border-box",
+            },
+          }}
+          variant="persistent"
+          anchor="left"
+          open={open}
+        >
+          <DrawerHeader>
+            <IconButton onClick={handleClose}>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List>
+            {[
+              "Responsibilities",
+              "Hierarchies",
+              "Orders",
+              "Inventories",
+              "Warehouse",
+              "Fulfillments",
+              "Users",
+              "Settings",
+              "Histories",
+            ].map((text) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+        </Drawer>
+        <Main open={open}>
+          <DrawerHeader />
           <Box
             sx={{
-              
               alignSelf: "flex-start",
               marginBottom: "2%",
             }}
           >
-            <AddNewResponsibility openPopup = {addPopup} setOpenPopup ={setAddPopup}  onBackBtnClickHnd={handleAddClosePopup} onSubmitClickHnd = {addEmployee}/>
+            <BackTwoResp />
           </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              width: "100%",
-              justifyContent: "space-between",
-            }}
-          >
-            <SearchHere query={query} setQuery={setQuery} />
-            <SearchButton query={query} handleOnClick={handleOnClick} />
-          </Box>
-
-          <Box
-            sx={{
-              marginTop: "2%",
-              alignSelf: "flex-end",
-              marginLeft : "83%"
-            }}
-          >
-            <AddFilter />
-          </Box>
-          <DrawerHeader />
-          <BasicTableTwo 
-          onEdit={editEmployeeData}
-          onDeleteClickHnd={deleteEmployee}
-          userList={userList}
-           />
           <Box>
-            {userList && userList?.length === 0 && (
+            <Box
+              sx={{
+                alignSelf: "flex-start",
+                marginBottom: "2%",
+              }}
+            >
+              <AddNewResponsibility
+                openPopup={addPopup}
+                setOpenPopup={setAddPopup}
+                onBackBtnClickHnd={handleAddClosePopup}
+                onSubmitClickHnd={addEmployee}
+              />
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                width: "100%",
+                justifyContent: "space-between",
+              }}
+            >
+              <SearchHere query={query} setQuery={setQuery} />
+              <SearchButton query={query} handleOnClick={handleOnClick} />
+            </Box>
+
+            <Box sx = {{
+            display: "flex",
+            justifyContent : "flex-end",
+            alignItems: "center",
+            }}>
               <Box
-                sx={{
-                  width: 500,
-                  margin: "20px auto",
-                  padding: "20px",
-                  border: "1px solid lightgray",
-                  textAlign: "center",
-                }}
+                sx={
+                  {  
+                    marginTop: "2%",
+                    // alignSelf: "flex-end",
+                    // marginRight : "1%"
+                    // marginLeft : "83%"
+                  }
+                }
               >
-                {" "}
-                No user Found{" "}
+                <AddFilter />
               </Box>
-            )}
+            </Box>
+            <DrawerHeader />
+            <BasicTableTwo
+              onEdit={editEmployeeData}
+              onDeleteClickHnd={deleteEmployee}
+              userList={userList}
+            />
+            <Box>
+              {userList && userList?.length === 0 && (
+                <Box
+                  sx={{
+                    width: 500,
+                    margin: "20px auto",
+                    padding: "20px",
+                    border: "1px solid lightgray",
+                    textAlign: "center",
+                  }}
+                >
+                  No user Found
+                </Box>
+              )}
+            </Box>
           </Box>
-        </Box>
-      </Main>
-    </Box>
- 
-     <>
-       <EditPopup
-          title="Edit Responsibility"
-          openPopup={openPopup}
-          setOpenPopup={setOpenPopup}
-        >
-            <>
-            <EditNewResponsibility onUpdateClickHnd={updateData}
-             onBackBtnClickHnd = {handleClosePopup} 
-             data ={dataToEdit}
-             />
-            
-             </>
-         </EditPopup>   
-        </> 
-     </>
+        </Main>
+      </Box>
+
+      <>
+        <EditPopup openPopup={openPopup} setOpenPopup={setOpenPopup}>
+          <>
+            <EditNewResponsibility
+              onUpdateClickHnd={updateData}
+              onBackBtnClickHnd={handleClosePopup}
+              data={dataToEdit}
+            />
+          </>
+        </EditPopup>
+      </>
+    </>
   );
 }

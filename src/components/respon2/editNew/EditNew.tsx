@@ -19,7 +19,9 @@ import {
   DialogContentText,
   DialogTitle,
   useMediaQuery,
-  Divider
+  Divider,
+  InputAdornment,
+  Typography
 } from "@mui/material";
 import { useTheme } from '@mui/material/styles';
 import { PeoplesData } from "../Person.type";
@@ -104,33 +106,74 @@ onBackBtnClickHnd();
 
   };
   return (
-    <Box
-      title = " Edit New Responsibilites"
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-<Box onSubmit={onSubmitBtnClickHnd}>
-  <Box sx = {{
+    <Box sx={{ 
+      display:'flex',
+    justifyContent:'flex-start',
+    alignItems: 'center' , 
+    }} 
+   >
+     
+      <Stack>
+        <Box
+          component='span'
+          sx={{display:'flex',
+          // justifyContent:'start',
+          // alignItems: 'center', 
+         
+            backgroundColor: ' #F4F9FF',
+            height: '50ch',
+            width: '20ch',
+            padding: '16px',
+            borderRadius: '10px 0px 0px 10px',
+            // '&:hover': {
+            //   backgroundColor: 'primary.light'
+            // }
+          }}>
+          <Box>
+        <Typography sx={{display:'flex',
+          justifyContent:'center',
+           alignItems: 'center',
+            // fontFamily : 'Poppins',
+            fontWeight : 600,
+            fontSize : '14px',
+            color : 'darkblue',
+        }}> 
+        Edit  Responsibilites
+        </Typography>
+      <Typography sx={{display:'flex',
+          justifyContent:'center',
+           alignItems: 'center',
+           height : '20vh',
+          //  fontFamily : 'Poppins',
+           fontWeight : 540,
+           fontSize : '12px',
+           color : '#1073FF', }}> General Details</Typography>       
+      </Box>
+        </Box>
+      </Stack>
+      <Box sx = {{ display: "flex",
+      flexDirection : 'column'
+    }}>
+      <Box onSubmit={onSubmitBtnClickHnd}> 
+      <Box sx = {{
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end"
   }}>
     <Stack direction="row" spacing={2}>
-    <Button  sx = {{
-         color: "#002F71",
-         textAlign: "center",
-         flexDirection: "row",
-         justifyContent: "center",
-         alignItems: "center",
-         fontFamily: "Poppins, Arial",
-         fontSize: ".875rem",
-         fontWeight: "500",
-         lineHeight: "18px",
-         display: "flex",
-    }}onClick={onBackBtnClickHnd} > Cancel</Button>
+    <Button   sx={{
+                      color: "#002F71",
+                      textAlign: "center",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      fontFamily: "Poppins, Arial",
+                      fontSize: ".875rem",
+                      fontWeight: "500",
+                      lineHeight: "18px",
+                      display: "flex",
+                    }}
+                    onClick={onBackBtnClickHnd}> Cancel</Button>
     <Button  sx={{
                       color: "#fff",
                       textAlign: "center",
@@ -145,56 +188,108 @@ onBackBtnClickHnd();
                       fontWeight: "500",
                       lineHeight: "18px",
                       display: "flex",
-                    }} onClick={onSubmitBtnClickHnd}> Edit </Button>
+                       
+                    }}
+                    onClick={onSubmitBtnClickHnd}> Edit </Button>
     </Stack>
-    </Box>
-     
-      <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-   
-          <Grid item xs = {6}>
-             <TextField
+   </Box>
+      <Grid sx ={{display:'flex',
+          justifyContent:'center',
+           alignItems: 'center',
+           m: 1}} rowSpacing={2} columnSpacing={2} container my={4}>
+        <Grid item xs={6}>
+        <TextField 
+        sx={{
+          width : '30ch' ,
+          '& .MuiInputLabel-root' : {
+                fontSize : '12px',
+                color :  '#6682AA'
+
+          
+          }
+       }}
                 id="standard-basic"
                 label="First Name"
                 variant="standard"
                 value={firstName}
                 onChange={onFirstNameChangeHnd}
               />
-            </Grid>
+        </Grid>
+        <Grid item xs={6}>
+        <TextField 
+        sx={{
+          width : '30ch' ,
+          '& .MuiInputLabel-root' : {
+                fontSize : '12px',
+                color :  '#6682AA'
+
           
-            <Grid item xs = {6}>
-              <TextField
+          }
+       }}
                 id="standard-basic"
                 label="Last Name"
                 variant="standard"
                 value={lastName}
                 onChange={onLastNameChangeHnd}
               />
-            </Grid>
-         <Grid item xs = {6}>
-              <TextField
+        </Grid>
+        <Grid item xs={6}>
+        <TextField 
+         sx={{
+          width : '30ch' ,
+          '& .MuiInputLabel-root' : {
+                fontSize : '12px',
+                color :  '#6682AA'
+
+          
+          }
+       }}
                 id="standard-basic"
-                label="Phone Number"
-                variant="standard"
-                type="number"
-                value={phone}
-                onChange={onPhoneChangeHnd}
-              />
-            </Grid>
-            <Grid item xs = {6}>
-              <TextField
-                id="standard-basic"
-                label="Email Address"
+                label="Email"
                 variant="standard"
                 value={email}
                 onChange={onEmailChangeHnd}
               />
-            </Grid>
-        
-          
-            <Grid item xs = {12}>
+        </Grid>
+        <Grid item xs={6}>
+        <TextField 
+        InputProps={{
+          startAdornment: (
+            <InputAdornment sx={{
+           
+            }} position="start">
+            +91 
+            </InputAdornment>
+          ),
+        }}
+        sx={{
+          width : '30ch' ,
+          '& .MuiInputLabel-root' : {
+                fontSize : '12px',
+                color :  '#6682AA'
+                 }
+       }}
+                id="standard-basic"
+                label=" Phone Number"
+                variant="standard"
+                value={phone}
+                onChange={onPhoneChangeHnd}
+              />
+        </Grid>
+        <Grid item xs = {12}>
               <FormControl
                 variant="standard"
-                sx={{ m: 1, minWidth: 200, align: "center" }}
+                // sx={{   width:'45%', align: "center"  }}
+
+                sx={{
+                  width : '30ch' ,
+                  '& .MuiInputLabel-root' : {
+                        fontSize : '12px',
+                        color :  '#6682AA'
+        
+                  
+                  }
+               }}
               >
                 <InputLabel id="demo-simple-select-standard-label">
                   Type
@@ -206,20 +301,29 @@ onBackBtnClickHnd();
                   onChange={onTypeChange}
                   label="Type"
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={"Ten"}>Ten</MenuItem>
+                  <MenuItem value={"Twenty"}>Twenty</MenuItem>
+                  <MenuItem value={"Thirty"}>Thirty</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
-       
-
-           <Divider />
-          
+            <Divider  />
             <Grid item xs = {6}>
               <FormControl
                 variant="standard"
-                sx={{ m: 1, minWidth: 200, align: "center" }}
+                sx={{
+                  width : '30ch' ,
+                  '& .MuiInputLabel-root' : {
+                        fontSize : '12px',
+                        color :  '#6682AA'
+        
+                  
+                  }
+               }}
+                
+                // sx={{  m: 1, minWidth: 200, align: "center"  }}
+
+                //  sx={{ width:'45%', align: "center"  }}
               >
                 <InputLabel id="demo-simple-select-standard-label">
                   Country
@@ -231,9 +335,9 @@ onBackBtnClickHnd();
                   onChange={onCountryChange}
                   label="Country"
                 >
-                  <MenuItem value={10}>Ind</MenuItem>
-                  <MenuItem value={20}>Pak</MenuItem>
-                  <MenuItem value={30}>Usa</MenuItem>
+                  <MenuItem value={"Ind"}>Ind</MenuItem>
+                  <MenuItem value={"Pak"}>Pak</MenuItem>
+                  <MenuItem value={"Usa"}>Usa</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -242,7 +346,17 @@ onBackBtnClickHnd();
             <Grid item xs = {6}>
               <FormControl
                 variant="standard"
-                sx={{ m: 1, minWidth: 200, align: "center" }}
+                sx={{
+                  width : '30ch' ,
+                  '& .MuiInputLabel-root' : {
+                        fontSize : '12px',
+                        color :  '#6682AA'
+        
+                  
+                  }
+               }}
+
+              
               >
                 <InputLabel id="demo-simple-select-standard-label">
                   State
@@ -254,18 +368,28 @@ onBackBtnClickHnd();
                   onChange={onStateChange}
                   label="State"
                 >
-                  <MenuItem value={10}>Mh</MenuItem>
-                  <MenuItem value={20}>Guj</MenuItem>
-                  <MenuItem value={30}>Kerala</MenuItem>
+                  <MenuItem value={"Mh"}>Mh</MenuItem>
+                  <MenuItem value={"Guj"}>Guj</MenuItem>
+                  <MenuItem value={"Kerala"}>Kerala</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
         
        
-            <Grid item xs = {6}>
+            <Grid item xs = {12}>
               <FormControl
                 variant="standard"
-                sx={{ m: 1, minWidth: 200, align: "center" }}
+                // sx={{  m: 1, minWidth: 200, align: "center"  }}
+                sx={{
+                  width : '30ch' ,
+                  '& .MuiInputLabel-root' : {
+                        fontSize : '12px',
+                        color :  '#6682AA'
+        
+                  
+                  }
+               }}
+
               >
                 <InputLabel id="demo-simple-select-standard-label">
                   Sanghat
@@ -277,16 +401,17 @@ onBackBtnClickHnd();
                   onChange={onSanghatChange}
                   label="Sanghat"
                 >
-                  <MenuItem value={10}>Surat</MenuItem>
-                  <MenuItem value={20}>Valsad</MenuItem>
-                  <MenuItem value={30}>Vapi</MenuItem>
+                  <MenuItem value={"Surat"}>Surat</MenuItem>
+                  <MenuItem value={"Valsad"}>Valsad</MenuItem>
+                  <MenuItem value={"Vapi"}>Vapi</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs = {6}>
+            {/* <Grid item xs = {6}>
               <FormControl
                 variant="standard"
-                sx={{ m: 1, minWidth: 200, align: "center" }}
+                sx={{  width: '30ch', align: "center" }}
+
               >
                 <InputLabel id="demo-simple-select-standard-label">
                   Role
@@ -294,18 +419,233 @@ onBackBtnClickHnd();
                 <Select
                   labelId="demo-simple-select-standard-label"
                   id="demo-simple-select-standard"
-                  value={role}
-                  onChange={onRoleChange}
+                  // value={role}
+                  // onChange={onRoleChange}
                   label="Role"
                 >
-                  <MenuItem value={10}>SA</MenuItem>
-                  <MenuItem value={20}>A</MenuItem>
+                  <MenuItem value={"SA"}>SA</MenuItem>
+                  <MenuItem value={"A"}>A</MenuItem>
                 </Select>
               </FormControl>
-            </Grid>
+            </Grid> */}
+       
+      </Grid>
+    </Box>
+    </Box>
+ </Box>
          
-       </Grid>
-      </Box>
-     </Box>
+
+
+
+
+
+
+
+
+
+
+//     <Box
+//       title = " Edit New Responsibilites"
+//       sx={{
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//       }}
+//     >
+// <Box onSubmit={onSubmitBtnClickHnd}>
+//   <Box sx = {{
+//     display: "flex",
+//     alignItems: "center",
+//     justifyContent: "flex-end"
+//   }}>
+//     <Stack direction="row" spacing={2}>
+//     <Button  sx = {{
+//          color: "#002F71",
+//          textAlign: "center",
+//          flexDirection: "row",
+//          justifyContent: "center",
+//          alignItems: "center",
+//          fontFamily: "Poppins, Arial",
+//          fontSize: ".875rem",
+//          fontWeight: "500",
+//          lineHeight: "18px",
+//          display: "flex",
+//     }}onClick={onBackBtnClickHnd} > Cancel</Button>
+//     <Button  sx={{
+//                       color: "#fff",
+//                       textAlign: "center",
+//                       backgroundColor: "#1073ff",
+//                       border: "none",
+//                       borderRadius: "50px",
+//                       flexDirection: "row",
+//                       justifyContent: "center",
+//                       alignItems: "center",
+//                       fontFamily: "Poppins, Arial",
+//                       fontSize: ".875rem",
+//                       fontWeight: "500",
+//                       lineHeight: "18px",
+//                       display: "flex",
+//                     }} onClick={onSubmitBtnClickHnd}> Edit </Button>
+//     </Stack>
+//     </Box>
+     
+//       <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+   
+//           <Grid item xs = {6}>
+//              <TextField
+//                 id="standard-basic"
+//                 label="First Name"
+//                 variant="standard"
+//                 value={firstName}
+//                 onChange={onFirstNameChangeHnd}
+//               />
+//             </Grid>
+          
+//             <Grid item xs = {6}>
+//               <TextField
+//                 id="standard-basic"
+//                 label="Last Name"
+//                 variant="standard"
+//                 value={lastName}
+//                 onChange={onLastNameChangeHnd}
+//               />
+//             </Grid>
+//          <Grid item xs = {6}>
+//               <TextField
+//                 id="standard-basic"
+//                 label="Phone Number"
+//                 variant="standard"
+//                 type="number"
+//                 value={phone}
+//                 onChange={onPhoneChangeHnd}
+//               />
+//             </Grid>
+//             <Grid item xs = {6}>
+//               <TextField
+//                 id="standard-basic"
+//                 label="Email Address"
+//                 variant="standard"
+//                 value={email}
+//                 onChange={onEmailChangeHnd}
+//               />
+//             </Grid>
+        
+          
+//             <Grid item xs = {12}>
+//               <FormControl
+//                 variant="standard"
+//                 sx={{ m: 1, minWidth: 200, align: "center" }}
+//               >
+//                 <InputLabel id="demo-simple-select-standard-label">
+//                   Type
+//                 </InputLabel>
+//                 <Select
+//                   labelId="demo-simple-select-standard-label"
+//                   id="demo-simple-select-standard"
+//                   value={type}
+//                   onChange={onTypeChange}
+//                   label="Type"
+//                 >
+//                   <MenuItem value={10}>Ten</MenuItem>
+//                   <MenuItem value={20}>Twenty</MenuItem>
+//                   <MenuItem value={30}>Thirty</MenuItem>
+//                 </Select>
+//               </FormControl>
+//             </Grid>
+       
+
+//            <Divider />
+          
+//             <Grid item xs = {6}>
+//               <FormControl
+//                 variant="standard"
+//                 sx={{ m: 1, minWidth: 200, align: "center" }}
+//               >
+//                 <InputLabel id="demo-simple-select-standard-label">
+//                   Country
+//                 </InputLabel>
+//                 <Select
+//                   labelId="demo-simple-select-standard-label"
+//                   id="demo-simple-select-standard"
+//                   value={country}
+//                   onChange={onCountryChange}
+//                   label="Country"
+//                 >
+//                   <MenuItem value={10}>Ind</MenuItem>
+//                   <MenuItem value={20}>Pak</MenuItem>
+//                   <MenuItem value={30}>Usa</MenuItem>
+//                 </Select>
+//               </FormControl>
+//             </Grid>
+         
+  
+//             <Grid item xs = {6}>
+//               <FormControl
+//                 variant="standard"
+//                 sx={{ m: 1, minWidth: 200, align: "center" }}
+//               >
+//                 <InputLabel id="demo-simple-select-standard-label">
+//                   State
+//                 </InputLabel>
+//                 <Select
+//                   labelId="demo-simple-select-standard-label"
+//                   id="demo-simple-select-standard"
+//                   value={state}
+//                   onChange={onStateChange}
+//                   label="State"
+//                 >
+//                   <MenuItem value={10}>Mh</MenuItem>
+//                   <MenuItem value={20}>Guj</MenuItem>
+//                   <MenuItem value={30}>Kerala</MenuItem>
+//                 </Select>
+//               </FormControl>
+//             </Grid>
+        
+       
+//             <Grid item xs = {6}>
+//               <FormControl
+//                 variant="standard"
+//                 sx={{ m: 1, minWidth: 200, align: "center" }}
+//               >
+//                 <InputLabel id="demo-simple-select-standard-label">
+//                   Sanghat
+//                 </InputLabel>
+//                 <Select
+//                   labelId="demo-simple-select-standard-label"
+//                   id="demo-simple-select-standard"
+//                   value={sanghat}
+//                   onChange={onSanghatChange}
+//                   label="Sanghat"
+//                 >
+//                   <MenuItem value={10}>Surat</MenuItem>
+//                   <MenuItem value={20}>Valsad</MenuItem>
+//                   <MenuItem value={30}>Vapi</MenuItem>
+//                 </Select>
+//               </FormControl>
+//             </Grid>
+//             <Grid item xs = {6}>
+//               <FormControl
+//                 variant="standard"
+//                 sx={{ m: 1, minWidth: 200, align: "center" }}
+//               >
+//                 <InputLabel id="demo-simple-select-standard-label">
+//                   Role
+//                 </InputLabel>
+//                 <Select
+//                   labelId="demo-simple-select-standard-label"
+//                   id="demo-simple-select-standard"
+//                   value={role}
+//                   onChange={onRoleChange}
+//                   label="Role"
+//                 >
+//                   <MenuItem value={10}>SA</MenuItem>
+//                   <MenuItem value={20}>A</MenuItem>
+//                 </Select>
+//               </FormControl>
+//             </Grid>
+         
+//        </Grid>
+//       </Box>
+//      </Box>
   );
 };

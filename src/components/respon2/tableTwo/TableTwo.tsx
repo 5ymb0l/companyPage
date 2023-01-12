@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { useTheme } from "@mui/material/styles";
+import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { PeoplesData } from "../Person.type";
 import {
@@ -31,11 +31,11 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import BasicMenu from "../../Controls/BasicMenu";
 import EditPopup from "../editNew/Popup";
 import { EditNewResponsibility } from "../editNew/EditNew";
-
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 interface PaginationProps { 
   data : PeoplesData[];
   itemsPerPage? : number; 
- 
+
  }
 function usePagination (props : PaginationProps ) {
   const { data, itemsPerPage = 5 } = props;
@@ -49,20 +49,22 @@ function usePagination (props : PaginationProps ) {
     return data.slice(begin, end);
   }
 
-  function next() {
+   
+  const next = ( ) =>  {
     setCurrentPage(currentPage => Math.min(currentPage + 1, maxPage));
   }
 
-  function prev() {
+  const prev = () =>  {
     setCurrentPage(currentPage => Math.max(currentPage - 1, 1));
   }
 
-  function jump( page : number) {
+  const jump = ( page : number) => {
     const pageNumber = Math.max(1, page);
     setCurrentPage(currentPage => Math.min(pageNumber, maxPage));
   }
 
-  return { next, prev, jump, currentData, currentPage, maxPage };
+  return { 
+    next, prev, jump, currentData, currentPage, maxPage };
 }
 interface Props {
   userList? : PeoplesData[] ;
@@ -82,11 +84,7 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
   const [openPopup, setOpenPopup] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  // const [dataToEdit, setDataToEdit] = useState({} as PeoplesData);
-  // const [employeeList, setEmployeeList] = useState(
-  //   [] as PeoplesData[]
-  // );
-
+ 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -107,30 +105,18 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
       // setPage(newPage);
     _DATA.jump(newPage);
   };
-  // const deleteEmployee = (data: PeoplesData) => {
-  //   const indexToDelete = employeeList.indexOf(data);
-  //     const tempList = [...employeeList];
-  
-  //     tempList.splice(indexToDelete, 1);
-  //     setEmployeeList(tempList);
-  //   };
-  
-    // const editEmployeeData = (data: PeoplesData) => {
-    //   // setShownPage(PageEnum.edit);
-    //   setDataToEdit(data);
-    //   setOpenPopup(true);
-    //   console.log(data , "sss")
-    // };
-    
-    // const updateData = (data: PeoplesData) => {
-    //   console.log(data)
-    //   const filteredData = employeeList.filter((x) => x.id === data.id)[0];
-    //   const indexOfRecord = employeeList.indexOf(filteredData);
-    //   const tempData = [...employeeList];
-    //   tempData[indexOfRecord] = data;
-    //   setEmployeeList(tempData);
 
-    // };
+ 
+  // const itemRender = (type : string , data : any ) => {
+  //            if (type === 'prev') {
+  //             return <Button> Previous </Button>
+  //            }
+  //            if ( type === 'next') {
+  //             return <Button> Next </Button>
+  //            }
+  //            return data;
+  // }
+  
   
   return (
   <>
@@ -141,7 +127,7 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
       <Table 
       // sx={{ minWidth: 650 }}
        aria-label="custom pagination table">
-        <TableHead   sx={{
+        <TableHead  sx={{
             
               tableLayout: "fixed",
               //  backgroundColor: '#00A77E',
@@ -151,7 +137,7 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
           >
             <TableCell align="center" style={{
               
-                  width: "14%",
+                  width: "20%",
                   // paddingLeft: "4%",
                   fontFamily: "Poppins",
                   color: "#6682AA",
@@ -161,7 +147,7 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                 }}
             >Name</TableCell>
             <TableCell align="center"  style={{
-                  width: "14%",
+                  width: "15%",
                   fontFamily: "Poppins",
                   color: "#6682AA",
                   fontWeight: 500,
@@ -169,7 +155,7 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                 }}
             >Phone Number</TableCell>
             <TableCell align="center"  style={{
-                  width: "14%",
+                  width: "20%",
                   // paddingLeft: "8%",
                   fontFamily: "Poppins",
                   color: "#6682AA",
@@ -179,7 +165,7 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
             >Email Address &nbsp;</TableCell>
             <TableCell align="center" 
               style={{
-                width: "14%",
+                width: "15%",
                 fontFamily: "Poppins",
                 color: "#6682AA",
                 // paddingLeft: "10%",
@@ -188,7 +174,7 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
               }}
             >Region</TableCell>
             <TableCell  align="center"  style={{
-                  width: "14%",
+                  width: "10%",
                   fontFamily: "Poppins",
                   color: "#6682AA",
                   // paddingLeft: "10%",
@@ -196,7 +182,7 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                   fontSize: "20px",
                 }}>Type</TableCell>
                 <TableCell align="center"  style={{
-                  width: "16%",
+                  width: "10%",
                   fontFamily: "Poppins",
                   color: "#6682AA",
                   // paddingLeft: "10%",
@@ -204,7 +190,7 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                   fontSize: "20px",
                 }}> Role </TableCell>
             <TableCell align="center"  style={{
-                  width: "16%",
+                  width: "10%",
                   fontFamily: "Poppins",
                   color: "#6682AA",
                   // paddingLeft: "10%",
@@ -236,17 +222,19 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                 },
               },
             }} >
-        { _DATA.currentData().map((row , index) => {
+        { _DATA.currentData().map((row , index , ..._DATA) => {
             return (
               <TableRow key={row.id} sx={{ display: "table", width: "100%" }}>
                 <TableCell align="center" 
                   style={{
-                    width: "14%",
+                    width: "20%",
                     // paddingLeft: "4%",
                     fontFamily: "Poppins",
-                    color: "#6682AA",
+                    // color: "#6682AA",
                     fontWeight: 500,
                     fontSize: "20px",
+                    color : '#002F71',
+
                   }}
                   component="th"
                   scope="row"
@@ -255,9 +243,9 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                 </TableCell>
                 <TableCell align="center" 
                   style={{
-                    width: "14%",
+                    width: "15%",
                     fontFamily: "Poppins",
-                    color: "#6682AA",
+                    color: "#002F71",
                     fontWeight: 500,
                     fontSize: "20px",
                   }}
@@ -266,10 +254,10 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                 </TableCell>
                 <TableCell align="center" 
                   style={{
-                    width: "14%",
+                    width: "20%",
                     // paddingLeft: "8%",
                     fontFamily: "Poppins",
-                    color: "#6682AA",
+                    color: "#002F71",
                     fontWeight: 500,
                     fontSize: "20px",
                   }}
@@ -278,9 +266,9 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                 </TableCell>
                 <TableCell align="center" 
                   style={{
-                    width: "14%",
+                    width: "15%",
                     fontFamily: "Poppins",
-                    color: "#6682AA",
+                    color: "#002F71",
                     // paddingLeft: "10%",
                     fontWeight: 500,
                     fontSize: "20px",
@@ -290,9 +278,9 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                 </TableCell>
                 <TableCell align="center" 
                   style={{
-                    width: "14%",
+                    width: "10%",
                     fontFamily: "Poppins",
-                    color: "#6682AA",
+                    color: "#002F71",
                     // paddingLeft: "10%",
                     fontWeight: 500,
                     fontSize: "20px",
@@ -313,16 +301,22 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
               </Box> */}
                   {row.types}
                 </TableCell>
-               {/* <TableCell align="center"  style={{
-                    width: "14%",
+               <TableCell align="center"  style={{
+                    width: "10%",
                     fontFamily: "Poppins",
-                    color: "#6682AA",
+                    color: "#002F71",
                     // paddingLeft: "10%",
                     fontWeight: 500,
                     fontSize: "20px",
-                    paddingLeft : "5%"
+                 
 
                   }}>
+                    <Box sx = {{
+                    display : 'flex',
+                    alignItems : 'center',
+                    justifyContent : 'center'
+                  }}>
+
                 <Box
                       sx={{
                         background: "#E6F2FE",
@@ -333,28 +327,39 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                         justifyContent: "center",
                         alignItems: "center",
                         height: "35px",
+                        color : "#002F71"
 
                       }}
                       arial-lable="SA"
                     >
-                      {row.role}
+                     SA
               </Box>
 
-                </TableCell> */}
+
+                    </Box>
+
+                </TableCell>
                 <TableCell align="right" 
                   style={{
-                    width: "16%",
+                    width: "10%",
                     fontFamily: "Poppins",
                     color: "#6682AA",
                     fontWeight: 500,
                     fontSize: "20px",
-                    paddingLeft : "7%"
+                    
                   }}
                 >
+                  <Box sx = {{
+                    display : 'flex',
+                    alignItems : 'center',
+                    justifyContent : 'center'
+                  }}
+                  >
+
                   <Box
                     sx={{
                       background: "#E6F2FE",
-                      width: "35px",
+                      width: "30px",
                       position: "relative",
                       display: "flex",
                       justifyContent: "center",
@@ -363,33 +368,15 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                     }}
                     arial-lable="SA"
                   >
-                    {/* <Button
-            id="basic-button"
-            aria-controls={open ? "basic-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-          >
-            <MoreHorizIcon />
-          </Button>
-          <Menu
-            id="basic-menu"
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            MenuListProps={{
-              "aria-labelledby": "basic-button",
-            }}
-          >
-        
-            <MenuItem onClick= {() => onEdit(row)}>Edit</MenuItem>
-            <MenuItem onClick={() => onDeleteClickHnd(row)}>Delete</MenuItem>
-          </Menu> */}
+                  
                   <BasicMenu 
                    onEdit={() => onEdit(row)}
                   
                    onDeleteClickHnd={() => onDeleteClickHnd(row)}/>
                     
+                  </Box>
+
+
                   </Box>
                 </TableCell>
               </TableRow>
@@ -397,16 +384,55 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                   })}
       
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <Pagination
+        <TableFooter >
+
+          <TableRow  sx = {{ 
+            
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height : '10vh'
+        
+        }}> 
+      
+            <Pagination 
+          //  hidePrevButton
         count={userList.length}
-        size="large"
+        size="small"
         page={_DATA.currentPage}
         variant="outlined"
-        shape="rounded"
+        shape="circular"
         onChange={handleChange}
+        hideNextButton
       />
+        {/* <button disabled={_DATA.currentPage === 1 ? true : false} onClick={_DATA.prev}>
+        PREVIOUS
+      </button> */}
+      <Box sx = {{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingLeft : "10px"
+      }}>
+
+       <Button   sx={{
+          // backgroundColor: "white",
+          borderRadius: "50px",
+          color : ' #002F71',
+          // fontFamily : 'Poppins',
+          // fontStyle : 'normal',
+          fontWeight: 600,
+          fontSize: "14px",
+          textTransform: 'none',
+          border: "1px solid #002F71"
+        }} 
+        variant="outlined"
+       endIcon = {<ArrowForwardIosIcon/>}
+        disabled={_DATA.currentPage === 10 ? true : false} onClick={_DATA.next}>
+      
+        Next
+      </Button> 
+       </Box>
           </TableRow>
         </TableFooter>
       </Table>

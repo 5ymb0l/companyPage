@@ -24,10 +24,18 @@ export const SearchHere : React.FC<props> = ({query , setQuery }) => {
           background: "#FFFFFF",
           boxShadow: "0px 0px 17px rgba(0, 47, 113, 0.1)",
           borderRadius: "50px",
+          
             }}
       >
-        <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-          <SearchIcon />
+        <IconButton type="button" sx={{  
+           color : ' #002F71',
+          // fontFamily : 'Poppins',
+          // fontStyle : 'normal',
+          // fontWeight: 500,
+          // fontSize: "60px", 
+          p: "10px",
+           }} aria-label="search" >
+          <SearchIcon  fontSize="large" />
         </IconButton>
         <InputBase
           sx={{
@@ -41,7 +49,12 @@ export const SearchHere : React.FC<props> = ({query , setQuery }) => {
             fontSize: 20,
             lineHeight: 18,
             order: 1,
-          }}
+          //  color : '#002F71',
+          
+          '& .MuiFormLabel-root' : {
+            color : "black"
+          }
+        }}
           onChange = {(e) => {
             
             
@@ -50,7 +63,11 @@ export const SearchHere : React.FC<props> = ({query , setQuery }) => {
            }}
           value = {query}
           placeholder="Search"
-          inputProps={{ "aria-label": "search google maps" }}
+          
+          inputProps={{ 
+            "aria-label": "search google maps",
+          }}
+         
         />
       </Paper>
   );

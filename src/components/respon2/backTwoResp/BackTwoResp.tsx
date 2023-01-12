@@ -7,7 +7,13 @@ const BackTwoResp = () => {
   return (
     <Link  style={{textDecoration:"none"}} to="/dashbhai" >
 
-      <Button   startIcon={<ChevronLeftIcon />}> Back to responsibility</Button>
+      <Button sx={{
+           color : ' #002F71',
+          //  fontFamily : 'Poppins',
+           fontStyle : 'normal',
+           fontWeight: 600,
+           fontSize: "14px",
+      }}  startIcon={<ChevronLeftIcon />}> Back to responsibilities</Button>
 
 
 

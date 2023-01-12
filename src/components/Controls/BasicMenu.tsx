@@ -45,7 +45,9 @@ export default function BasicMenu({onDeleteClickHnd , onEdit  }: Props) {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
-            <MoreHorizIcon />
+            <MoreHorizIcon sx={{
+              color : "#002F71"
+            }}/>
           </Button>
           <Menu
             id="basic-menu"
