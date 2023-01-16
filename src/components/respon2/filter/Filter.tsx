@@ -1,4 +1,4 @@
-import * as React from "react";
+
 // import Button from '@mui/material/Button';
 // import TextField from '@mui/material/TextField';
 // import Dialog from '@mui/material/Dialog';
@@ -6,7 +6,7 @@ import * as React from "react";
 // import DialogContent from '@mui/material/DialogContent';
 // import DialogContentText from '@mui/material/DialogContentText';
 // import DialogTitle from '@mui/material/DialogTitle';
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import {
@@ -35,15 +35,48 @@ import {
   Divider,
   Paper,
   Typography,
+  Tooltip,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { PeoplesData } from "../Person.type";
+import { FilterData } from "./FilterData";
+import { ICheckedUser , IAssignmentUserList } from "./DataFilter";
 type Props = {
   // onBackBtnClickHnd : () => void
   // onSubmitClickHnd: (data: PeoplesData) => void;
+  // userList?: PeoplesData[];
+  expand? : false;
+  checkedUserList? :  ICheckedUser[];
+  onChangeChecked?: (checkedData: string[]) => void;
+  isCheckBoxList?: boolean;
+  handleSelectAll?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  assignmentUserData? : IAssignmentUserList[]
+  handleCheck?: (id: string, name: string) => void;
+
 };
-export const AddFilter = () => {
-  const [open, setOpen] = React.useState(false);
+export const AddFilter = ({expand , checkedUserList ,onChangeChecked = () => null ,isCheckBoxList , handleSelectAll = () => null, assignmentUserData , handleCheck = () => null }: Props) => {
+  const [open, setOpen] = useState(false);
+  // const [isExpand, setIsExpand] = useState(expand);
+  const checkedUserIds: string[] = useMemo(
+    () => (checkedUserList || []).map((user: ICheckedUser) => user._id),
+    [checkedUserList],
+  );
+  useEffect(() => {
+    onChangeChecked(checkedUserIds);
+  }, [checkedUserList]);
+  // const [users , setUsers] = useState(FilterData) 
+
+  // useEffect(() => {
+  //   setUsers(FilterData)
+  // },[])
+  
+  
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const {name , checked} = e.target
+  //   let tempUser = users.map(user => user.name === name ? { ...user , isChecked : checked}: user);
+  //   setUsers(tempUser)
+  // }
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -94,7 +127,7 @@ export const AddFilter = () => {
           "& .MuiPaper-root": {
             minWidth: "20%",
             minHeight: "75%",
-          },
+          }, 
         }}
         open={open}
         onClose={handleClose}
@@ -159,8 +192,11 @@ export const AddFilter = () => {
               // alignItems: "center",
               justifyContent: "center",
             }}
-          >
+            >
+
             <FormControl component="fieldset">
+            {/* {isCheckBoxList &&  ( */}
+
               <FormLabel
                 sx={{
                   color: "#6682AA",
@@ -168,9 +204,10 @@ export const AddFilter = () => {
                   fontSize: "15px",
                 }}
                 component="legend"
-              >
+                >
                 DISPLAY
               </FormLabel>
+                {/* {  isCheckBoxList && (  */}
               
                 <FormGroup aria-label="position">
                   <FormControlLabel
@@ -180,7 +217,11 @@ export const AddFilter = () => {
                     value="top"
                     control={<Checkbox  sx={{
                       color : '#6682AA'  }}
-                      />}
+                      // checked={acceptTnC}
+                      // onChange={handleChange}
+                    />
+                  }
+        
                     label="Immediate"
                     // labelPlacement="top"
                   />
@@ -190,13 +231,25 @@ export const AddFilter = () => {
                     }}
                     value="start"
                     control={<Checkbox sx={{
-                      color : '#6682AA'  }} />}
+                      color : '#6682AA'  }}
+                      checked={assignmentUserData?.length === checkedUserIds.length}
+                      onChange={handleSelectAll}
+                      
+                      />}
                     label="All"
                     // labelPlacement="start"
                   />
                 </FormGroup>
+                 {/* )}  */}
             
-              <FormLabel
+          
+ 
+                {/* { 
+                  !isCheckBoxList ? ( */}
+                    {(assignmentUserData || []).map((item, index) => (
+                    <>
+
+              {/* <FormLabel
                 sx={{
                   color: "#6682AA",
                   fontFamily: "Poppins",
@@ -206,8 +259,8 @@ export const AddFilter = () => {
                 component="legend"
               >
                 TYPE
-              </FormLabel>
-              {/* <h2> Type</h2> */}
+              </FormLabel> */}
+             
              
                 <FormGroup sx={{
                   display : 'flex',
@@ -221,11 +274,18 @@ export const AddFilter = () => {
                       }}
                       // value="end"
                       control={<Checkbox  sx={{
-                        color : '#6682AA'  }}/>}
-                      label="Country"
+                        color : '#6682AA'  }}
+                        name={item.name}
+
+                        checked={checkedUserIds.includes(item._id)}
+                        onChange={() => handleCheck(item._id, item.name)}
+                        />
+                      
+                      }
+                      label={item.name}
                       // labelPlacement="end"
                     />
-                    <FormControlLabel
+                    {/* <FormControlLabel
                       sx={{
                         color: "#002F71",
                         paddingLeft : "100px"
@@ -234,10 +294,13 @@ export const AddFilter = () => {
                       control={<Checkbox sx={{
                         color : '#6682AA'  }} />}
                       label="District"
+                      checked={checkedUserIds.includes(item._id)}
+                      onChange={() => handleCheck(item._id, item.name)}
+                      
                       // labelPlacement="end"
-                    />
+                    /> */}
                   </FormGroup>
-                  <FormGroup aria-label="position" row>
+                  {/* <FormGroup aria-label="position" row>
                     <FormControlLabel
                       sx={{
                         color: "#002F71",
@@ -246,6 +309,9 @@ export const AddFilter = () => {
                       control={<Checkbox sx={{
                         color : '#6682AA'  }} />}
                       label="State"
+                      checked={checkedUserIds.includes(item._id)}
+                      onChange={() => handleCheck(item._id, item.name)}
+                      
                       // labelPlacement="end"
                     />
                     <FormControlLabel
@@ -257,11 +323,14 @@ export const AddFilter = () => {
                       control={<Checkbox sx={{
                         color : '#6682AA'  }} />}
                       label="Taluka"
+                      checked={checkedUserIds.includes(item._id)}
+                      onChange={() => handleCheck(item._id, item.name)}
+                      
                       // labelPlacement="end"
                     />
-                  </FormGroup>
+                  </FormGroup> */}
 
-                  <FormGroup>
+                  {/* <FormGroup>
                     <FormControlLabel
                       sx={{
                         color: "#002F71",
@@ -270,12 +339,15 @@ export const AddFilter = () => {
                       control={<Checkbox sx={{
                         color : '#6682AA'  }} />}
                       label="Sanghat"
+                      checked={checkedUserIds.includes(item._id)}
+                      onChange={() => handleCheck(item._id, item.name)}
+                      
                       // labelPlacement="end"
                     />
-                  </FormGroup>
+                  </FormGroup> */}
                 </FormGroup>
               
-              <FormLabel
+              {/* <FormLabel
                 sx={{
                   color: "#6682AA",
                   fontFamily: "Poppins",
@@ -285,9 +357,9 @@ export const AddFilter = () => {
                 component="legend"
               >
                 REGION
-              </FormLabel>
-              {/* <h2> Type</h2> */}
-              <Grid>
+              </FormLabel> */}
+             
+              {/* <Grid>
                 <FormGroup>
                   <FormGroup aria-label="position" row>
                     <FormControlLabel
@@ -298,6 +370,9 @@ export const AddFilter = () => {
                       control={<Checkbox sx={{
                         color : '#6682AA'  }} />}
                       label="Vadodara"
+                      checked={checkedUserIds.includes(item._id)}
+                      onChange={() => handleCheck(item._id, item.name)}
+                      
                       // labelPlacement="bottom"
                     />
                     <FormControlLabel
@@ -310,6 +385,9 @@ export const AddFilter = () => {
                       control={<Checkbox sx={{
                         color : '#6682AA'  }} />}
                       label="Valsad"
+                      checked={checkedUserIds.includes(item._id)}
+                      onChange={() => handleCheck(item._id, item.name)}
+                      
                       // labelPlacement="end"
                     />
                   </FormGroup>
@@ -322,6 +400,9 @@ export const AddFilter = () => {
                       control={<Checkbox sx={{
                         color : '#6682AA'  }} />}
                       label="Surat"
+                      checked={checkedUserIds.includes(item._id)}
+                      onChange={() => handleCheck(item._id, item.name)}
+                      
                       // labelPlacement="bottom"
                     />
                     <FormControlLabel
@@ -333,13 +414,24 @@ export const AddFilter = () => {
                       control={<Checkbox sx={{
                         color : '#6682AA'  }} />}
                       label="Ahmedabad"
+                      checked={checkedUserIds.includes(item._id)}
+                      onChange={() => handleCheck(item._id, item.name)}
+                      
                       // labelPlacement="end"
                     />
                   </FormGroup>
                 </FormGroup>
-              </Grid>
+              </Grid> */}
+              </>                  
+                    ))}
+
+
+              {/* )} */}
+
+            
             </FormControl>
           </Box>
+          
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} sx = {{   fontSize: "15px",

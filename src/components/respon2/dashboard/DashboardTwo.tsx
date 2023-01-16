@@ -26,6 +26,9 @@ import { Avatar, Button } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import { EditNewResponsibility } from "../editNew/EditNew";
 import EditPopup from "../editNew/Popup";
+import { text } from "stream/consumers";
+import { ICheckedUser } from "../filter/DataFilter";
+import { FilterData } from "../filter/FilterData";
 // import EditPopup from "../editNew/Popup";
 
 
@@ -76,6 +79,9 @@ export default function DashboardTwo() {
   const [dataToEdit, setDataToEdit] = useState({} as PeoplesData);
   const [recordForEdit, setRecordForEdit] = useState(null);
  const [addPopup , setAddPopup] = useState(false);
+ const [checkedData, setCheckedData] = useState<ICheckedUser[]>();
+
+
   
   const handleAddPopup = () => {
     setAddPopup(true)
@@ -102,9 +108,10 @@ export default function DashboardTwo() {
     setUserList(
       dummyPersonList.filter((row) =>
         row.id.toLowerCase().includes(query.toLowerCase())
-      )
-    );
-  };
+        )
+        );
+  }
+  // row.firstName.toLowerCase() === query.toLowerCase()
   
   useEffect(() => {
     const listInString = window.localStorage.getItem("EmployeeList");
@@ -297,7 +304,28 @@ export default function DashboardTwo() {
                   }
                 }
               >
-                <AddFilter />
+                <AddFilter 
+                // {...args}
+                
+                checkedUserList={checkedData}
+                handleCheck={(id, name) => {
+                  if ((checkedData || [])?.filter((item) => item._id === id).length > 0) {
+                    setCheckedData((checkedData || [])?.filter((item) => item._id !== id));
+                  } else {
+                    setCheckedData([...(checkedData || []), { _id: id, name }]);
+                  }
+                }}
+                handleSelectAll={(e) => {
+                  if (e.target.checked) {
+                    setCheckedData(FilterData);
+                  } else {
+                    setCheckedData([]);
+                  }
+                }}
+               assignmentUserData = {FilterData}
+                
+                
+                />
               </Box>
             </Box>
             <DrawerHeader />

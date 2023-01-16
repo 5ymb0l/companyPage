@@ -2,7 +2,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 interface props {
   handleOnClick : (e: React.FormEvent) => void;
-  query : string
+  query? : string
 }
 export const  SearchButton : React.FC<props> =({handleOnClick , query}) => {
   return (

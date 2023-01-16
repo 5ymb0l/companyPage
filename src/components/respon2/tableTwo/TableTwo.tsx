@@ -222,7 +222,7 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
                 },
               },
             }} >
-        { _DATA.currentData().map((row , index , ..._DATA) => {
+        { _DATA.currentData().map ( (row , index , ..._DATA) => {
             return (
               <TableRow key={row.id} sx={{ display: "table", width: "100%" }}>
                 <TableCell align="center" 
