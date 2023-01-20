@@ -1,7 +1,7 @@
 import {useState} from "react";
 import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import { PeoplesData } from "../Person.type";
+import { PeoplesData  } from "../Person.type";
 import {
   Table,
   TableBody,
@@ -32,6 +32,7 @@ import BasicMenu from "../../Controls/BasicMenu";
 import EditPopup from "../editNew/Popup";
 import { EditNewResponsibility } from "../editNew/EditNew";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 interface PaginationProps { 
   data : PeoplesData[];
   itemsPerPage? : number; 
@@ -62,6 +63,8 @@ function usePagination (props : PaginationProps ) {
     const pageNumber = Math.max(1, page);
     setCurrentPage(currentPage => Math.min(pageNumber, maxPage));
   }
+
+ 
 
   return { 
     next, prev, jump, currentData, currentPage, maxPage };
@@ -396,7 +399,7 @@ export default function BasicTableTwo({userList = [] , onDeleteClickHnd , onEdit
         }}> 
       
             <Pagination 
-          //  hidePrevButton
+           hidePrevButton
         count={userList.length}
         size="small"
         page={_DATA.currentPage}

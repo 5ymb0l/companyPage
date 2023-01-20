@@ -301,9 +301,11 @@ onBackBtnClickHnd();
                   onChange={onTypeChange}
                   label="Type"
                 >
-                  <MenuItem value={"Ten"}>Ten</MenuItem>
-                  <MenuItem value={"Twenty"}>Twenty</MenuItem>
-                  <MenuItem value={"Thirty"}>Thirty</MenuItem>
+                  <MenuItem value={'Country'}> Country</MenuItem>
+                  <MenuItem value={'District'}>District</MenuItem>
+                  <MenuItem value={'State'}>State</MenuItem>
+                  <MenuItem value={'Taluka'}>Taluka</MenuItem>
+                  <MenuItem value={'Sanghat'}>Sanghat</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -403,7 +405,9 @@ onBackBtnClickHnd();
                 >
                   <MenuItem value={"Surat"}>Surat</MenuItem>
                   <MenuItem value={"Valsad"}>Valsad</MenuItem>
-                  <MenuItem value={"Vapi"}>Vapi</MenuItem>
+                  <MenuItem value={"Vadodara"}>Vadodara</MenuItem>
+                  <MenuItem value={"Ahmedabad"}>Ahmedabad</MenuItem>
+
                 </Select>
               </FormControl>
             </Grid>

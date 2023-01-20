@@ -51,6 +51,7 @@ export const AddNewResponsibility = (props: Props) => {
   const [sanghat, setSanghat] = useState("");
   const [role, setRole] = useState("");
   const [open, setOpen] = React.useState(false);
+  // const [reset , setReset] = useState(null)
   const { onSubmitClickHnd, onBackBtnClickHnd, openPopup, setOpenPopup } =
     props;
 
@@ -89,8 +90,20 @@ export const AddNewResponsibility = (props: Props) => {
   const onRoleChange = (event: SelectChangeEvent) => {
     setRole(event.target.value);
   };
-  const onSubmitBtnClickHnd = (e: any) => {
-    e.preventDefault();
+  const resetForm = () => {
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPhone('');
+    setType('');
+    setCountry('');
+    setState('');
+    setSanghat('');
+    setRole('');
+    // document.getElementById('').reset()
+  }
+  const onSubmitBtnClickHnd = (event:  React.SyntheticEvent ) => {
+    event.preventDefault();
     const data: PeoplesData = {
       id: new Date().toJSON().toString(),
       firstName: firstName,
@@ -105,6 +118,7 @@ export const AddNewResponsibility = (props: Props) => {
     };
     onSubmitClickHnd(data);
     onBackBtnClickHnd();
+    resetForm()
   };
   const theme = useTheme();
  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -351,9 +365,12 @@ export const AddNewResponsibility = (props: Props) => {
                   onChange={onTypeChange}
                   label="Type"
                 >
-                  <MenuItem value={"Ten"}>Ten</MenuItem>
-                  <MenuItem value={"Twenty"}>Twenty</MenuItem>
-                  <MenuItem value={"Thirty"}>Thirty</MenuItem>
+                     <MenuItem value={'Country'}> Country</MenuItem>
+                  <MenuItem value={'District'}>District</MenuItem>
+                  <MenuItem value={'State'}>State</MenuItem>
+                  <MenuItem value={'Taluka'}>Taluka</MenuItem>
+                  <MenuItem value={'Sanghat'}>Sanghat</MenuItem>
+
                 </Select>
               </FormControl>
             </Grid>
@@ -451,9 +468,10 @@ export const AddNewResponsibility = (props: Props) => {
                   onChange={onSanghatChange}
                   label="Sanghat"
                 >
-                  <MenuItem value={"Surat"}>Surat</MenuItem>
+                 <MenuItem value={"Surat"}>Surat</MenuItem>
                   <MenuItem value={"Valsad"}>Valsad</MenuItem>
-                  <MenuItem value={"Vapi"}>Vapi</MenuItem>
+                  <MenuItem value={"Vadodara"}>Vadodara</MenuItem>
+                  <MenuItem value={"Ahmedabad"}>Ahmedabad</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

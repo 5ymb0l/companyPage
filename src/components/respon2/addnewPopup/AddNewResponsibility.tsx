@@ -167,9 +167,13 @@ onBackBtnClickHnd();
                   onChange={onTypeChange}
                   label="Type"
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={10}> Country</MenuItem>
+                  <MenuItem value={20}>District</MenuItem>
+                  <MenuItem value={30}>State</MenuItem>
+                  <MenuItem value={40}>Taluka</MenuItem>
+                  <MenuItem value={50}>Sanghat</MenuItem>
+
+
                 </Select>
               </FormControl>
             </Grid>

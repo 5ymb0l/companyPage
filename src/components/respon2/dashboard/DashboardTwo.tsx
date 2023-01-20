@@ -18,7 +18,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { SearchHere } from "../../responsibility/searchHere/SearchBar";
 import { SearchButton } from "../../responsibility/searchButton/SearchButton";
 import BasicTableTwo from "../tableTwo/TableTwo";
-import { PeoplesData , dummyPersonList , PageEnum } from "../Person.type";
+import { PeoplesData , PageEnum } from "../Person.type";
 import {AddNewResponsibility} from "../addnewPopup/Popup";
 import BackTwoResp from "../backTwoResp/BackTwoResp";
 import {AddFilter} from "../filter/Filter";
@@ -105,9 +105,10 @@ export default function DashboardTwo() {
   
   };
   const handleOnClick = (e: React.FormEvent) => {
+  
     setUserList(
-      dummyPersonList.filter((row) =>
-        row.id.toLowerCase().includes(query.toLowerCase())
+      userList.filter((row) =>
+        row.firstName.toLowerCase().includes(query.toLowerCase()) ||   row.lastName.toLowerCase().includes(query.toLowerCase()) ||  row.email.toLowerCase().includes(query.toLowerCase()) || row.country.toLowerCase().includes(query.toLowerCase()) ||  row.phone.toLowerCase().includes(query.toLowerCase()) ||  row.types.toLowerCase().includes(query.toLowerCase()) ||  row.state.toLowerCase().includes(query.toLowerCase()) ||  row.role.toLowerCase().includes(query.toLowerCase()) ||  row.sanghat.toLowerCase().includes(query.toLowerCase())
         )
         );
   }
@@ -307,6 +308,9 @@ export default function DashboardTwo() {
                 <AddFilter 
                 // {...args}
                 
+     
+
+
                 checkedUserList={checkedData}
                 handleCheck={(id, name) => {
                   if ((checkedData || [])?.filter((item) => item._id === id).length > 0) {
