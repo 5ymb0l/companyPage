@@ -11,6 +11,20 @@ country: string;
     role: string, 
      
     }
+    export interface boxData {
+    country: string;
+    district: string;
+    state: string;
+    taluka:string;
+    sanghat:string;
+    vadodara:string;
+    valsad:string;
+    surat:string;
+    ahmedabad:string;
+
+
+
+    }
 
 //    export const dummyPersonList : PeoplesData[] = [{
 //     id : new Date().toJSON().toString(),

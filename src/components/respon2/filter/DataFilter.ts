@@ -4,13 +4,18 @@ name : string;
 
 }
 
-export interface  IAssignmentUserList  {
+export interface  ICheckboxTypeList  {
     _id : string;
     name : string;
     
     }
+    export interface  ICheckboxRegionList  {
+        _id : string;
+        name : string;
+        
+        }
 
-
+  
     export interface CheckUser {
         id : string;
         country: string ;

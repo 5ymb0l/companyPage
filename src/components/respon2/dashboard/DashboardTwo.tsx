@@ -18,7 +18,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { SearchHere } from "../../responsibility/searchHere/SearchBar";
 import { SearchButton } from "../../responsibility/searchButton/SearchButton";
 import BasicTableTwo from "../tableTwo/TableTwo";
-import { PeoplesData , PageEnum } from "../Person.type";
+import { PeoplesData , PageEnum , boxData } from "../Person.type";
 import {AddNewResponsibility} from "../addnewPopup/Popup";
 import BackTwoResp from "../backTwoResp/BackTwoResp";
 import {AddFilter} from "../filter/Filter";
@@ -28,7 +28,7 @@ import { EditNewResponsibility } from "../editNew/EditNew";
 import EditPopup from "../editNew/Popup";
 import { text } from "stream/consumers";
 import { ICheckedUser } from "../filter/DataFilter";
-import { FilterData } from "../filter/FilterData";
+import { checkboxType , checkboxRegion } from "../filter/FilterData";
 // import EditPopup from "../editNew/Popup";
 
 
@@ -70,8 +70,11 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
+
 export default function DashboardTwo() {
   const [userList, setUserList] = useState<PeoplesData[]>([]);
+  const [boxData, setBoxData] = useState<boxData[]>([]);
+
   const [query, setQuery] = useState<string>("");
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -80,8 +83,35 @@ export default function DashboardTwo() {
   const [recordForEdit, setRecordForEdit] = useState(null);
  const [addPopup , setAddPopup] = useState(false);
  const [checkedData, setCheckedData] = useState<ICheckedUser[]>();
+const [checkboxValues, setCheckboxValues] = useState<string[]>([]);
+const [selectAll, setSelectAll] = useState(false);
+console.log(selectAll , 'dashboard')
+const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const { value } = event.target;
+  if (value === 'selectAll') {
+      setSelectAll(!selectAll);
+      setCheckboxValues(selectAll ? [] :[...checkboxType.map(checkbox => checkbox._id),...checkboxRegion.map(checkbox => checkbox._id)]);
+  } else {
+      if (checkboxValues.includes(value)) {
+          setCheckboxValues(checkboxValues.filter(val => val !== value));
+      } else {
+          setCheckboxValues([...checkboxValues, value]);
+      }
+      if(checkboxValues.length === checkboxType.length+checkboxRegion.length)
+          setSelectAll(true); 
+      else
+          setSelectAll(false);
+  }
+  // console.log(checkboxValues.length === checkboxType.length+checkboxRegion.length)
+};
+useEffect(() => {
+  if(checkboxValues.length === checkboxType.length+checkboxRegion.length)
+  setSelectAll(true);
+else
+  setSelectAll(false);
 
-
+console.log(checkboxValues.length === checkboxType.length+checkboxRegion.length)
+}, [checkboxValues])
   
   const handleAddPopup = () => {
     setAddPopup(true)
@@ -111,6 +141,25 @@ export default function DashboardTwo() {
         row.firstName.toLowerCase().includes(query.toLowerCase()) ||   row.lastName.toLowerCase().includes(query.toLowerCase()) ||  row.email.toLowerCase().includes(query.toLowerCase()) || row.country.toLowerCase().includes(query.toLowerCase()) ||  row.phone.toLowerCase().includes(query.toLowerCase()) ||  row.types.toLowerCase().includes(query.toLowerCase()) ||  row.state.toLowerCase().includes(query.toLowerCase()) ||  row.role.toLowerCase().includes(query.toLowerCase()) ||  row.sanghat.toLowerCase().includes(query.toLowerCase())
         )
         );
+  }
+
+
+  const handleAddFilter = (e:React.FormEvent) => {
+    setBoxData(
+      boxData.filter((row) => 
+      row.country.toLowerCase().includes(query.toLowerCase()) || 
+       row.district.toLowerCase().includes(query.toLowerCase()) ||  
+       row.state.toLowerCase().includes(query.toLowerCase()) ||
+       row.taluka.toLowerCase().includes(query.toLowerCase()) ||
+       row.sanghat.toLowerCase().includes(query.toLowerCase()) ||
+       row.vadodara.toLowerCase().includes(query.toLowerCase())||
+       row.valsad.toLowerCase().includes(query.toLowerCase()) ||
+       row.surat.toLowerCase().includes(query.toLowerCase())  ||
+       row.ahmedabad.toLowerCase().includes(query.toLowerCase())        
+      )
+
+
+    )
   }
   // row.firstName.toLowerCase() === query.toLowerCase()
   
@@ -306,29 +355,11 @@ export default function DashboardTwo() {
                 }
               >
                 <AddFilter 
-                // {...args}
-                
-     
-
-
-                checkedUserList={checkedData}
-                handleCheck={(id, name) => {
-                  if ((checkedData || [])?.filter((item) => item._id === id).length > 0) {
-                    setCheckedData((checkedData || [])?.filter((item) => item._id !== id));
-                  } else {
-                    setCheckedData([...(checkedData || []), { _id: id, name }]);
-                  }
-                }}
-                handleSelectAll={(e) => {
-                  if (e.target.checked) {
-                    setCheckedData(FilterData);
-                  } else {
-                    setCheckedData([]);
-                  }
-                }}
-               assignmentUserData = {FilterData}
-                
-                
+                handleAddFilter={handleAddFilter}
+                selectAll = {selectAll}
+                handleCheckboxChange = {handleCheckboxChange}
+                checkboxValues = {checkboxValues}
+                // checkedUserList={checkedData}
                 />
               </Box>
             </Box>
