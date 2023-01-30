@@ -4,11 +4,14 @@ import SearchIcon from "@mui/icons-material/Search";
 interface props {
   query : string;
   setQuery :  React.Dispatch<React.SetStateAction<string>>;
- 
+  onSearchChange?: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=> void
 
   // handleOnClick : (e : React.FormEvent) => void
 }
-export const SearchHere : React.FC<props> = ({query , setQuery }) => {
+export const SearchHere : React.FC<props> = ({query 
+  , setQuery, onSearchChange = ()=> null
+
+}) => {
   return (
       <Paper
       component="form"
@@ -59,8 +62,9 @@ export const SearchHere : React.FC<props> = ({query , setQuery }) => {
             
             
             setQuery(e.target.value);
-            
+            onSearchChange(e) 
            }}
+          
           value = {query}
           placeholder="Search"
           

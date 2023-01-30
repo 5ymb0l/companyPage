@@ -30,14 +30,10 @@ import {
   Tooltip,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { PeoplesData } from "../Person.type";
-// import { FilterData } from "./FilterData";
-import {
-  ICheckedUser,
-  ICheckboxTypeList,
-  ICheckboxRegionList,
-} from "./DataFilter";
+
+
 import { checkboxType, checkboxRegion } from "./FilterData";
+
 type Props = {
   // onBackBtnClickHnd : () => void
   // onSubmitClickHnd: (data: PeoplesData) => void;
@@ -52,18 +48,25 @@ type Props = {
 
   // handleCheck?: (id: string, name: string) => void;
   // onSubmitClickHnd?: (data: CheckUser) => void;
-  selectAll: boolean;
-  handleCheckboxChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  checkboxValues: string[];
-  handleAddFilter: (event: FormEvent) => void;
+  // selectAll: boolean;
+  handleCheckboxChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    name: string,
+    id: string
+  ) => void;
+  checkboxValues?: string[];
+  handleAddFilter?: () => void;
+  handleSelectAllChange?: () => void;
+
 };
 export const AddFilter = ({
+  handleCheckboxChange = () => null,
+  checkboxValues = [],
+  handleSelectAllChange = () => null,
+  handleAddFilter = () => null,
 
-  selectAll,
-  handleCheckboxChange,
-  checkboxValues,
-  // checkedUserList
-}: // onSubmitClickHnd = () => null,
+}: // checkedUserList
+// onSubmitClickHnd = () => null,
 Props) => {
   const [open, setOpen] = useState(false);
   const [reset, setReset] = useState(null);
@@ -73,7 +76,8 @@ Props) => {
   const handleClose = () => {
     setOpen(false);
   };
- console.log(selectAll , 'filter')
+ 
+  //  console.log(selectAll , 'filter')
   return (
     <Box>
       <Box gap={2}>
@@ -153,13 +157,7 @@ Props) => {
               paddingTop: "8px",
             }}
           >
-            <Button
-              onClick={() => {
-                setReset;
-              }}
-            >
-              Reset All
-            </Button>
+            <Button>Reset All</Button>
           </Box>
           <Button
             sx={{
@@ -176,7 +174,7 @@ Props) => {
 
           {/* </Box> */}
         </DialogTitle>
-      
+
         <DialogContent dividers>
           <Box
             sx={{
@@ -197,7 +195,6 @@ Props) => {
               >
                 DISPLAY
               </FormLabel>
-         
 
               <FormGroup aria-label="position">
                 <FormControlLabel
@@ -210,7 +207,6 @@ Props) => {
                       sx={{
                         color: "#6682AA",
                       }}
-                      
                     />
                   }
                   label="Immediate"
@@ -220,26 +216,25 @@ Props) => {
                   sx={{
                     color: "#002F71",
                   }}
-                 value="selectAll"
                   control={
                     <Checkbox
                       sx={{
                         color: "#6682AA",
                       }}
-                      // checked={
-                      //   assignmentUserData?.length === checkedUserIds.length
-                      // }
+                      checked={
+                        checkboxValues?.length ===
+                        checkboxType.length + checkboxRegion.length
+                      }
                       // onChange={handleSelectAll}
-                      checked={selectAll}
-                      onChange={handleCheckboxChange}
-                      
-                      />
-                    }
-                    label="All"
+                      // checked={selectAll}
+                      onChange={handleSelectAllChange}
+                    />
+                  }
+                  label="All"
                 />
               </FormGroup>
-              
-               <FormLabel
+
+              <FormLabel
                 sx={{
                   color: "#6682AA",
                   fontFamily: "Poppins",
@@ -251,81 +246,80 @@ Props) => {
                 TYPE
               </FormLabel>
               <>
-              
-             
-                {checkboxType.map((checkbox, index) => (
-                
-                  <FormGroup >
-                    <FormControlLabel
+                {checkboxType.map(
+                  (checkbox, index) => (
+                    <FormGroup>
+                      <FormControlLabel
+                        key={index}
+                        sx={{
+                          display: "flex",
 
-                      key={index}
-                      sx={{
-                        display: "flex",
-                        
-                        color: "#002F71",
-                      }}
-                
-                      control={
-                        <Checkbox
-                          sx={{
-                            
-                            color: "#6682AA",
-                          }}
-                          value={checkbox._id}
-                          checked={checkboxValues.includes(checkbox._id)}
-                          onChange={handleCheckboxChange}
-                        />
-                      }
-                      label={checkbox.name}
-          
-                    />
-                     
-                  </FormGroup>
-                
+                          color: "#002F71",
+                        }}
+                        control={
+                          <Checkbox
+                            sx={{
+                              color: "#6682AA",
+                            }}
+                            checked={checkboxValues.includes(checkbox.name)}
+                            onChange={(
+                              event: React.ChangeEvent<HTMLInputElement>
+                            ) =>
+                              handleCheckboxChange(
+                                event,
+                                checkbox.name,
+                                checkbox._id
+                              )
+                            }
+                          />
+                        }
+                        label={checkbox.name}
+                      />
+                    </FormGroup>
+                  ),
 
-                ), 
-               
-                console.log(checkboxType)
-                )
-                }
-               </>
-                <FormLabel
-                  sx={{
-                    color: "#6682AA",
-                    fontFamily: "Poppins",
-                    fontSize: "15px",
-                    marginTop: "10px",
-                  }}
-                  component="legend"
-                >
-                  REGION
-                </FormLabel>
-                {checkboxRegion.map((checkbox, index) => (
-                  <FormGroup aria-label="position" row>
-                    <FormControlLabel
-                      key={index}
-
-                      sx={{
-                        color: "#002F71",
-                      }}
-                   
-                      control={
-                        <Checkbox
-                          sx={{
-                            color: "#6682AA",
-                          }}
-                          value={checkbox._id}
-                          checked={checkboxValues.includes(checkbox._id)}
-                          onChange={handleCheckboxChange}
-                        />
-                      }
-                      label={checkbox.name}
-
-                     
-                    />
-                  </FormGroup>
-                ))}
-              
+                  console.log(checkboxType)
+                )}
+              </>
+              <FormLabel
+                sx={{
+                  color: "#6682AA",
+                  fontFamily: "Poppins",
+                  fontSize: "15px",
+                  marginTop: "10px",
+                }}
+                component="legend"
+              >
+                REGION
+              </FormLabel>
+              {checkboxRegion.map((checkbox, index) => (
+                <FormGroup aria-label="position" row>
+                  <FormControlLabel
+                    key={index}
+                    sx={{
+                      color: "#002F71",
+                    }}
+                    control={
+                      <Checkbox
+                        sx={{
+                          color: "#6682AA",
+                        }}
+                        checked={checkboxValues.includes(checkbox.name)}
+                        onChange={(
+                          event: React.ChangeEvent<HTMLInputElement>
+                        ) =>
+                          handleCheckboxChange(
+                            event,
+                            checkbox.name,
+                            checkbox._id
+                          )
+                        }
+                      />
+                    }
+                    label={checkbox.name}
+                  />
+                </FormGroup>
+              ))}
             </FormControl>
           </Box>
         </DialogContent>
@@ -344,7 +338,10 @@ Props) => {
             Cancel
           </Button>
           <Button
-            onClick={handleClose}
+            onClick={() => {
+              handleAddFilter();
+              setOpen(false);
+            }}
             sx={{
               textTransform: "none",
             }}

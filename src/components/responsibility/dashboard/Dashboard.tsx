@@ -81,7 +81,7 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const handleOnClick = (e : React.FormEvent) => {
+  const handleOnClick = () => {
     setUserList(rows.filter(row => row.name.toLowerCase().includes(query.toLowerCase())))
   }
 

@@ -1,10 +1,11 @@
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 interface props {
-  handleOnClick : (e: React.FormEvent) => void;
+  handleOnClick ?: () => void;
   query? : string
 }
-export const  SearchButton : React.FC<props> =({handleOnClick , query}) => {
+export const  SearchButton : React.FC<props> =({handleOnClick = ()=> null
+  , query}) => {
   return (
     <Button disabled = {!query} onClick = {handleOnClick} variant="contained" sx = {{
    

@@ -71,8 +71,33 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 
+const defaultUser = [
+  { id: "1", firstName: "Jhon", lastName: "Smith" , phone: "9972998045", email: "jhonsmith@gmail.com", country: "India" , types: "Taluka", sanghat: "Surat", role:"SA"  },
+  { id: "2", firstName: "Myra", lastName: "Vedha" , phone: "9972228045", email: "myravedha@gmail.com", country: "India" , types: "Country", sanghat: "Valsad", role:"SA"  },
+  { id: "3", firstName: "Tyson", lastName: "Jha" , phone: "3972998045", email: "tysonjha@gmail.com", country: "Usa" , types: "District", sanghat: "Vadodara", role:"SA"  },
+  { id: "4", firstName: "Akif", lastName: "Saif" , phone: "9922998045", email: "akifsaif@gmail.com", country: "Pak" , types: "State", sanghat: "Ahmedabad", role:"SA"  },
+  { id: "5", firstName: "Lia", lastName: "Taures" , phone: "94972998045", email: "liataures@gmail.com", country: "India" , types: "Sanghat", sanghat: "Vadodara", role:"SA"  },
+  { id: "6", firstName: "Samirya", lastName: "Trivedi" , phone: "7972998045", email: "samiryatrivdei@gmail.com", country: "Usa" , types: "Sanghat", sanghat: "Valsad", role:"SA"  },
+  { id: "7", firstName: "Manan", lastName: "Vakaria" , phone: "9972998045", email: "mananvakaria@gmail.com", country: "India" , types: "Taluka", sanghat: "Ahmedabad", role:"SA"  },
+  { id: "8", firstName: "Akshat", lastName: "Shetty" , phone: "9972998045", email: "akshatshetty@gmail.com", country: "Pak" , types: "District", sanghat: "Ahmedabad", role:"SA"  },
+  { id: "9", firstName: "Orif", lastName: "Liam" , phone: "9972908045", email: "orifliam@gmail.com", country: "Usa" , types: "State", sanghat: "Valsad", role:"SA"  },
+  { id: "10", firstName: "Nyka", lastName: "Baura" , phone: "9974998045", email: "nykabaura@gmail.com", country: "India" , types: "Country", sanghat: "Vadodara", role:"SA"  },
+  { id: "11", firstName: "Sarif", lastName: "Khan" , phone: "9972598045", email: "sarifkhan@gmail.com", country: "Pak" , types: "District", sanghat: "Surat", role:"SA"  },
+  { id: "12", firstName: "Kiaan", lastName: "Chaucharia" , phone: "8972998045", email: "kianCha@gmail.com", country: "India" , types: "Sanghat", sanghat: "Vadodara", role:"SA"  },
+  { id: "13", firstName: "Shaurya", lastName: "Tapi" , phone: "9972798045", email: "Shauryatapi@gmail.com", country: "India" , types: "Country", sanghat: "Surat", role:"SA"  },
+  { id: "14", firstName: "Nyle", lastName: "Latur" , phone: "8772998045", email: "nylelatur@gmail.com", country: "Pak" , types: "Taluka", sanghat: "Ahmedabad", role:"SA"  },
+  { id: "15", firstName: "Figma", lastName: "Manus" , phone: "9972996045", email: "fimamanus@gmail.com", country: "Usa" , types: "State", sanghat: "Surat", role:"SA"  },
+  { id: "16", firstName: "Shlok", lastName: "Jayan" , phone: "9972998055", email: "shlokjayan@gmail.com", country: "Pak" , types: "Sanghat", sanghat: "Vadodara", role:"SA"  },
+  { id: "17", firstName: "Moksh", lastName: "Poojari" , phone: "9955998045", email: "mokshpoojari@gmail.com", country: "Usa" , types: "District", sanghat: "Surat", role:"SA"  },
+  { id: "18", firstName: "Agastya", lastName: "Jain" , phone: "8872998045", email: "agastyajain@gmail.com", country: "Pak" , types: "State", sanghat: "Valsad", role:"SA"  },
+  { id: "19", firstName: "Nayan", lastName: "Mital" , phone: "9992998045", email: "nayanmittal@gmail.com", country: "Usa" , types: "Taluka", sanghat: "Surat", role:"SA"  },
+  { id: "20", firstName: "Vismay", lastName: "Thakur" , phone: "9562998045", email: "visamytkhaur@gmail.com", country: "India" , types: "Country", sanghat: "Valsad", role:"SA"  },
+
+];
 export default function DashboardTwo() {
-  const [userList, setUserList] = useState<PeoplesData[]>([]);
+
+  const [userList, setUserList] = useState<PeoplesData[]>(defaultUser);
+  const [fUserList, setFUserList] = useState<PeoplesData[]>([]);
   const [boxData, setBoxData] = useState<boxData[]>([]);
 
   const [query, setQuery] = useState<string>("");
@@ -85,25 +110,24 @@ export default function DashboardTwo() {
  const [checkedData, setCheckedData] = useState<ICheckedUser[]>();
 const [checkboxValues, setCheckboxValues] = useState<string[]>([]);
 const [selectAll, setSelectAll] = useState(false);
-console.log(selectAll , 'dashboard')
-const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const { value } = event.target;
-  if (value === 'selectAll') {
-      setSelectAll(!selectAll);
-      setCheckboxValues(selectAll ? [] :[...checkboxType.map(checkbox => checkbox._id),...checkboxRegion.map(checkbox => checkbox._id)]);
-  } else {
-      if (checkboxValues.includes(value)) {
-          setCheckboxValues(checkboxValues.filter(val => val !== value));
-      } else {
-          setCheckboxValues([...checkboxValues, value]);
-      }
-      if(checkboxValues.length === checkboxType.length+checkboxRegion.length)
-          setSelectAll(true); 
-      else
-          setSelectAll(false);
+const [filteredData, setFilteredData] = useState<PeoplesData[]>([]);
+
+const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement> , name:string , id: string) => {
+  const { value,checked } = event.target;
+
+  if(!checkboxValues.includes(name)){
+    setCheckboxValues([...checkboxValues,name])
   }
-  // console.log(checkboxValues.length === checkboxType.length+checkboxRegion.length)
+  if(checkboxValues.includes(name)){
+    setCheckboxValues(checkboxValues.filter(val => val !== name));
+  }
+  
 };
+console.log(userList,"Here")
+useEffect(() => {
+  setFUserList(userList)
+}, [userList])
+
 useEffect(() => {
   if(checkboxValues.length === checkboxType.length+checkboxRegion.length)
   setSelectAll(true);
@@ -134,42 +158,81 @@ console.log(checkboxValues.length === checkboxType.length+checkboxRegion.length)
     setOpenPopup(false);
   
   };
-  const handleOnClick = (e: React.FormEvent) => {
+  const handleSearchBar = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+     let target = e.target
+    
+     if(target.value === "") {
+      setFUserList(userList)
+      }
+      else {
+        
+        setFUserList(
+          userList.filter((row) =>
+            row.firstName.toLowerCase().includes(target.value.toLowerCase()) ||   row.lastName.toLowerCase().includes(target.value.toLowerCase()) ||  row.email.toLowerCase().includes(target.value.toLowerCase()) || row.country.toLowerCase().includes(target.value.toLowerCase()) ||  row.phone.toLowerCase().includes(target.value.toLowerCase()) ||  row.types.toLowerCase().includes(target.value.toLowerCase()) ||  row?.state?.toLowerCase().includes(target.value.toLowerCase()) ||  row.role.toLowerCase().includes(target.value.toLowerCase()) ||  row.sanghat.toLowerCase().includes(target.value.toLowerCase())
+            )
+            );
+      }
+  }
+
+
+
+  const handleSearchClick = () => {
   
-    setUserList(
-      userList.filter((row) =>
-        row.firstName.toLowerCase().includes(query.toLowerCase()) ||   row.lastName.toLowerCase().includes(query.toLowerCase()) ||  row.email.toLowerCase().includes(query.toLowerCase()) || row.country.toLowerCase().includes(query.toLowerCase()) ||  row.phone.toLowerCase().includes(query.toLowerCase()) ||  row.types.toLowerCase().includes(query.toLowerCase()) ||  row.state.toLowerCase().includes(query.toLowerCase()) ||  row.role.toLowerCase().includes(query.toLowerCase()) ||  row.sanghat.toLowerCase().includes(query.toLowerCase())
-        )
-        );
-  }
+   
+    if(query === "") {
+     setFUserList(userList)
+     }
+     else {
+       
+       setFUserList(
+         userList.filter((row) =>
+           row.firstName.toLowerCase().includes(query.toLowerCase()) ||   row.lastName.toLowerCase().includes(query.toLowerCase()) ||  row.email.toLowerCase().includes(query.toLowerCase()) || row.country.toLowerCase().includes(query.toLowerCase()) ||  row.phone.toLowerCase().includes(query.toLowerCase()) ||  row.types.toLowerCase().includes(query.toLowerCase()) ||  row?.state?.toLowerCase().includes(query.toLowerCase()) ||  row.role.toLowerCase().includes(query.toLowerCase()) ||  row.sanghat.toLowerCase().includes(query.toLowerCase())
+           )
+           );
+     }
+ }
+  const handleFilter = () => {
+    
+    if(checkboxValues.length > 0){
+      
+      setFUserList(userList.filter((item: PeoplesData) => checkboxValues.includes(item.types) || checkboxValues.includes(item.sanghat)));
+    }else{
+      setFUserList(userList)
+    }
+    
+    // setFilteredData(filteredData);
+   
+}
+
+  // const handleAddFilter = (e:React.FormEvent) => {
+  //   setUserList(
+  //     userList.filter((row) => 
+  //     row.types ===  
+         
+  //     )
 
 
-  const handleAddFilter = (e:React.FormEvent) => {
-    setBoxData(
-      boxData.filter((row) => 
-      row.country.toLowerCase().includes(query.toLowerCase()) || 
-       row.district.toLowerCase().includes(query.toLowerCase()) ||  
-       row.state.toLowerCase().includes(query.toLowerCase()) ||
-       row.taluka.toLowerCase().includes(query.toLowerCase()) ||
-       row.sanghat.toLowerCase().includes(query.toLowerCase()) ||
-       row.vadodara.toLowerCase().includes(query.toLowerCase())||
-       row.valsad.toLowerCase().includes(query.toLowerCase()) ||
-       row.surat.toLowerCase().includes(query.toLowerCase())  ||
-       row.ahmedabad.toLowerCase().includes(query.toLowerCase())        
-      )
-
-
-    )
-  }
+  //   )
+  // }
   // row.firstName.toLowerCase() === query.toLowerCase()
   
-  useEffect(() => {
-    const listInString = window.localStorage.getItem("EmployeeList");
-    if (listInString) {
-      setUserList(JSON.parse(listInString));
-    }
-  }, []);
+  // useEffect(() => {
+  //   const listInString = window.localStorage.getItem("EmployeeList");
+  //   if (listInString) {
+  //     setUserList(JSON.parse(listInString));
+  //   }
+  // }, []);
  
+
+ const handleSelectAllChange = () => { 
+    if (checkboxValues.length === 0 ) {
+      setCheckboxValues([checkboxType.map((it)=>it.name),checkboxRegion.map((ite)=> ite.name)].flat(1))
+      return 
+}
+setCheckboxValues([])
+  }
+
+
   const addEmployee = (data: PeoplesData) => {
     setUserList([...userList, data]);
     handleClose()
@@ -335,8 +398,8 @@ console.log(checkboxValues.length === checkboxType.length+checkboxRegion.length)
                 justifyContent: "space-between",
               }}
             >
-              <SearchHere query={query} setQuery={setQuery} />
-              <SearchButton query={query} handleOnClick={handleOnClick} />
+              <SearchHere query={query} setQuery={setQuery} onSearchChange={handleSearchBar}/>
+              <SearchButton query={query} handleOnClick={handleSearchClick} />
             </Box>
 
             <Box sx = {{
@@ -355,10 +418,11 @@ console.log(checkboxValues.length === checkboxType.length+checkboxRegion.length)
                 }
               >
                 <AddFilter 
-                handleAddFilter={handleAddFilter}
-                selectAll = {selectAll}
-                handleCheckboxChange = {handleCheckboxChange}
+                handleAddFilter={handleFilter}
+                
+                handleCheckboxChange = {(event,name,id) => {handleCheckboxChange(event,name,id)}  }
                 checkboxValues = {checkboxValues}
+                handleSelectAllChange={handleSelectAllChange}
                 // checkedUserList={checkedData}
                 />
               </Box>
@@ -367,10 +431,10 @@ console.log(checkboxValues.length === checkboxType.length+checkboxRegion.length)
             <BasicTableTwo
               onEdit={editEmployeeData}
               onDeleteClickHnd={deleteEmployee}
-              userList={userList}
+              userList={fUserList.reverse()}
             />
             <Box>
-              {userList && userList?.length === 0 && (
+              {fUserList && fUserList?.length === 0 && (
                 <Box
                   sx={{
                     width: 500,

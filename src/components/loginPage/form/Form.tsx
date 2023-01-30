@@ -8,11 +8,8 @@ import { OtpField } from "../../otpPage/otpForm/OtpField";
 import { LoginHeader } from "../loginHead/Header";
 import HelperText from "../helperText/HelperText";
 import { NextButton } from "../buttonNext/Button";
-import { Link } from "react-router-dom";
-
-// import {
-//   Link as OtpField
-// } from "react-router-dom";
+import { Box } from "@mui/material";
+import Plant from "../../../assests/images/plant.png"
 
 interface Istate {
   isLogin: boolean;
@@ -36,19 +33,20 @@ export const Form = () => {
     SetState({ isLogin: true });
   };
   return (
-    <div
-      className="card"
-      style={{
-        flex: 1,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#E5E5E5",
-      }}
-    >
-      <div
+  
+<Box
+ sx={{
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+   backgroundColor: "#E5E5E5",
+
+  }}>
+    <Box className="card" >
+      <Box
         className="whiteColor"
-        style={{
+       sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -56,13 +54,13 @@ export const Form = () => {
 
           height: "500px",
           backgroundColor: "white",
-          boxShadow: "0px 17px 55px rgba(0, 46, 113, 0.25)",
+          boxShadow: "#E6F2FE",
           borderRadius: "10px",
         }}
       >
-        <div
+        <Box
           className="Login"
-          style={{
+         sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -70,17 +68,17 @@ export const Form = () => {
           }}
         >
          <LoginHeader/>
-          <div
+          <Box
             className="main"
-            style={{
+           sx={{
               // height: "290px",
             }}
           >
             {state.isLogin && state.isLogin ? (
               <OtpField otp={otp} setOtp={setOtp} />
             ) : (
-              <div className="inputfield"
-                style={{
+              <Box className="inputfield"
+               sx={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -90,16 +88,16 @@ export const Form = () => {
               >
                 <InputField />
                 
-                <div  style={{
+                <Box  sx={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center"}} > 
 
                   <HelperText/>
-                </div>
-                <div
+                </Box>
+                <Box
                   className="input"
-                  style={{
+                 sx={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -108,9 +106,9 @@ export const Form = () => {
                   }}
                 >
                   
-                  <div
+                  <Box
                     className="countryselect"
-                    style={{
+                   sx={{
                       width: "100%",
                     }}
                   >
@@ -119,24 +117,24 @@ export const Form = () => {
                       setValue={setValue}
                       setPhone={setPhone}
                     />
-                  </div>
-                  <div
-                    style={{
+                  </Box>
+                  <Box
+                   sx={{
                       width: "100%",
                     }}
                   >
                     <TelInput phone={phone} setPhone={setPhone} />
-                     <div style={{
+                     <Box sx={{
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center"
                      }}>
-                     {/* <div>
+                     {/* <Box>
                       <Button
                         onClick={handleClick}
                         sx={{
                           fontFamily: "Poppins",
-                          fontStyle: "normal",
+                          fon sx: "normal",
                           fontWeight: 500,
                           fontSize: "14px",
                        
@@ -148,21 +146,44 @@ export const Form = () => {
                       >
                         Next
                       </Button>
-                    </div> */}
+                    </Box> */}
 
                     <NextButton  onClick={handleClick}/>
 
-                     </div>
+                     </Box>
                     
-                  </div>
-                </div>
-              </div>
+                  </Box>
+                </Box>
+              </Box>
             )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+    <Box sx= {{
+      display: "flex"
+    }}>
+  <img style ={{
+        
+        width:10,
+        height:20,
+      }}src={Plant} alt=""></img>
+   </Box>
+      </Box>
+
+);
+}
 
 export default Form;
+
+{/* <Box style ={{
+  display:"flex",
+     alignItems:"center",
+     justifyContent: "center", 
+     backgroundColor: "#E5E5E5",
+}} > 
+<img src={Plant} alt=""></img>
+Footer
+
+
+</Box> */}

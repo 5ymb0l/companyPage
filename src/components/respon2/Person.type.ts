@@ -4,9 +4,9 @@ export interface PeoplesData {
     lastName : string ;
     phone : string;
     email: string;
-country: string;
+    country: string;
      types: string;
-    state : string ;
+    state? : string ;
     sanghat : string;
     role: string, 
      
@@ -26,19 +26,19 @@ country: string;
 
     }
 
-//    export const dummyPersonList : PeoplesData[] = [{
-//     id : new Date().toJSON().toString(),
-//     firstName : "Dummy1",
-//     lastName : "Dummy 2" ,
-//     phone : "+91 9977277373",
-//     email : "Dummy22@gmail.com",
-//     country: "India",
-//     types : 'Taluka',
-//     state : "Mh",
-//     sanghat : "Surat",
-//     role: "SA"
+   export const dummyPersonList : PeoplesData[] = [{
+    id : new Date().toJSON().toString(),
+    firstName : "Dummy1",
+    lastName : "Dummy 2" ,
+    phone : "+91 9977277373",
+    email : "Dummy22@gmail.com",
+    country: "India",
+    types : 'Taluka',
+    state : "Mh",
+    sanghat : "Surat",
+    role: "SA"
    
-//    }]
+   }]
 
 
    export enum PageEnum {
