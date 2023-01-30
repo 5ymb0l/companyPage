@@ -8,9 +8,10 @@ import { OtpField } from "../../otpPage/otpForm/OtpField";
 import { LoginHeader } from "../loginHead/Header";
 import HelperText from "../helperText/HelperText";
 import { NextButton } from "../buttonNext/Button";
-import { Box } from "@mui/material";
-import Plant from "../../../assests/images/plant.png"
 
+import { Box } from "@mui/material";
+import Plant from "../../../assests/images/plant.png";
+import PlantTwo from "../../../assests/images/plant2.png";
 interface Istate {
   isLogin: boolean;
 }
@@ -33,103 +34,132 @@ export const Form = () => {
     SetState({ isLogin: true });
   };
   return (
-  
-<Box
- sx={{
-    flex: 1,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-   backgroundColor: "#E5E5E5",
-
-  }}>
-    <Box className="card" >
+    <Box
+      sx={{
+        flex: 1,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "aliceblue",
+      }}
+    >
       <Box
-        className="whiteColor"
-       sx={{
+        className="Main"
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          backgroundColor: "aliceblue",
+
+
+          marginTop: "584px",
+        }}
+      >
+        <img style={{}} src={Plant} alt=""></img>
+      </Box>
+      <Box
+        sx={{
+          flex: 1,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          minWidth: "422px",
+          backgroundColor: "aliceblue",
 
-          height: "500px",
-          backgroundColor: "white",
-          boxShadow: "#E6F2FE",
-          borderRadius: "10px",
         }}
+        className="card"
       >
         <Box
-          className="Login"
-         sx={{
+          className="whiteColor"
+          sx={{
             display: "flex",
-            alignItems: "center",
             justifyContent: "center",
-            flexDirection: "column",
+            alignItems: "center",
+            minWidth: "422px",
+
+            height: "500px",
+            backgroundColor: "white",
+            boxShadow: "#E6F2FE",
+            borderRadius: "10px",
           }}
         >
-         <LoginHeader/>
           <Box
-            className="main"
-           sx={{
-              // height: "290px",
+            className="Login"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
             }}
           >
-            {state.isLogin && state.isLogin ? (
-              <OtpField otp={otp} setOtp={setOtp} />
-            ) : (
-              <Box className="inputfield"
-               sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                  marginBottom: "50px",
-                }}
-              >
-                <InputField />
-                
-                <Box  sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center"}} > 
-
-                  <HelperText/>
-                </Box>
+            <LoginHeader />
+            <Box
+              className="main"
+              sx={
+                {
+                  // height: "290px",
+                }
+              }
+            >
+              {state.isLogin && state.isLogin ? (
+                <OtpField otp={otp} setOtp={setOtp} />
+              ) : (
                 <Box
-                  className="input"
-                 sx={{
+                  className="inputfield"
+                  sx={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     flexDirection: "column",
-                    gap: "20px"
+                    marginBottom: "50px",
                   }}
                 >
-                  
+                  <InputField />
+
                   <Box
-                    className="countryselect"
-                   sx={{
-                      width: "100%",
-                    }}
-                  >
-                    <CountrySelect
-                      value={value}
-                      setValue={setValue}
-                      setPhone={setPhone}
-                    />
-                  </Box>
-                  <Box
-                   sx={{
-                      width: "100%",
-                    }}
-                  >
-                    <TelInput phone={phone} setPhone={setPhone} />
-                     <Box sx={{
+                    sx={{
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "center"
-                     }}>
-                     {/* <Box>
+                      justifyContent: "center",
+                    }}
+                  >
+                    <HelperText />
+                  </Box>
+                  <Box
+                    className="input"
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexDirection: "column",
+                      gap: "20px",
+                    }}
+                  >
+                    <Box
+                      className="countryselect"
+                      sx={{
+                        width: "100%",
+                      }}
+                    >
+                      <CountrySelect
+                        value={value}
+                        setValue={setValue}
+                        setPhone={setPhone}
+                      />
+                    </Box>
+                    <Box
+                      sx={{
+                        width: "100%",
+                      }}
+                    >
+                      <TelInput phone={phone} setPhone={setPhone} />
+                      <Box
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {/* <Box>
                       <Button
                         onClick={handleClick}
                         sx={{
@@ -148,35 +178,40 @@ export const Form = () => {
                       </Button>
                     </Box> */}
 
-                    <NextButton  onClick={handleClick}/>
-
-                     </Box>
-                    
+                        <NextButton onClick={handleClick} />
+                      </Box>
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
-            )}
+              )}
+            </Box>
           </Box>
         </Box>
       </Box>
-    </Box>
-    <Box sx= {{
-      display: "flex"
-    }}>
-  <img style ={{
-        
-        width:10,
-        height:20,
-      }}src={Plant} alt=""></img>
-   </Box>
-      </Box>
+      <Box
+        className="PlantTwo"
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "center",
+          backgroundColor: "aliceblue",
 
-);
-}
+        
+        }}
+      >
+        <img style={{
+          height: "68vh",
+          marginBottom: "280px"
+        }} src={PlantTwo} alt=""></img>
+      </Box>
+    </Box>
+  );
+};
 
 export default Form;
 
-{/* <Box style ={{
+{
+  /* <Box style ={{
   display:"flex",
      alignItems:"center",
      justifyContent: "center", 
@@ -186,4 +221,5 @@ export default Form;
 Footer
 
 
-</Box> */}
+</Box> */
+}
