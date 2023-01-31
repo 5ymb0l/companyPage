@@ -49,10 +49,7 @@ const[ userList , setUserList] = React.useState <{name: string, types: string, r
       />
      
       <Button disabled = {!query} onClick = {handleOnClick}>Search</Button>
-      {/* <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-        <SearchIcon />
-      </IconButton> */}
-     
+ x
    <div>
     {userList && userList?.length >0 && userList?.map(rows => {
       return(
@@ -80,43 +77,5 @@ const[ userList , setUserList] = React.useState <{name: string, types: string, r
 
     </Paper>
   );
-}
-
-// import {useState  , useEffect} from 'react'
-// import SearchIcon from "@mui/icons-material/Search"
-//  import {InputBase , 
-//     Divider ,
-//      IconButton ,
-//       Button ,
-//       Paper} from "@mui/material"
-//       export default function CustomizedInputBase ({onInputUpdate} : {
-//         onInputUpdate : (text : string) => void
-//       }) {
-//  const [ searchValue , setSearchValue] = useState <string> ("")
-// useEffect(() => {
-//   onInputUpdate (searchValue)
-// }, [searchValue])
-
-// return (
-// <Paper
-// component= "form"
-// sx ={{ p : "2px 0px" ,
-//   display : "flex",
-//   alignItems : "center",
-//   width : 780
-// }}
-// >
-//     <InputBase
-//     sx={{ ml : 1 , flex : 1}}
-// placeholder = "Search"
-// inputProps={{"aria-label " : "search"}}
-// onChange = {(e) => setSearchValue(e.target.value)}
-// />
-// <Button disabled> Clear</Button>
-// <IconButton type = "submit" sx={{ p : "10px" }} aria-label = "search">
-//     <SearchIcon />
-// </IconButton>
-// </Paper>
-// )}
-
+        }
 

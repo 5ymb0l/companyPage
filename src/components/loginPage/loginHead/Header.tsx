@@ -11,14 +11,6 @@ export const LoginHeader = () => {
               height: "10vh",
               marginBottom: "10px",
               fontWeight: 600,
-
-              //        width: "500px",
-              // height: "60px",
-              // left: "809px",
-              // top: "300px",
-              // fontStyle: "normal",
-
-              // lineHeight: "60px",
             }}
           >
             Login

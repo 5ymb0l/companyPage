@@ -9,7 +9,7 @@ import { LoginHeader } from "../loginHead/Header";
 import HelperText from "../helperText/HelperText";
 import { NextButton } from "../buttonNext/Button";
 
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import Plant from "../../../assests/images/plant.png";
 import PlantTwo from "../../../assests/images/plant2.png";
 interface Istate {
@@ -22,7 +22,7 @@ export const Form = () => {
   const [state, SetState] = useState<Istate>({
     isLogin: false,
   });
-  // const matches = useMediaQuery('(min-width:600px)');
+ 
   console.log(phone);
   const handleClick = (): void => {
     if (otp === "123456") {
@@ -68,7 +68,7 @@ export const Form = () => {
         }}
         className="card"
       >
-        <Box
+        <Paper elevation={3}
           className="whiteColor"
           sx={{
             display: "flex",
@@ -138,6 +138,7 @@ export const Form = () => {
                       className="countryselect"
                       sx={{
                         width: "100%",
+                      
                       }}
                     >
                       <CountrySelect
@@ -159,25 +160,7 @@ export const Form = () => {
                           justifyContent: "center",
                         }}
                       >
-                        {/* <Box>
-                      <Button
-                        onClick={handleClick}
-                        sx={{
-                          fontFamily: "Poppins",
-                          fon sx: "normal",
-                          fontWeight: 500,
-                          fontSize: "14px",
-                       
-                          lineHeight: "18px",
-                          color: "#002F71",
-                          marginTop : "15px"
-                        }}
-                        variant="outlined"
-                      >
-                        Next
-                      </Button>
-                    </Box> */}
-
+                    
                         <NextButton onClick={handleClick} />
                       </Box>
                     </Box>
@@ -186,7 +169,7 @@ export const Form = () => {
               )}
             </Box>
           </Box>
-        </Box>
+        </Paper>
       </Box>
       <Box
         className="PlantTwo"
@@ -210,16 +193,3 @@ export const Form = () => {
 
 export default Form;
 
-{
-  /* <Box style ={{
-  display:"flex",
-     alignItems:"center",
-     justifyContent: "center", 
-     backgroundColor: "#E5E5E5",
-}} > 
-<img src={Plant} alt=""></img>
-Footer
-
-
-</Box> */
-}

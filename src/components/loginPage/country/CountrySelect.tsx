@@ -20,6 +20,8 @@ const CountrySelect: React.FC<{
         alignItems: "center",
         justifyContent: "center",       
        height: "6vh",
+       
+    
       }}
       id="country-select-demo"
       disableClearable
@@ -33,7 +35,7 @@ const CountrySelect: React.FC<{
       autoHighlight
       getOptionLabel={(option: CountryType): string => option.label}
       renderOption={(props, option: CountryType) => (
-        <Box
+        <Box className="focus"
           component="li"
           sx={{ "& > img": { mr: 2, flexShrink: 0 } ,
         }}
@@ -50,7 +52,7 @@ const CountrySelect: React.FC<{
         </Box>
       )}
       renderInput={(params) => (
-        <TextField
+        <TextField sx={{}}
             className="inputRounded"
             {...params}
             placeholder="Choose a country"

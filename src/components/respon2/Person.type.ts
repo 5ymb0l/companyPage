@@ -8,7 +8,7 @@ export interface PeoplesData {
      types: string;
     state? : string ;
     sanghat : string;
-    role: string, 
+    // role: string, 
      
     }
     export interface boxData {
@@ -36,7 +36,7 @@ export interface PeoplesData {
     types : 'Taluka',
     state : "Mh",
     sanghat : "Surat",
-    role: "SA"
+    // role: "SA"
    
    }]
 

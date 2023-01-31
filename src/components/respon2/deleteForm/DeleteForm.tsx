@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Add';
 export const DeleteForm = () => {
@@ -6,8 +5,7 @@ export const DeleteForm = () => {
     <Button
     variant="outlined"
     startIcon={<DeleteIcon />}
-    
-    // onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
+   
 > Delete </Button>
   )
 }

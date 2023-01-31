@@ -1,54 +1,23 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import {
-  Grid,
   Checkbox,
   FormGroup,
   FormLabel,
   FormControlLabel,
   Box,
-  TextField,
-  Stack,
-  InputLabel,
-  MenuItem,
   FormControl,
-  Select,
-  SelectChangeEvent,
-  Autocomplete,
-  Card,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
-  useMediaQuery,
-  Divider,
-  Paper,
-  Typography,
-  Tooltip,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-
 
 import { checkboxType, checkboxRegion } from "./FilterData";
 
 type Props = {
-  // onBackBtnClickHnd : () => void
-  // onSubmitClickHnd: (data: PeoplesData) => void;
-  // userList?: PeoplesData[];
-  // expand?: false;
-  // checkedUserList?: ICheckedUser[];
-  // onChangeChecked?: (checkedData: string[]) => void;
-  // isCheckBoxList?: boolean;
-  // handleSelectAll?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  // checkboxTypeUserData?: ICheckboxTypeList[];
-  // checkboxRegionUserData?: ICheckboxRegionList[];
-
-  // handleCheck?: (id: string, name: string) => void;
-  // onSubmitClickHnd?: (data: CheckUser) => void;
-  // selectAll: boolean;
   handleCheckboxChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
     name: string,
@@ -57,17 +26,13 @@ type Props = {
   checkboxValues?: string[];
   handleAddFilter?: () => void;
   handleSelectAllChange?: () => void;
-
 };
 export const AddFilter = ({
   handleCheckboxChange = () => null,
   checkboxValues = [],
   handleSelectAllChange = () => null,
   handleAddFilter = () => null,
-
-}: // checkedUserList
-// onSubmitClickHnd = () => null,
-Props) => {
+}: Props) => {
   const [open, setOpen] = useState(false);
   const [reset, setReset] = useState(null);
   const handleClickOpen = () => {
@@ -76,22 +41,18 @@ Props) => {
   const handleClose = () => {
     setOpen(false);
   };
- 
-  //  console.log(selectAll , 'filter')
+
   return (
     <Box>
       <Box gap={2}>
         <Button
           sx={{
-            // backgroundColor: " #002F71",
-            // borderRadius: "50px",
             color: " #002F71",
-            // fontFamily : 'Poppins',
+
             fontStyle: "normal",
             fontWeight: 600,
             fontSize: "14px",
             textTransform: "none",
-            // lineHeight: "15vh"
           }}
           startIcon={<AddIcon />}
           onClick={handleClickOpen}
@@ -103,12 +64,10 @@ Props) => {
             backgroundColor: "white",
             borderRadius: "50px",
             color: " #002F71",
-            // fontFamily : 'Poppins',
             fontStyle: "normal",
             fontWeight: 500,
             fontSize: "16px",
             textTransform: "none",
-            // lineHeight: "15vh"
           }}
         >
           {" "}
@@ -131,13 +90,6 @@ Props) => {
             display: "flex",
           }}
         >
-          {/* <Box sx ={{ 
-        display: "flex",
-        justifyContent : "center",
-        alignItems: "center"
-
-       }}> */}
-
           <Box
             sx={{
               fontSize: "20px",
@@ -171,8 +123,6 @@ Props) => {
               }}
             />
           </Button>
-
-          {/* </Box> */}
         </DialogTitle>
 
         <DialogContent dividers>
@@ -180,7 +130,6 @@ Props) => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              // alignItems: "center",
               justifyContent: "center",
             }}
           >
@@ -210,7 +159,6 @@ Props) => {
                     />
                   }
                   label="Immediate"
-                  // labelPlacement="top"
                 />
                 <FormControlLabel
                   sx={{
@@ -225,8 +173,6 @@ Props) => {
                         checkboxValues?.length ===
                         checkboxType.length + checkboxRegion.length
                       }
-                      // onChange={handleSelectAll}
-                      // checked={selectAll}
                       onChange={handleSelectAllChange}
                     />
                   }

@@ -18,13 +18,7 @@ export const TelInput  : React.FC <{
       }
     }
       sx = {{
-        //  ...TelInput, 
-        //  width: '300px',
-        //  borderRadius: '50px',
-        // backgroundColor: '#E6F2FE',
-        // boxSizing: 'border-box',
-        // height: "57px",
-
+      
        }}
      type= "number"
         InputProps={{

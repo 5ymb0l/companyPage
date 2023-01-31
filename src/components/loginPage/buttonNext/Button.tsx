@@ -4,8 +4,6 @@ import { Button } from '@mui/material'
 interface Props {
     onClick : React.MouseEventHandler<HTMLButtonElement> | undefined
 }
-// export const NextButton = (props: Props ) => {
-//     const {   onClick } = props;
 
 
 export const NextButton : React.FC<Props> = ({
@@ -33,5 +31,4 @@ export const NextButton : React.FC<Props> = ({
     )
 
 }
-// }
 

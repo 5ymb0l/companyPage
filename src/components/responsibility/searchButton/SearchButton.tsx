@@ -1,4 +1,3 @@
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 interface props {
   handleOnClick ?: () => void;
@@ -17,10 +16,6 @@ export const  SearchButton : React.FC<props> =({handleOnClick = ()=> null
       background: "#1073FF",
       borderRadius: "50px",
       color : ' #002F71',
-      // fontFamily : 'Poppins',
-      // fontStyle : 'normal',
-      // fontWeight: 500,
-      // fontSize: "60px", 
      }}> Search </Button>
 
   );
