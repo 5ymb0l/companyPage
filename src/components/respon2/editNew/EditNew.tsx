@@ -34,7 +34,6 @@ export const EditNewResponsibility = (props: Props) => {
   const [state, setState] = useState(props.data.state);
   const [sanghat, setSanghat] = useState(props.data.sanghat);
 
-  const [open, setOpen] = useState(false);
 
   const { onUpdateClickHnd, onBackBtnClickHnd, data } = props;
   const onFirstNameChangeHnd = (e: any) => {
@@ -61,10 +60,6 @@ export const EditNewResponsibility = (props: Props) => {
   };
   const onSanghatChange = (event: SelectChangeEvent) => {
     setSanghat(event.target.value);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   const onSubmitBtnClickHnd = (e: any) => {

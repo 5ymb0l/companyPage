@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, useMediaQuery, styled } from "@mui/material";
+import { Dialog, DialogContent, useMediaQuery} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 type Props = {
@@ -12,7 +12,7 @@ export default function EditPopup(props: Props) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const { children, title, openPopup, setOpenPopup } = props;
+  const { children,openPopup, setOpenPopup } = props;
 
   return (
     <Dialog

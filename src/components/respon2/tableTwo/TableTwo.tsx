@@ -67,27 +67,8 @@ export default function BasicTableTwo({
   onDeleteClickHnd,
   onEdit,
 }: Props) {
-  const [rowsPerPage, setRowsPerPage] = useState(24);
-  const count = Math.ceil(userList.length / rowsPerPage);
   const _DATA = usePagination({ data: userList });
-  const [openPopup, setOpenPopup] = useState(false);
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleClickOpenPopup = () => {
-    setOpenPopup(true);
-  };
-
-  const handleClosePopup = () => {
-    setOpenPopup(false);
-  };
   const handleChange = (event: React.ChangeEvent<unknown>, newPage: number) => {
     _DATA.jump(newPage);
   };
@@ -136,7 +117,7 @@ export default function BasicTableTwo({
                   align="center"
                   style={{
                     width: "20%",
-                    // paddingLeft: "8%",
+
                     fontFamily: "Poppins",
                     color: "#6682AA",
                     fontWeight: 500,

@@ -18,14 +18,14 @@ import ListItemText from "@mui/material/ListItemText";
 import { SearchHere } from "../../responsibility/searchHere/SearchBar";
 import { SearchButton } from "../../responsibility/searchButton/SearchButton";
 import BasicTableTwo from "../tableTwo/TableTwo";
-import { PeoplesData, PageEnum, boxData } from "../Person.type";
+import { PeoplesData } from "../Person.type";
 import { AddNewResponsibility } from "../addnewPopup/Popup";
 import BackTwoResp from "../backTwoResp/BackTwoResp";
 import { AddFilter } from "../filter/Filter";
-import { Avatar, Button } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { EditNewResponsibility } from "../editNew/EditNew";
 import EditPopup from "../editNew/Popup";
-import { ICheckedUser } from "../filter/DataFilter";
+
 import { checkboxType, checkboxRegion } from "../filter/FilterData";
 
 const drawerWidth = 240;
@@ -291,27 +291,19 @@ const defaultUser = [
 export default function DashboardTwo() {
   const [userList, setUserList] = useState<PeoplesData[]>(defaultUser);
   const [fUserList, setFUserList] = useState<PeoplesData[]>([]);
-  const [boxData, setBoxData] = useState<boxData[]>([]);
-
   const [query, setQuery] = useState<string>("");
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const [dataToEdit, setDataToEdit] = useState({} as PeoplesData);
-  const [recordForEdit, setRecordForEdit] = useState(null);
   const [addPopup, setAddPopup] = useState(false);
-  const [checkedData, setCheckedData] = useState<ICheckedUser[]>();
   const [checkboxValues, setCheckboxValues] = useState<string[]>([]);
-  const [selectAll, setSelectAll] = useState(false);
-  const [filteredData, setFilteredData] = useState<PeoplesData[]>([]);
 
   const handleCheckboxChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     name: string,
     id: string
   ) => {
-    const { value, checked } = event.target;
-
     if (!checkboxValues.includes(name)) {
       setCheckboxValues([...checkboxValues, name]);
     }
@@ -319,24 +311,11 @@ export default function DashboardTwo() {
       setCheckboxValues(checkboxValues.filter((val) => val !== name));
     }
   };
-  console.log(userList, "Here");
+
   useEffect(() => {
     setFUserList(userList);
   }, [userList]);
 
-  useEffect(() => {
-    if (checkboxValues.length === checkboxType.length + checkboxRegion.length)
-      setSelectAll(true);
-    else setSelectAll(false);
-
-    console.log(
-      checkboxValues.length === checkboxType.length + checkboxRegion.length
-    );
-  }, [checkboxValues]);
-
-  const handleAddPopup = () => {
-    setAddPopup(true);
-  };
   const handleAddClosePopup = () => {
     setAddPopup(false);
   };
@@ -346,11 +325,6 @@ export default function DashboardTwo() {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const handleClickOpenPopup = () => {
-    setOpenPopup(true);
-  };
-
   const handleClosePopup = () => {
     setOpenPopup(false);
   };
@@ -427,7 +401,6 @@ export default function DashboardTwo() {
   const addEmployee = (data: PeoplesData) => {
     setUserList([...userList, data]);
     handleClose();
-    setRecordForEdit(null);
   };
 
   const deleteEmployee = (data: PeoplesData) => {

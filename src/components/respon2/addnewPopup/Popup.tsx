@@ -36,17 +36,8 @@ export const AddNewResponsibility = (props: Props) => {
   const [country, setCountry] = useState("");
   const [state, setState] = useState("");
   const [sanghat, setSanghat] = useState("");
-  const [open, setOpen] = React.useState(false);
   const { onSubmitClickHnd, onBackBtnClickHnd, openPopup, setOpenPopup } =
     props;
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   const onFirstNameChangeHnd = (e: any) => {
     setFirstName(e.target.value);
   };
@@ -72,7 +63,7 @@ export const AddNewResponsibility = (props: Props) => {
   const onSanghatChange = (event: SelectChangeEvent) => {
     setSanghat(event.target.value);
   };
-  
+
   const resetForm = () => {
     setFirstName("");
     setLastName("");
@@ -82,8 +73,6 @@ export const AddNewResponsibility = (props: Props) => {
     setCountry("");
     setState("");
     setSanghat("");
-  
-   
   };
   const onSubmitBtnClickHnd = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -97,7 +86,6 @@ export const AddNewResponsibility = (props: Props) => {
       country: country,
       state: state,
       sanghat: sanghat,
-    
     };
     onSubmitClickHnd(data);
     onBackBtnClickHnd();

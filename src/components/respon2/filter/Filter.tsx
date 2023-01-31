@@ -34,7 +34,6 @@ export const AddFilter = ({
   handleAddFilter = () => null,
 }: Props) => {
   const [open, setOpen] = useState(false);
-  const [reset, setReset] = useState(null);
   const handleClickOpen = () => {
     setOpen(true);
   };
