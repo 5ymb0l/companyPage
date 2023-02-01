@@ -41,6 +41,7 @@ export const Form = () => {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "aliceblue",
+        overflow: "hidden"
       }}
     >
       <Box
@@ -50,9 +51,9 @@ export const Form = () => {
           justifyContent: "flex-start",
           alignItems: "center",
           backgroundColor: "aliceblue",
+          marginTop: "70vh",
+          
 
-
-          marginTop: "584px",
         }}
       >
         <img style={{}} src={Plant} alt=""></img>
@@ -184,7 +185,8 @@ export const Form = () => {
       >
         <img style={{
           height: "68vh",
-          marginBottom: "280px"
+          marginBottom: "32vh",
+         
         }} src={PlantTwo} alt=""></img>
       </Box>
     </Box>

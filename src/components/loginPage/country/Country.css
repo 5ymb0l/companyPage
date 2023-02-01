@@ -6,9 +6,9 @@
      width: 22%;  */
  /* }   */
     .inputRounded .MuiOutlinedInput-root {
-        /* border-radius: 30px; */
+    
         min-width: 85%;
-        height: 6vh;
+        height: 5vh;
         border-radius: 50px;
         box-sizing: border-box;
         background-color: #E6F2FE;

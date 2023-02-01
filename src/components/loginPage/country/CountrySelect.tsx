@@ -68,7 +68,7 @@ const CountrySelect: React.FC<{
                 }} disablePointerEvents position="start">
                   <img style={{
                      width: "52px",
-                     height: "51px",
+                     height: "48px",
                      overflow : "hidden",
                      borderRadius : "50%",
                     // height : "5vh",
