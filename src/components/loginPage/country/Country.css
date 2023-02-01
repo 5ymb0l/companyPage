@@ -12,14 +12,33 @@
         border-radius: 50px;
         box-sizing: border-box;
         background-color: #E6F2FE;
+        padding: 0px;
     }
-      .img .MuiInputAdornment-positionStart{
+      /* .img .MuiInputAdornment-positionStart{
         border-radius : 50%;
         height : 6vh;
         width : 70%;
-      }
- 
+       
+      } */
+      /* .MuiAutocomplete-inputRoot  {
+        padding : 0px
+       }
 
+    .MuiOutlinedInput-root {
+        padding: 0px;
+    }
+  
+    .MuiAutocomplete-root {
+        padding: 0px;
+
+    } */
+    .MuiAutocomplete-root .MuiOutlinedInput-root {
+       padding: 0px;
+    }
+
+    .MuiAutocomplete-hasPopupIcon.css-1qxegov-MuiAutocomplete-root .MuiOutlinedInput-root{
+        padding: 0px;
+    } 
 /* .countryName{
     box-sizing: border-box;
 display: inline-flex;

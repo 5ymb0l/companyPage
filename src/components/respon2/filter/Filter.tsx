@@ -13,9 +13,20 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Typography,
 } from "@mui/material";
 
-import { checkboxType, checkboxRegion } from "./FilterData";
+import {
+  checkboxCountry,
+  checkboxDistrict,
+  checkboxState,
+  checkboxTaluka,
+  checkboxSanghat,
+  checkboxVadodara,
+  checkboxValsad,
+  checkboxSurat,
+  checkboxAhmedabad,
+} from "./FilterData";
 
 type Props = {
   handleCheckboxChange?: (
@@ -26,12 +37,14 @@ type Props = {
   checkboxValues?: string[];
   handleAddFilter?: () => void;
   handleSelectAllChange?: () => void;
+  handleResetAllChange?: () => void;
 };
 export const AddFilter = ({
   handleCheckboxChange = () => null,
   checkboxValues = [],
   handleSelectAllChange = () => null,
   handleAddFilter = () => null,
+  handleResetAllChange = () => null,
 }: Props) => {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -43,7 +56,7 @@ export const AddFilter = ({
 
   return (
     <Box>
-      <Box gap={2}>
+      <Box>
         <Button
           sx={{
             color: " #002F71",
@@ -52,6 +65,7 @@ export const AddFilter = ({
             fontWeight: 600,
             fontSize: "14px",
             textTransform: "none",
+            marginRight: "20px",
           }}
           startIcon={<AddIcon />}
           onClick={handleClickOpen}
@@ -67,12 +81,14 @@ export const AddFilter = ({
             fontWeight: 500,
             fontSize: "16px",
             textTransform: "none",
+            width: "110px",
+            height: "10%",
           }}
         >
-          {" "}
-          Display : All{" "}
+          Display : All
         </Button>
       </Box>
+
       <Dialog
         sx={{
           "& .MuiPaper-root": {
@@ -91,7 +107,7 @@ export const AddFilter = ({
         >
           <Box
             sx={{
-              fontSize: "20px",
+              fontSize: "32px",
               color: "#002F71",
               fontWeight: 600,
               fontFamily: "Poppins",
@@ -108,7 +124,17 @@ export const AddFilter = ({
               paddingTop: "8px",
             }}
           >
-            <Button>Reset All</Button>
+            <Button
+              sx={{
+                textTransform: "none",
+                fontWeight: 500,
+                fontStyle: "normal",
+                fontSize: "18px",
+              }}
+              onClick={handleResetAllChange}
+            >
+              Reset All
+            </Button>
           </Box>
           <Button
             sx={{
@@ -170,7 +196,16 @@ export const AddFilter = ({
                       }}
                       checked={
                         checkboxValues?.length ===
-                        checkboxType.length + checkboxRegion.length
+                        checkboxCountry.length +
+                          checkboxDistrict.length +
+                          checkboxState.length +
+                          checkboxTaluka.length +
+                          checkboxSanghat.length +
+                          checkboxVadodara.length +
+                          checkboxValsad.length +
+                          checkboxSurat.length +
+                          checkboxAhmedabad.length
+                        // checkboxType.length + checkboxRegion.length
                       }
                       onChange={handleSelectAllChange}
                     />
@@ -190,8 +225,166 @@ export const AddFilter = ({
               >
                 TYPE
               </FormLabel>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <>
+                  {checkboxCountry.map(
+                    (checkbox, index) => (
+                      <FormGroup>
+                        <FormControlLabel
+                          key={index}
+                          sx={{
+                            display: "flex",
+
+                            color: "#002F71",
+                          }}
+                          control={
+                            <Checkbox
+                              sx={{
+                                color: "#6682AA",
+                              }}
+                              checked={checkboxValues.includes(checkbox.name)}
+                              onChange={(
+                                event: React.ChangeEvent<HTMLInputElement>
+                              ) =>
+                                handleCheckboxChange(
+                                  event,
+                                  checkbox.name,
+                                  checkbox._id
+                                )
+                              }
+                            />
+                          }
+                          label={checkbox.name}
+                        />
+                      </FormGroup>
+                    )
+
+                    // console.log(checkboxType)
+                  )}
+                </>
+                <>
+                  {checkboxDistrict.map(
+                    (checkbox, index) => (
+                      <FormGroup>
+                        <FormControlLabel
+                          key={index}
+                          sx={{
+                            display: "flex",
+                            color: "#002F71",
+                            marginRight: "55px",
+                          }}
+                          control={
+                            <Checkbox
+                              sx={{
+                                color: "#6682AA",
+                              }}
+                              checked={checkboxValues.includes(checkbox.name)}
+                              onChange={(
+                                event: React.ChangeEvent<HTMLInputElement>
+                              ) =>
+                                handleCheckboxChange(
+                                  event,
+                                  checkbox.name,
+                                  checkbox._id
+                                )
+                              }
+                            />
+                          }
+                          label={checkbox.name}
+                        />
+                      </FormGroup>
+                    )
+
+                    // console.log(checkboxType)
+                  )}
+                </>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <>
+                  {checkboxState.map(
+                    (checkbox, index) => (
+                      <FormGroup>
+                        <FormControlLabel
+                          key={index}
+                          sx={{
+                            display: "flex",
+
+                            color: "#002F71",
+                          }}
+                          control={
+                            <Checkbox
+                              sx={{
+                                color: "#6682AA",
+                              }}
+                              checked={checkboxValues.includes(checkbox.name)}
+                              onChange={(
+                                event: React.ChangeEvent<HTMLInputElement>
+                              ) =>
+                                handleCheckboxChange(
+                                  event,
+                                  checkbox.name,
+                                  checkbox._id
+                                )
+                              }
+                            />
+                          }
+                          label={checkbox.name}
+                        />
+                      </FormGroup>
+                    )
+
+                    // console.log(checkboxType)
+                  )}
+                </>
+                <>
+                  {checkboxTaluka.map((checkbox, index) => (
+                    <FormGroup>
+                      <FormControlLabel
+                        key={index}
+                        sx={{
+                          display: "flex",
+                          color: "#002F71",
+                          marginRight: "57px",
+                        }}
+                        control={
+                          <Checkbox
+                            sx={{
+                              color: "#6682AA",
+                            }}
+                            checked={checkboxValues.includes(checkbox.name)}
+                            onChange={(
+                              event: React.ChangeEvent<HTMLInputElement>
+                            ) =>
+                              handleCheckboxChange(
+                                event,
+                                checkbox.name,
+                                checkbox._id
+                              )
+                            }
+                          />
+                        }
+                        label={checkbox.name}
+                      />
+                    </FormGroup>
+                  ))}
+                </>
+              </Box>
               <>
-                {checkboxType.map(
+                {checkboxSanghat.map(
                   (checkbox, index) => (
                     <FormGroup>
                       <FormControlLabel
@@ -221,11 +414,12 @@ export const AddFilter = ({
                         label={checkbox.name}
                       />
                     </FormGroup>
-                  ),
+                  )
 
-                  console.log(checkboxType)
+                  // console.log(checkboxType)
                 )}
               </>
+
               <FormLabel
                 sx={{
                   color: "#6682AA",
@@ -237,34 +431,145 @@ export const AddFilter = ({
               >
                 REGION
               </FormLabel>
-              {checkboxRegion.map((checkbox, index) => (
-                <FormGroup aria-label="position" row>
-                  <FormControlLabel
-                    key={index}
-                    sx={{
-                      color: "#002F71",
-                    }}
-                    control={
-                      <Checkbox
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <>
+                  {checkboxVadodara.map((checkbox, index) => (
+                    <FormGroup aria-label="position" row>
+                      <FormControlLabel
+                        key={index}
                         sx={{
-                          color: "#6682AA",
+                          color: "#002F71",
                         }}
-                        checked={checkboxValues.includes(checkbox.name)}
-                        onChange={(
-                          event: React.ChangeEvent<HTMLInputElement>
-                        ) =>
-                          handleCheckboxChange(
-                            event,
-                            checkbox.name,
-                            checkbox._id
-                          )
+                        control={
+                          <Checkbox
+                            sx={{
+                              color: "#6682AA",
+                            }}
+                            checked={checkboxValues.includes(checkbox.name)}
+                            onChange={(
+                              event: React.ChangeEvent<HTMLInputElement>
+                            ) =>
+                              handleCheckboxChange(
+                                event,
+                                checkbox.name,
+                                checkbox._id
+                              )
+                            }
+                          />
                         }
+                        label={checkbox.name}
                       />
-                    }
-                    label={checkbox.name}
-                  />
-                </FormGroup>
-              ))}
+                    </FormGroup>
+                  ))}
+                </>
+                <>
+                  {checkboxValsad.map((checkbox, index) => (
+                    <FormGroup aria-label="position" row>
+                      <FormControlLabel
+                        key={index}
+                        sx={{
+                          color: "#002F71",
+                          marginRight: "55px",
+                        }}
+                        control={
+                          <Checkbox
+                            sx={{
+                              color: "#6682AA",
+                            }}
+                            checked={checkboxValues.includes(checkbox.name)}
+                            onChange={(
+                              event: React.ChangeEvent<HTMLInputElement>
+                            ) =>
+                              handleCheckboxChange(
+                                event,
+                                checkbox.name,
+                                checkbox._id
+                              )
+                            }
+                          />
+                        }
+                        label={checkbox.name}
+                      />
+                    </FormGroup>
+                  ))}
+                </>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <>
+                  {checkboxSurat.map((checkbox, index) => (
+                    <FormGroup aria-label="position" row>
+                      <FormControlLabel
+                        key={index}
+                        sx={{
+                          color: "#002F71",
+                        }}
+                        control={
+                          <Checkbox
+                            sx={{
+                              color: "#6682AA",
+                            }}
+                            checked={checkboxValues.includes(checkbox.name)}
+                            onChange={(
+                              event: React.ChangeEvent<HTMLInputElement>
+                            ) =>
+                              handleCheckboxChange(
+                                event,
+                                checkbox.name,
+                                checkbox._id
+                              )
+                            }
+                          />
+                        }
+                        label={checkbox.name}
+                      />
+                    </FormGroup>
+                  ))}
+                </>
+                <>
+                  {checkboxAhmedabad.map((checkbox, index) => (
+                    <FormGroup aria-label="position" row>
+                      <FormControlLabel
+                        key={index}
+                        sx={{
+                          color: "#002F71",
+                        }}
+                        control={
+                          <Checkbox
+                            sx={{
+                              color: "#6682AA",
+                            }}
+                            checked={checkboxValues.includes(checkbox.name)}
+                            onChange={(
+                              event: React.ChangeEvent<HTMLInputElement>
+                            ) =>
+                              handleCheckboxChange(
+                                event,
+                                checkbox.name,
+                                checkbox._id
+                              )
+                            }
+                          />
+                        }
+                        label={checkbox.name}
+                      />
+                    </FormGroup>
+                  ))}
+                </>
+              </Box>
             </FormControl>
           </Box>
         </DialogContent>

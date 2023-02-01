@@ -26,7 +26,17 @@ import { Avatar } from "@mui/material";
 import { EditNewResponsibility } from "../editNew/EditNew";
 import EditPopup from "../editNew/Popup";
 
-import { checkboxType, checkboxRegion } from "../filter/FilterData";
+import {
+  checkboxCountry,
+  checkboxDistrict,
+  checkboxState,
+  checkboxTaluka,
+  checkboxSanghat,
+  checkboxVadodara,
+  checkboxValsad,
+  checkboxSurat,
+  checkboxAhmedabad,
+} from "../filter/FilterData";
 
 const drawerWidth = 240;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -389,12 +399,22 @@ export default function DashboardTwo() {
     if (checkboxValues.length === 0) {
       setCheckboxValues(
         [
-          checkboxType.map((it) => it.name),
-          checkboxRegion.map((ite) => ite.name),
+          checkboxCountry.map((it) => it.name),
+          checkboxDistrict.map((it) => it.name),
+          checkboxState.map((it) => it.name),
+          checkboxTaluka.map((it) => it.name),
+          checkboxSanghat.map((it) => it.name),
+          checkboxVadodara.map((ite) => ite.name),
+          checkboxValsad.map((ite) => ite.name),
+          checkboxSurat.map((ite) => ite.name),
+          checkboxAhmedabad.map((ite) => ite.name),
         ].flat(1)
       );
       return;
     }
+    setCheckboxValues([]);
+  };
+  const handleResetAllChange = () => {
     setCheckboxValues([]);
   };
 
@@ -432,8 +452,15 @@ export default function DashboardTwo() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          width: "100vw",
+          minHeight: "100vh",
+          flexDirection: "row",
           backgroundColor: "#E6F2FE",
-          flex: 1,
+          // display: "flex",
+          // justifyContent: "center",
+          // alignItems: "center",
+          // backgroundColor: "#E6F2FE",
+          // flex: 1,
         }}
       >
         <CssBaseline />
@@ -582,6 +609,7 @@ export default function DashboardTwo() {
                 }}
               >
                 <AddFilter
+                  handleResetAllChange={handleResetAllChange}
                   handleAddFilter={handleFilter}
                   handleCheckboxChange={(event, name, id) => {
                     handleCheckboxChange(event, name, id);
@@ -592,6 +620,25 @@ export default function DashboardTwo() {
               </Box>
             </Box>
             <DrawerHeader />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                marginLeft: "1%",
+                marginBottom: "1%",
+              }}
+            >
+              <Typography
+                sx={{
+                  color: "#002F71",
+                  fontStyle: "normal",
+                  fontWeight: "500",
+                }}
+              >
+                Showing 1-5 of 20
+              </Typography>
+            </Box>
             <BasicTableTwo
               onEdit={editEmployeeData}
               onDeleteClickHnd={deleteEmployee}

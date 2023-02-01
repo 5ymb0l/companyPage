@@ -9,13 +9,16 @@ export const  SearchButton : React.FC<props> =({handleOnClick = ()=> null
     <Button disabled = {!query} onClick = {handleOnClick} variant="contained" sx = {{
    
       padding: "9px 10px",
-      
       gap: "1%",
       width: "117px",
       height: "10%",
       background: "#1073FF",
       borderRadius: "50px",
-      color : ' #002F71',
+      color : 'white', 
+      textTransform: "none",
+      fontWeight: 500,
+      fontStyle: "normal",
+      fontSize: "18px"
      }}> Search </Button>
 
   );

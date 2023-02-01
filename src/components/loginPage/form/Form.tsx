@@ -12,7 +12,7 @@ import { NextButton } from "../buttonNext/Button";
 import { Box, Paper } from "@mui/material";
 import Plant from "../../../assests/images/plant.png";
 import PlantTwo from "../../../assests/images/plant2.png";
-interface Istate {
+interface Istate { 
   isLogin: boolean;
 }
 export const Form = () => {

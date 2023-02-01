@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -17,21 +16,19 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import BasicTable from "../table/BasicTable";
-import { Avatar} from "@mui/material";
+import { Avatar } from "@mui/material";
 import { SearchHere } from "../searchHere/SearchBar";
 import { SearchButton } from "../searchButton/SearchButton";
 
-
-const drawerWidth = 240
+const drawerWidth = 240;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
 }>(({ theme, open }) => ({
-
- padding: theme.spacing(3),
-paddingRight : "4%",
- backgroundColor: "#E6F2FE",
- flexGrow: 1,
-marginBottom : "20%"
+  padding: theme.spacing(3),
+  // paddingRight : "4%",
+  //  backgroundColor: "#E6F2FE",
+  flexGrow: 1,
+  marginBottom: "20%",
 }));
 
 interface AppBarProps extends MuiAppBarProps {
@@ -64,23 +61,22 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export interface TableData {
-  name: string,
-   types: string,
-    role: string, 
-   }
+  name: string;
+  types: string;
+  role: string;
+}
 export const rows = [
-  {name : "Vadodara", types : "Sanghat", role : "SA",  },
-  {name :"Ahmedabad", types :"District", role :"A", },
-  {name :"Surat", types :"Sanghat", role : "A",  },
-  
+  { name: "Vadodara", types: "Sanghat", role: "SA" },
+  { name: "Ahmedabad", types: "District", role: "A" },
+  { name: "Surat", types: "Sanghat", role: "A" },
 ];
 
 export default function Dashboard() {
-  const[ userList , setUserList] = React.useState < TableData []>(rows);
-  const [query , setQuery] = React.useState<string>("");
+  const [userList, setUserList] = React.useState<TableData[]>(rows);
+  const [query, setQuery] = React.useState<string>("");
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -89,26 +85,33 @@ export default function Dashboard() {
     setOpen(false);
   };
   const handleOnClick = () => {
-    setUserList(rows.filter(row => row.name.toLowerCase().includes(query.toLowerCase())))
-  }
+    setUserList(
+      rows.filter((row) => row.name.toLowerCase().includes(query.toLowerCase()))
+    );
+  };
 
   return (
-    <Box sx={{ display : "flex",
-    justifyContent:"center",
-    alignItems:"center",
-    width: "100vw",
-    minHeight: "100vh",
-    flexDirection : "row",
-  backgroundColor: "#E6F2FE",
- 
-   }}>
-    
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100vw",
+        minHeight: "100vh",
+        flexDirection: "row",
+        backgroundColor: "#E6F2FE",
+      }}
+    >
       <CssBaseline />
-      <AppBar position="fixed" open={open} sx ={{
-        background: "#002F71"
-      }}>
+      <AppBar
+        position="fixed"
+        open={open}
+        sx={{
+          background: "#002F71",
+        }}
+      >
         <Toolbar>
-         <IconButton
+          <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -117,23 +120,27 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{flexGrow : 1}}>
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             LOGO
           </Typography>
-          
-          <Avatar style={{
-            display : "flex-end",
-            justifyContent : "center",
-            alignItems : "center"
-          }}> PG </Avatar>
-         <div style={{
-          marginLeft : "10px"
-         }}>
-<span className="text-gray-400 font-bold ml-1 text-14">
-                Pratik
-          </span>
+
+          <Avatar
+            style={{
+              display: "flex-end",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {" "}
+            PG{" "}
+          </Avatar>
+          <div
+            style={{
+              marginLeft: "10px",
+            }}
+          >
+            <span className="text-gray-400 font-bold ml-1 text-14">Pratik</span>
           </div>
-          
         </Toolbar>
       </AppBar>
       <Drawer
@@ -175,72 +182,72 @@ export default function Dashboard() {
               <ListItemButton>
                 <ListItemText primary={text} />
               </ListItemButton>
-            </ListItem>  
+            </ListItem>
           ))}
         </List>
         <Divider />
       </Drawer>
       <Main open={open}>
+        <DrawerHeader />
 
-       <DrawerHeader/>
-
-       <Box sx ={
-        {
-        display : "flex",
-        flexDirection : "row",
-        alignItems : "center",
-        width : "100%",
-        justifyContent : "center"
-      }
-       }>
-        <SearchHere query= {query} 
-          setQuery = {setQuery}
-         />
-   <SearchButton query = {query} handleOnClick = {handleOnClick}/>
-     </Box>
-       <Box sx = {{
-         display : "flex",
-         justifyContent : "center",
-         alignItems : "center",
-         marginTop : "2%",
-         width : "100%",
-         flexDirection : "row",
-       }}> 
-     <Box sx = {{
-      display : "flex",
-      flexDirection : "row",
-      alignItems : "center",
-      width : "100%",
-      justifyContent : "center"
-     }}>
-      <BasicTable userList={userList} />
-     </Box>
-      
-       <Box sx = {{
-        display : "flex",
-        alignItems : "center",
-        justifyContent : "center"
-       }}>
-        {userList && userList?.length === 0 && (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            width: "100%",
+            justifyContent: "center",
+          }}
+        >
+          <SearchHere query={query} setQuery={setQuery} />
+          <SearchButton query={query} handleOnClick={handleOnClick} />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "2%",
+            width: "100%",
+            flexDirection: "row",
+          }}
+        >
           <Box
             sx={{
-              width: 500,
-              margin: "20px auto",
-              padding: "20px",
-              border: "1px solid lightgray",
-              textAlign: "center",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              width: "100%",
+              justifyContent: "center",
             }}
           >
-            {" "}
-            No user Found{" "}
+            <BasicTable userList={userList} />
           </Box>
-        )}
-      </Box>
-      </Box>
-         </Main>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {userList && userList?.length === 0 && (
+              <Box
+                sx={{
+                  width: 500,
+                  margin: "20px auto",
+                  padding: "20px",
+                  border: "1px solid lightgray",
+                  textAlign: "center",
+                }}
+              >
+                {" "}
+                No user Found{" "}
+              </Box>
+            )}
+          </Box>
         </Box>
+      </Main>
+    </Box>
   );
 }
-
-
-

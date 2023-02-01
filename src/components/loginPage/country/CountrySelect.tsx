@@ -13,13 +13,13 @@ const CountrySelect: React.FC<{
     e.preventDefault();
   };
 
-  return (
+  return ( 
     <Autocomplete
       sx={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",       
-       height: "6vh",
+      //  height: "6vh",
        
     
       }}
@@ -37,8 +37,7 @@ const CountrySelect: React.FC<{
       renderOption={(props, option: CountryType) => (
         <Box className="focus"
           component="li"
-          sx={{ "& > img": { mr: 2, flexShrink: 0 } ,
-        }}
+          // sx={{ "& > img": { mr: 2, flexShrink: 0 }  }}
           {...props}
         >
           <img
@@ -64,12 +63,16 @@ const CountrySelect: React.FC<{
             InputProps={{
               ...params.InputProps,
               startAdornment: value ? (
-                <InputAdornment  disablePointerEvents position="start">
+                <InputAdornment sx = {{
+                   
+                }} disablePointerEvents position="start">
                   <img style={{
-               
-                    borderRadius : "50%",
-                    height : "5vh",
-                    width : "70%",
+                     width: "52px",
+                     height: "51px",
+                     overflow : "hidden",
+                     borderRadius : "50%",
+                    // height : "5vh",
+                    // width : "70%",
                   }}
                   width = "48"
                     className="img"
